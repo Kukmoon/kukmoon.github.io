@@ -11,6 +11,12 @@
         <content type="html"><![CDATA[<h2 id="问题发现"><a href="#问题发现" class="headerlink" title="问题发现"></a>问题发现</h2><p>谷月姐在后台编写微信公众号文章时，遇到一个问题：</p><p>【保存】、【预览】、【保存并群发】三个按钮，点击无效；而且【封面和摘要】、【原创声明】、【付费】、【文章设置】四个模块无法显示。</p><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Kukmoon/Pictures/20200915084126.png" alt=""></p><h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>经过摸索，谷月姐发现，这个问题的出现，与浏览器无关，而是因为油猴脚本「网页限制解除（改）」在作怪。</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>将微信公众号后台域名 mp.weixin.qq.com 添加到这个脚本的 exclude 名单就可以解决了。</p><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>用浏览器打开微信公众号后台 mp.weixin.qq.com ，点击油猴图标→【网页限制解除（改）】右侧的加号→排除 mp.weixin.qq.com ，即可。如图所示。</p><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Kukmoon/Pictures/20200915084600.png" alt=""></p><h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>在 Tampermonkey 设置面板中找到并编辑「网页限制解除（改）」，找到 <code>@exclude</code>，添加一行 <code>// @exclude        *mp.weixin.qq.com*</code> 即可。如图所示。</p><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Kukmoon/Pictures/20200915085029.png" alt=""></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是解决【保存】、【预览】、【保存并群发】三个按钮，点击无效（或者点不动）的方法。欢迎小伙伴们留言说出你的看法哟~</p>]]></content>
       
       
+      <categories>
+          
+          <category> IT技术 </category>
+          
+      </categories>
+      
       
         <tags>
             
@@ -179,6 +185,12 @@
       
         <content type="html"><![CDATA[<p>保持输出其实很难，为了打理我的Blog，我把一些老文章也陆续地挂上来。</p><p>这些老文章，以前曾经放在我在百度或者网易的Blog，但是随着它们关闭博客服务，这些老文章也不复存在，空山不见人，但闻人语响……</p><p>这些老文章的发布日期（date）是它们第一次在我之前的Blog发布的日期，如果我记不清了，就以原文档的创建时间为准。更新日期（update）则是它们第一次挂在本Blog的日期。</p><hr><h2 id="一、绝对地租"><a href="#一、绝对地租" class="headerlink" title="一、绝对地租"></a>一、绝对地租</h2><p><strong>土地资源的有限性</strong>和<strong>土地私有制</strong>（即土地私有权的垄断）决定了资本不可能自由进出农业领域，即农产品没有参与社会利润平均化。农产品出售是按照其价值（其实是劣等地决定的农产品社会生产价格，<em>此处暂时认为是价值</em>）出售的。</p><p>因为<strong>农业资本有机构成比工业低</strong>，所以<strong>农产品剩余价值</strong>高于由工业产品决定的<strong>社会平均利润</strong>。但是，<em>土地所有者不允许农业资本家获取的利润超过社会平均利润</em>，农业资本家必须要把<strong>超出社会平均利润的那部分剩余价值</strong>交给土地所有者。这部分剩余价值就是<strong>绝对地租</strong>。</p><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Kukmoon/Pictures/%E7%BB%9D%E5%AF%B9%E5%9C%B0%E7%A7%9F%E7%9A%84%E4%BA%A7%E7%94%9F.png" alt="绝对地租的产生"></p><p>当然，为便于理解，此处的推导有两个假设：</p><ol><li>工业产品和农业产品成本相等，</li><li>产业资本家和农业资本家的平均利润相等。</li></ol><p>在<strong>实际经济生活</strong>中，尽管这两个假设不成立，但是<strong>绝对地租的产生还是符合以上表述</strong>。</p><h2 id="二、级差地租"><a href="#二、级差地租" class="headerlink" title="二、级差地租"></a>二、级差地租</h2><h3 id="级差地租Ⅰ"><a href="#级差地租Ⅰ" class="headerlink" title="级差地租Ⅰ"></a>级差地租Ⅰ</h3><p>假如所有的土地没有任何差别，即劳动生产率都相同，那么资本主义世界就只有绝对地租。但是，<strong>土地是有差别</strong>（例如：肥沃程度、距市场远近）的，有劣等地、中等地、优等地之分，<strong>劳动生产率的大小关系是劣等地 &lt; 中等地 &lt; 优等地</strong>。那么农业资本家<strong>租种中等地和优等地，就必须要多交地租</strong>，这部份多交的地租就是<strong>级差地租Ⅰ</strong>。</p><p><strong>资本主义土地经营权</strong>的垄断决定了农业资本不可能在农业生产部门内部自由流动，从而决定了<strong>农产品的社会生产价格</strong>由劣等地决定：<em>所有农产品都按照劣等地的生产价格出售</em>。很显然，中等地、优等地的劳动生产率高，单位商品价值量低，按照农产品的社会生产价格出售，就会获得<strong>超额剩余价值</strong>。</p><p><img src= "/img/loading.gif" data-lazy-src="https://cdn.jsdelivr.net/gh/Kukmoon/Pictures/%E7%BA%A7%E5%B7%AE%E5%9C%B0%E7%A7%9FI%E7%9A%84%E4%BA%A7%E7%94%9F.png" alt="级差地租I的产生"></p><p>但是，土地所有者也不可能听任这部分超额剩余价值归给了农业资本家，所以农业资本家也必须把这部分超额剩余价值交给土地所有者，这笔钱就是级差地租I。</p><p>很明显，劣等地没有级差地租I。</p><p>建筑、矿山也要占用土地，也会产生地租，但是前者的级差地租Ⅰ是由地理位置决定的（市中心寸土寸金，市郊相对便宜），后者的级差地租I是由矿储量、开采难易程度等因素决定。</p><h3 id="级差地租Ⅱ"><a href="#级差地租Ⅱ" class="headerlink" title="级差地租Ⅱ"></a>级差地租Ⅱ</h3><p>农业资本家租了一块地，自然会想方设法进行改良，<strong>追加投资以提高劳动生产率</strong>：因为地租被土地所有者收取了，农业资本家要想多剥削剩余价值，就只能靠多产多销。<em>但是提高劳动生产率这份功劳却被土地所有者居为己有</em>，成为在土地续组时<strong>提高地租</strong>的理由。农业资本家要想继续租下去，就必须接受地租增加这个现实。增加的这部分地租，就是<strong>级差地租Ⅱ</strong>。</p><p>农业资本家改良了土地，却要多交地租，这笔钱交得实在心不甘情不愿。一切地租的来源都是剩余价值，所以级差地租II集中反映了<strong>土地所有者和农业资本家争夺</strong>农业工人创造的<strong>剩余价值</strong>的关系。</p><p>级差地租Ⅱ是否产生，关键看农业资本家有没有追加投资改良土地。劣等地也可能有级差地租Ⅱ。</p><p>十七届三中全会决定再一次延长农村土地承包权年限，从经济学上看是国家把级差地租II让渡给了农民。</p><h2 id="三、垄断地租"><a href="#三、垄断地租" class="headerlink" title="三、垄断地租"></a>三、垄断地租</h2><p>有少数土地能够生产一种非常名贵的特殊产品（比方说东北生产人参的黑土地），这种特殊产品价格很高，利润十分丰厚。因此这种土地的地租也跟着水涨船高，就形成了垄断地租。（此概念不在大纲要求之内，但2007年曾有涉及）</p>]]></content>
       
+      
+      <categories>
+          
+          <category> 考试 </category>
+          
+      </categories>
       
       
         <tags>
