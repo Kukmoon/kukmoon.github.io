@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kukmoon.com/"/>
-  <updated>2020-09-15T01:13:51.564Z</updated>
+  <updated>2020-09-18T01:53:09.403Z</updated>
   <id>https://blog.kukmoon.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>已有 Certiport 账号，如何注册 MOS 或 MTA 考试？</title>
+    <link href="https://blog.kukmoon.com/bf1e37b5.html"/>
+    <id>https://blog.kukmoon.com/bf1e37b5.html</id>
+    <published>2020-09-17T22:49:36.000Z</published>
+    <updated>2020-09-18T01:53:09.403Z</updated>
+    
+    <summary type="html">
+    
+      很多小伙伴已经有了 Certiport 账号，但是却没有注册 MOS 考试，导致无法参加，怎么办？
+    
+    </summary>
+    
+    
+      <category term="MOS" scheme="https://blog.kukmoon.com/categories/MOS/"/>
+    
+    
+      <category term="谷月老师" scheme="https://blog.kukmoon.com/tags/%E8%B0%B7%E6%9C%88%E8%80%81%E5%B8%88/"/>
+    
+      <category term="MOS" scheme="https://blog.kukmoon.com/tags/MOS/"/>
+    
+  </entry>
   
   <entry>
     <title>为什么微信公众号后台文章不能保存、预览和群发？</title>
@@ -54,9 +77,9 @@
       <category term="MOS" scheme="https://blog.kukmoon.com/categories/MOS/"/>
     
     
-      <category term="MOS" scheme="https://blog.kukmoon.com/tags/MOS/"/>
-    
       <category term="谷月老师" scheme="https://blog.kukmoon.com/tags/%E8%B0%B7%E6%9C%88%E8%80%81%E5%B8%88/"/>
+    
+      <category term="MOS" scheme="https://blog.kukmoon.com/tags/MOS/"/>
     
       <category term="Word" scheme="https://blog.kukmoon.com/tags/Word/"/>
     
