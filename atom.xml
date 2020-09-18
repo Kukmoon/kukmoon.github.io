@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kukmoon.com/"/>
-  <updated>2020-09-18T02:02:43.654Z</updated>
+  <updated>2020-09-18T02:28:00.055Z</updated>
   <id>https://blog.kukmoon.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【谷月老师MOS】双字节字符不得填入必选字段怎么办？</title>
+    <link href="https://blog.kukmoon.com/268ff769.html"/>
+    <id>https://blog.kukmoon.com/268ff769.html</id>
+    <published>2020-09-18T02:21:37.000Z</published>
+    <updated>2020-09-18T02:28:00.055Z</updated>
+    
+    <summary type="html">
+    
+      很多小伙伴在 www.certiport.com 注册 MOS 或 MTA 考试时，网站提示“双字节字符不得填入必选字段”，怎么办？
+    
+    </summary>
+    
+    
+      <category term="MOS" scheme="https://blog.kukmoon.com/categories/MOS/"/>
+    
+    
+      <category term="MOS" scheme="https://blog.kukmoon.com/tags/MOS/"/>
+    
+      <category term="谷月老师" scheme="https://blog.kukmoon.com/tags/%E8%B0%B7%E6%9C%88%E8%80%81%E5%B8%88/"/>
+    
+  </entry>
   
   <entry>
     <title>已有 Certiport 账号，如何注册 MOS 或 MTA 考试？</title>
