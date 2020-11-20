@@ -207,6 +207,13 @@
   </url>
   
   <url>
+    <loc>https://blog.kukmoon.com/tags/%E9%9A%8F%E7%AC%94/</loc>
+    <lastmod>2020-11-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.kukmoon.com/tags/Hexo/</loc>
     <lastmod>2020-11-20</lastmod>
     <changefreq>daily</changefreq>
@@ -222,13 +229,6 @@
   
   <url>
     <loc>https://blog.kukmoon.com/tags/%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2020-11-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.kukmoon.com/tags/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2020-11-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
