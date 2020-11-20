@@ -4,7 +4,14 @@
   <url>
     <loc>https://blog.kukmoon.com/42ddf80e.html</loc>
     
-    <lastmod>2020-11-17</lastmod>
+    <lastmod>2020-11-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.kukmoon.com/e5250e95.html</loc>
+    
+    <lastmod>2020-11-20</lastmod>
     
   </url>
   
@@ -222,6 +229,20 @@
   
   <url>
     <loc>https://blog.kukmoon.com/tags/%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2020-11-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.kukmoon.com/tags/BAP/</loc>
+    <lastmod>2020-11-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.kukmoon.com/tags/GLAD/</loc>
     <lastmod>2020-11-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
