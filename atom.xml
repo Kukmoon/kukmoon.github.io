@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kukmoon.com/"/>
-  <updated>2020-11-25T10:47:30.146Z</updated>
+  <updated>2020-11-25T11:02:18.560Z</updated>
   <id>https://blog.kukmoon.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.kukmoon.com/f0396a9b.html"/>
     <id>https://blog.kukmoon.com/f0396a9b.html</id>
     <published>2020-11-25T10:17:56.000Z</published>
-    <updated>2020-11-25T10:47:30.146Z</updated>
+    <updated>2020-11-25T11:02:18.560Z</updated>
     
     <summary type="html">
     
@@ -37,6 +37,8 @@
     
       <category term="跨性别" scheme="https://blog.kukmoon.com/tags/%E8%B7%A8%E6%80%A7%E5%88%AB/"/>
     
+      <category term="跨性别医学院" scheme="https://blog.kukmoon.com/tags/%E8%B7%A8%E6%80%A7%E5%88%AB%E5%8C%BB%E5%AD%A6%E9%99%A2/"/>
+    
   </entry>
   
   <entry>
@@ -44,7 +46,7 @@
     <link href="https://blog.kukmoon.com/d36f4544.html"/>
     <id>https://blog.kukmoon.com/d36f4544.html</id>
     <published>2020-11-25T10:04:44.000Z</published>
-    <updated>2020-11-25T10:39:53.480Z</updated>
+    <updated>2020-11-25T11:02:38.715Z</updated>
     
     <summary type="html">
     
@@ -68,6 +70,8 @@
       <category term="药学" scheme="https://blog.kukmoon.com/tags/%E8%8D%AF%E5%AD%A6/"/>
     
       <category term="跨性别" scheme="https://blog.kukmoon.com/tags/%E8%B7%A8%E6%80%A7%E5%88%AB/"/>
+    
+      <category term="跨性别医学院" scheme="https://blog.kukmoon.com/tags/%E8%B7%A8%E6%80%A7%E5%88%AB%E5%8C%BB%E5%AD%A6%E9%99%A2/"/>
     
   </entry>
   
