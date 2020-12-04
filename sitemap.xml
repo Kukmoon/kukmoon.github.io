@@ -228,13 +228,6 @@
   </url>
   
   <url>
-    <loc>https://blog.kukmoon.com/tags/%E8%80%83%E7%A0%94/</loc>
-    <lastmod>2020-12-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.kukmoon.com/tags/%E8%AE%BE%E8%AE%A1%E4%BD%9C%E5%93%81/</loc>
     <lastmod>2020-12-04</lastmod>
     <changefreq>daily</changefreq>
@@ -243,6 +236,13 @@
   
   <url>
     <loc>https://blog.kukmoon.com/tags/%E5%BE%AE%E4%BF%A1/</loc>
+    <lastmod>2020-12-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.kukmoon.com/tags/%E8%80%83%E7%A0%94/</loc>
     <lastmod>2020-12-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -384,14 +384,14 @@
   </url>
   
   <url>
-    <loc>https://blog.kukmoon.com/categories/%E8%80%83%E8%AF%95/</loc>
+    <loc>https://blog.kukmoon.com/categories/IT%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2020-12-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.kukmoon.com/categories/IT%E6%8A%80%E6%9C%AF/</loc>
+    <loc>https://blog.kukmoon.com/categories/%E8%80%83%E8%AF%95/</loc>
     <lastmod>2020-12-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
