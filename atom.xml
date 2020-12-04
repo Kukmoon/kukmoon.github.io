@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kukmoon.com/"/>
-  <updated>2020-12-02T18:16:59.761Z</updated>
+  <updated>2020-12-04T03:59:10.847Z</updated>
   <id>https://blog.kukmoon.com/</id>
   
   <author>
@@ -17,11 +17,63 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>一张图带你看懂MOS认证考试，来报名吧~</title>
+    <link href="https://blog.kukmoon.com/e5574fe8.html"/>
+    <id>https://blog.kukmoon.com/e5574fe8.html</id>
+    <published>2020-12-04T03:47:18.000Z</published>
+    <updated>2020-12-04T03:59:10.847Z</updated>
+    
+    <summary type="html">
+    
+      欢迎报名 MOS （Microsoft Office Specialist） 认证考试！
+    
+    </summary>
+    
+    
+      <category term="MOS" scheme="https://blog.kukmoon.com/categories/MOS/"/>
+    
+    
+      <category term="MOS" scheme="https://blog.kukmoon.com/tags/MOS/"/>
+    
+      <category term="谷月老师" scheme="https://blog.kukmoon.com/tags/%E8%B0%B7%E6%9C%88%E8%80%81%E5%B8%88/"/>
+    
+      <category term="设计作品" scheme="https://blog.kukmoon.com/tags/%E8%AE%BE%E8%AE%A1%E4%BD%9C%E5%93%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>谷月姐的挽歌</title>
+    <link href="https://blog.kukmoon.com/add8e138.html"/>
+    <id>https://blog.kukmoon.com/add8e138.html</id>
+    <published>2020-12-04T03:25:42.000Z</published>
+    <updated>2020-12-04T03:32:07.626Z</updated>
+    
+    <summary type="html">
+    
+      谷月姐给自己写的挽歌。
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://blog.kukmoon.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://blog.kukmoon.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="抑郁" scheme="https://blog.kukmoon.com/tags/%E6%8A%91%E9%83%81/"/>
+    
+      <category term="知乎" scheme="https://blog.kukmoon.com/tags/%E7%9F%A5%E4%B9%8E/"/>
+    
+      <category term="诗词" scheme="https://blog.kukmoon.com/tags/%E8%AF%97%E8%AF%8D/"/>
+    
+  </entry>
+  
+  <entry>
     <title>自己说错话，会记很久，心里很内疚自责。这是什么情况？</title>
     <link href="https://blog.kukmoon.com/aedd3faf.html"/>
     <id>https://blog.kukmoon.com/aedd3faf.html</id>
     <published>2020-12-02T18:02:01.000Z</published>
-    <updated>2020-12-02T18:16:59.761Z</updated>
+    <updated>2020-12-02T18:17:18.447Z</updated>
     
     <summary type="html">
     
@@ -447,61 +499,6 @@
     
     
       <category term="随笔" scheme="https://blog.kukmoon.com/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>测试文章</title>
-    <link href="https://blog.kukmoon.com/7a6a6b5a.html"/>
-    <id>https://blog.kukmoon.com/7a6a6b5a.html</id>
-    <published>2020-08-09T01:04:05.000Z</published>
-    <updated>2020-11-20T14:37:40.776Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;这是标题&quot;&gt;&lt;a href=&quot;#这是标题&quot; class=&quot;headerlink&quot; title=&quot;这是标题&quot;&gt;&lt;/a&gt;这是标题&lt;/h2&gt;&lt;p&gt;这是正文&lt;/p&gt;
-&lt;p&gt;这是代码块：&lt;br&gt;&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;This is a
-        
-      
-    
-    </summary>
-    
-    
-      <category term="IT技术" scheme="https://blog.kukmoon.com/categories/IT%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Hexo" scheme="https://blog.kukmoon.com/tags/Hexo/"/>
-    
-      <category term="博客" scheme="https://blog.kukmoon.com/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-      <category term="测试" scheme="https://blog.kukmoon.com/tags/%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://blog.kukmoon.com/4a17b156.html"/>
-    <id>https://blog.kukmoon.com/4a17b156.html</id>
-    <published>2020-08-07T16:00:00.000Z</published>
-    <updated>2020-11-20T14:39:33.717Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;
-        
-      
-    
-    </summary>
-    
-    
     
   </entry>
   
