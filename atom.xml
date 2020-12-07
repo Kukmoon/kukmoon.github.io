@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kukmoon.com/"/>
-  <updated>2020-12-05T18:48:10.109Z</updated>
+  <updated>2020-12-05T19:11:15.818Z</updated>
   <id>https://blog.kukmoon.com/</id>
   
   <author>
@@ -21,11 +21,11 @@
     <link href="https://blog.kukmoon.com/faeb8022.html"/>
     <id>https://blog.kukmoon.com/faeb8022.html</id>
     <published>2020-12-05T18:42:10.000Z</published>
-    <updated>2020-12-05T18:48:10.109Z</updated>
+    <updated>2020-12-05T19:11:15.818Z</updated>
     
     <summary type="html">
     
-      在 Mac 上安装虚拟机软件 Parallels Desktop ，创建虚拟机，并在虚拟机中安装 Windows 10 和 Office 2016，最终目的是在苹果电脑上无缝运行 Office 2016/2019，助力读者复习备考 MOS 认证考试。
+      在 Mac 上安装虚拟机软件 Parallels Desktop ，创建虚拟机，并在虚拟机中安装 Windows 10 和 Office 2016/2019，最终目的是在苹果电脑上无缝运行 Office 2016/2019，助力读者复习备考 MOS 认证考试。
     
     </summary>
     
@@ -46,7 +46,7 @@
     <link href="https://blog.kukmoon.com/e5574fe8.html"/>
     <id>https://blog.kukmoon.com/e5574fe8.html</id>
     <published>2020-12-04T03:47:18.000Z</published>
-    <updated>2020-12-04T04:34:35.364Z</updated>
+    <updated>2020-12-07T19:14:45.385Z</updated>
     
     <summary type="html">
     
@@ -63,33 +63,6 @@
       <category term="谷月老师" scheme="https://blog.kukmoon.com/tags/%E8%B0%B7%E6%9C%88%E8%80%81%E5%B8%88/"/>
     
       <category term="设计作品" scheme="https://blog.kukmoon.com/tags/%E8%AE%BE%E8%AE%A1%E4%BD%9C%E5%93%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>谷月姐的挽歌</title>
-    <link href="https://blog.kukmoon.com/add8e138.html"/>
-    <id>https://blog.kukmoon.com/add8e138.html</id>
-    <published>2020-12-04T03:25:42.000Z</published>
-    <updated>2020-12-04T04:23:28.964Z</updated>
-    
-    <summary type="html">
-    
-      谷月姐给自己写的挽歌。
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://blog.kukmoon.com/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="随笔" scheme="https://blog.kukmoon.com/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-      <category term="抑郁" scheme="https://blog.kukmoon.com/tags/%E6%8A%91%E9%83%81/"/>
-    
-      <category term="知乎" scheme="https://blog.kukmoon.com/tags/%E7%9F%A5%E4%B9%8E/"/>
-    
-      <category term="诗词" scheme="https://blog.kukmoon.com/tags/%E8%AF%97%E8%AF%8D/"/>
     
   </entry>
   
@@ -327,7 +300,7 @@
     <link href="https://blog.kukmoon.com/42ddf80e.html"/>
     <id>https://blog.kukmoon.com/42ddf80e.html</id>
     <published>2020-11-17T00:09:34.000Z</published>
-    <updated>2020-11-25T17:56:44.350Z</updated>
+    <updated>2020-12-07T19:40:48.410Z</updated>
     
     <summary type="html">
     
@@ -350,7 +323,7 @@
     <link href="https://blog.kukmoon.com/1a6e66b5.html"/>
     <id>https://blog.kukmoon.com/1a6e66b5.html</id>
     <published>2020-11-02T07:54:43.000Z</published>
-    <updated>2020-11-25T19:39:20.503Z</updated>
+    <updated>2020-12-07T19:40:17.399Z</updated>
     
     <summary type="html">
     
@@ -503,6 +476,27 @@
       <category term="Hexo" scheme="https://blog.kukmoon.com/tags/Hexo/"/>
     
       <category term="GitHub" scheme="https://blog.kukmoon.com/tags/GitHub/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>建立博客的目的</title>
+    <link href="https://blog.kukmoon.com/c9656230.html"/>
+    <id>https://blog.kukmoon.com/c9656230.html</id>
+    <published>2020-08-17T16:29:16.000Z</published>
+    <updated>2020-11-20T14:51:00.373Z</updated>
+    
+    <summary type="html">
+    
+      我建立这个博客的目的，主要有三个：SEO，自由表达，写点东西。
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://blog.kukmoon.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://blog.kukmoon.com/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
