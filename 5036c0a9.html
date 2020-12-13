@@ -55,7 +55,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -270,9 +270,7 @@
 ">[4]</span></a></sup>。</p>
 <p>主要步骤如下：</p>
 <blockquote>
-<p><strong>解决办法</strong><br>以管理员身份打开命令提示符，运行如下两条命令：<br><div class="hljs"><pre><code class="hljs bash">bcdedit /copy &#123;default&#125; /d <span class="hljs-string">&quot;name&quot;</span>
-bcdedit /<span class="hljs-built_in">set</span> &#123;ID-Number&#125; HyperVisorLaunchType OFF</code></pre></div><br><strong>命令详解</strong><br>第一条命令中 name 参数支持自定义。<br>如果第一条命令成功的话，就会有一串很长的 ID 出现，复制它，第二条命令中需要用到，即 ID-Number 参数，要把它复制到“{}”这个符号中间。<br>比如我执行的命令：<br><div class="hljs"><pre><code class="hljs bash">bcdedit /copy &#123;default&#125; /d <span class="hljs-string">&quot;Windows Server 2012 Without Hyper-V&quot;</span>
-bcdedit /<span class="hljs-built_in">set</span> &#123;ce54aea7-ad33-11e9-9022-f8edf66e1542&#125; HyperVisorLaunchType OFF</code></pre></div><br>执行成功后可以用 msconfig 验证是否成功创建启动项，并将引导菜单超时时间修改大一些。</p>
+<p><strong>解决办法</strong><br>以管理员身份打开命令提示符，运行如下两条命令：<br><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">bcdedit /copy &#123;default&#125; /d <span class="hljs-string">&quot;name&quot;</span><br>bcdedit /<span class="hljs-built_in">set</span> &#123;ID-Number&#125; HyperVisorLaunchType OFF<br></code></pre></div></td></tr></table></figure><br><strong>命令详解</strong><br>第一条命令中 name 参数支持自定义。<br>如果第一条命令成功的话，就会有一串很长的 ID 出现，复制它，第二条命令中需要用到，即 ID-Number 参数，要把它复制到“{}”这个符号中间。<br>比如我执行的命令：<br><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">bcdedit /copy &#123;default&#125; /d <span class="hljs-string">&quot;Windows Server 2012 Without Hyper-V&quot;</span><br>bcdedit /<span class="hljs-built_in">set</span> &#123;ce54aea7-ad33-11e9-9022-f8edf66e1542&#125; HyperVisorLaunchType OFF<br></code></pre></div></td></tr></table></figure><br>执行成功后可以用 msconfig 验证是否成功创建启动项，并将引导菜单超时时间修改大一些。</p>
 <p>然后重启系统，在选择启动项界面选择”Windows Server 2012 Without Hyper-V”就能运行 VMWare 了。</p>
 <p>这样比装双系统方便些，而且这两个引导进去的系统是一样的，只是，有一个只能运行 VMWare，另一个只能运行 Hyper-V。</p>
 </blockquote>
@@ -528,6 +526,7 @@ bcdedit /<span class="hljs-built_in">set</span> &#123;ce54aea7-ad33-11e9-9022-f8
 
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
 
 
 

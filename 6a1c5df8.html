@@ -55,7 +55,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -306,18 +306,9 @@
 <p><img src="https://cdn.jsdelivr.net/gh/Kukmoon/Pictures/20200818131041.png" srcset="/img/loading.gif" alt="添加一条CNAME记录"></p>
 <p>再回到百度，点击“完成验证”即可。如果百度提示“没有找到对应的DNS CNAME记录“，这说明域名解析记录还没有生效，需要等一段时间，最多24小时。</p>
 <h4 id="站点地图"><a href="#站点地图" class="headerlink" title="站点地图"></a>站点地图</h4><p>在博客根目录（kukmoon_blogs）安装插件hexo-generator-baidu-sitemap和hexo-generator-sitemap</p>
-<div class="hljs"><pre><code class="hljs bash">npm install hexo-generator-baidu-sitemap --save
-npm install hexo-generator-sitemap --save</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">npm install hexo-generator-baidu-sitemap --save<br>npm install hexo-generator-sitemap --save<br></code></pre></div></td></tr></table></figure>
 <p>查看Hexo根目录_config.yml文件中url的值，URL必须是我们博客在百度登记的域名。例如：</p>
-<div class="hljs"><pre><code class="hljs yaml"><span class="hljs-comment"># URL</span>
-<span class="hljs-comment">## If your site is put in a subdirectory, set url as &#x27;http://yoursite.com/child&#x27; and root as &#x27;/child/&#x27;</span>
-<span class="hljs-attr">url:</span> <span class="hljs-string">https://www.kukmoon.com/</span>
-<span class="hljs-attr">root:</span> <span class="hljs-string">/</span>
-<span class="hljs-attr">permalink:</span> <span class="hljs-string">:abbrlink.html</span>
-<span class="hljs-attr">permalink_defaults:</span>
-<span class="hljs-attr">pretty_urls:</span>
-  <span class="hljs-attr">trailing_index:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span>
-  <span class="hljs-attr">trailing_html:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></code></pre></div>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-comment"># URL</span><br><span class="hljs-comment">## If your site is put in a subdirectory, set url as &#x27;http://yoursite.com/child&#x27; and root as &#x27;/child/&#x27;</span><br><span class="hljs-attr">url:</span> <span class="hljs-string">https://www.kukmoon.com/</span><br><span class="hljs-attr">root:</span> <span class="hljs-string">/</span><br><span class="hljs-attr">permalink:</span> <span class="hljs-string">:abbrlink.html</span><br><span class="hljs-attr">permalink_defaults:</span><br><span class="hljs-attr">pretty_urls:</span><br>  <span class="hljs-attr">trailing_index:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span><br>  <span class="hljs-attr">trailing_html:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span><br></code></pre></div></td></tr></table></figure>
 <p><strong>强烈建议安装Permalink插件缩短博文的URL。</strong></p>
 <p>然后，将博客部署到Netlify，然后访问<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.kukmoon.com/baqidusitemap.xml就可以看到网站地图。">https://www.kukmoon.com/baqidusitemap.xml就可以看到网站地图。</a></p>
 <p>接下来，我们在百度站长平台点击“搜索服务”→“普通收录”。</p>
@@ -325,49 +316,20 @@ npm install hexo-generator-sitemap --save</code></pre></div>
 <p>在“资源提交”中，点击”Sitemap“，把<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.kukmoon.com/baidusitemap.xml复制粘贴到文本框中，点击“提交”即可。">https://www.kukmoon.com/baidusitemap.xml复制粘贴到文本框中，点击“提交”即可。</a></p>
 <p><img src="https://cdn.jsdelivr.net/gh/Kukmoon/Pictures/20200818132229.png" srcset="/img/loading.gif" alt="提交Sitemap"></p>
 <h4 id="Robots-txt"><a href="#Robots-txt" class="headerlink" title="Robots.txt"></a>Robots.txt</h4><p>robots.txt（统一小写）是一种存放于网站根目录下的ASCII编码的文本文件，它的作用是告诉搜索引擎此网站中哪些内容是可以被爬取的，哪些是禁止爬取的。<br> 在 source目录下增加 robots.txt 文件，网站生成后在网站的根目录(站点目录/public/)下。</p>
-<div class="hljs"><pre><code class="hljs yaml"><span class="hljs-attr">User-agent:</span> <span class="hljs-string">*</span>
-<span class="hljs-attr">Allow:</span> <span class="hljs-string">/</span>
-<span class="hljs-attr">Allow:</span> <span class="hljs-string">/home/</span>
-<span class="hljs-attr">Allow:</span> <span class="hljs-string">/archives/</span>
-<span class="hljs-attr">Allow:</span> <span class="hljs-string">/about/</span>
-<span class="hljs-attr">Allow:</span> <span class="hljs-string">/link/</span>
-<span class="hljs-attr">Disallow:</span> <span class="hljs-string">/vendors/</span>
-<span class="hljs-attr">Disallow:</span> <span class="hljs-string">/js/</span>
-<span class="hljs-attr">Disallow:</span> <span class="hljs-string">/css/</span>
-<span class="hljs-attr">Disallow:</span> <span class="hljs-string">/fonts/</span>
-<span class="hljs-attr">Sitemap:</span> <span class="hljs-string">http://www.kukmoon.com/sitemap.xml</span>
-<span class="hljs-attr">Sitemap:</span> <span class="hljs-string">http://www.kukmoon.com/baidusitemap.xml</span></code></pre></div>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">User-agent:</span> <span class="hljs-string">*</span><br><span class="hljs-attr">Allow:</span> <span class="hljs-string">/</span><br><span class="hljs-attr">Allow:</span> <span class="hljs-string">/home/</span><br><span class="hljs-attr">Allow:</span> <span class="hljs-string">/archives/</span><br><span class="hljs-attr">Allow:</span> <span class="hljs-string">/about/</span><br><span class="hljs-attr">Allow:</span> <span class="hljs-string">/link/</span><br><span class="hljs-attr">Disallow:</span> <span class="hljs-string">/vendors/</span><br><span class="hljs-attr">Disallow:</span> <span class="hljs-string">/js/</span><br><span class="hljs-attr">Disallow:</span> <span class="hljs-string">/css/</span><br><span class="hljs-attr">Disallow:</span> <span class="hljs-string">/fonts/</span><br><span class="hljs-attr">Sitemap:</span> <span class="hljs-string">http://www.kukmoon.com/sitemap.xml</span><br><span class="hljs-attr">Sitemap:</span> <span class="hljs-string">http://www.kukmoon.com/baidusitemap.xml</span><br></code></pre></div></td></tr></table></figure>
 <p>但是，根据谷月姐本人实践，百度无法识别博客根目录的Robots.txt。</p>
 <h4 id="将博文主动推送到百度"><a href="#将博文主动推送到百度" class="headerlink" title="将博文主动推送到百度"></a>将博文主动推送到百度</h4><p>在博客根目录（kukmoon_blogs）安装插件hexo-baidu-url-submit。</p>
-<div class="hljs"><pre><code class="hljs bash">npm install hexo-baidu-url-submit --save</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">npm install hexo-baidu-url-submit --save<br></code></pre></div></td></tr></table></figure>
 <p>然后，在博客根目录的_config.yml文件里写入以下配置：</p>
-<div class="hljs"><pre><code class="hljs bash">baidu_url_submit:
-  count: 100                           <span class="hljs-comment"># 提交最新的多少个链接</span>
-  host: https://www.kukmoon.com/    <span class="hljs-comment"># 在百度站长平台中添加的域名</span>
-  token: your_token             	  <span class="hljs-comment"># 秘钥</span>
-  path: baidu_urls.txt                <span class="hljs-comment"># 文本文档的地址,新链接会保存在此文本文档里</span></code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">baidu_url_submit:<br>  count: 100                           <span class="hljs-comment"># 提交最新的多少个链接</span><br>  host: https://www.kukmoon.com/    <span class="hljs-comment"># 在百度站长平台中添加的域名</span><br>  token: your_token             	  <span class="hljs-comment"># 秘钥</span><br>  path: baidu_urls.txt                <span class="hljs-comment"># 文本文档的地址,新链接会保存在此文本文档里</span><br></code></pre></div></td></tr></table></figure>
 <p>注意：host的值一定要与_config.yml文件的url的值一致，都是在百度站长平台登记的域名。</p>
-<div class="hljs"><pre><code class="hljs yaml"><span class="hljs-comment"># URL</span>
-<span class="hljs-comment">## If your site is put in a subdirectory, set url as &#x27;http://yoursite.com/child&#x27; and root as &#x27;/child/&#x27;</span>
-<span class="hljs-attr">url:</span> <span class="hljs-string">https://www.kukmoon.com/</span>
-<span class="hljs-attr">root:</span> <span class="hljs-string">/</span>
-<span class="hljs-attr">permalink:</span> <span class="hljs-string">:abbrlink.html</span>
-<span class="hljs-attr">permalink_defaults:</span>
-<span class="hljs-attr">pretty_urls:</span>
-  <span class="hljs-attr">trailing_index:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span>
-  <span class="hljs-attr">trailing_html:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></code></pre></div>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-comment"># URL</span><br><span class="hljs-comment">## If your site is put in a subdirectory, set url as &#x27;http://yoursite.com/child&#x27; and root as &#x27;/child/&#x27;</span><br><span class="hljs-attr">url:</span> <span class="hljs-string">https://www.kukmoon.com/</span><br><span class="hljs-attr">root:</span> <span class="hljs-string">/</span><br><span class="hljs-attr">permalink:</span> <span class="hljs-string">:abbrlink.html</span><br><span class="hljs-attr">permalink_defaults:</span><br><span class="hljs-attr">pretty_urls:</span><br>  <span class="hljs-attr">trailing_index:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span><br>  <span class="hljs-attr">trailing_html:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span><br></code></pre></div></td></tr></table></figure>
 <p>但是，密钥在哪里获取呢？仍然需要登录百度站长平台，点击“搜索服务”→“普通收录”。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/Kukmoon/Pictures/20200818132031.png" srcset="/img/loading.gif" alt="普通收录"></p>
 <p>在“资源提交”中，点击“API提交“，在”接口调用地址“的最后，就是token。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/Kukmoon/Pictures/20200818133011.png" srcset="/img/loading.gif" alt="Token"></p>
 <p>在博客根目录的_config.yml文件里增加以下配置：</p>
-<div class="hljs"><pre><code class="hljs yaml"><span class="hljs-comment"># Deployment</span>
-<span class="hljs-comment">## Docs: https://hexo.io/docs/deployment.html</span>
-<span class="hljs-attr">deploy:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">git</span>
-    <span class="hljs-attr">repo:</span>
-    <span class="hljs-attr">branch:</span>     
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">baidu_url_submitter</span></code></pre></div>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-comment"># Deployment</span><br><span class="hljs-comment">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="hljs-attr">deploy:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>    <span class="hljs-attr">repo:</span><br>    <span class="hljs-attr">branch:</span>     <br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">baidu_url_submitter</span><br></code></pre></div></td></tr></table></figure>
 <p>将博客部署到Netlify，无法实现主动推送。需要将博客部署到虚拟主机。</p>
 <h3 id="将你的博客登记到必应"><a href="#将你的博客登记到必应" class="headerlink" title="将你的博客登记到必应"></a>将你的博客登记到必应</h3><h3 id="将你的博客登记到360"><a href="#将你的博客登记到360" class="headerlink" title="将你的博客登记到360"></a>将你的博客登记到360</h3><h3 id="将你的博客登记到搜狗"><a href="#将你的博客登记到搜狗" class="headerlink" title="将你的博客登记到搜狗"></a>将你的博客登记到搜狗</h3><h3 id="生成站点目录"><a href="#生成站点目录" class="headerlink" title="生成站点目录"></a>生成站点目录</h3><hr>
 <h2 id="书写并编辑博文"><a href="#书写并编辑博文" class="headerlink" title="书写并编辑博文"></a>书写并编辑博文</h2><h3 id="用NotePad-写"><a href="#用NotePad-写" class="headerlink" title="用NotePad++写"></a>用NotePad++写</h3><h3 id="用Typora写"><a href="#用Typora写" class="headerlink" title="用Typora写"></a>用Typora写</h3><h3 id="Picgo与GitHub图床"><a href="#Picgo与GitHub图床" class="headerlink" title="Picgo与GitHub图床"></a>Picgo与GitHub图床</h3><h3 id="多设备（Mac、PC）同步博文"><a href="#多设备（Mac、PC）同步博文" class="headerlink" title="多设备（Mac、PC）同步博文"></a>多设备（Mac、PC）同步博文</h3><hr>
@@ -402,22 +364,10 @@ npm install hexo-generator-sitemap --save</code></pre></div>
 <p>谷月姐介绍方法2.2。</p>
 <p>首先，安装hexo-deployer-ftpsync。</p>
 <p>在博客根目录运行以下命令：</p>
-<div class="hljs"><pre><code class="hljs bash">npm install hexo-deployer-ftpsync --save</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">npm install hexo-deployer-ftpsync --save<br></code></pre></div></td></tr></table></figure>
 <p>然后，在博客根目录中的_config.yml中添加以下内容：</p>
 <p>（如果deploy节已经有内容，例如部署到Git，那么建议写成以下形式）</p>
-<div class="hljs"><pre><code class="hljs yaml"><span class="hljs-attr">deploy:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">git</span>				<span class="hljs-comment">#提交到git，此处保持不变</span>
-    <span class="hljs-attr">repo:</span> <span class="hljs-string">XXX</span>				<span class="hljs-comment">#提交到git，此处保持不变</span>
-    <span class="hljs-attr">branch:</span> <span class="hljs-string">XXX</span>				<span class="hljs-comment">#提交到git，此处保持不变</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">ftpsync</span>			<span class="hljs-comment">#提交到FTP</span>
-    <span class="hljs-attr">host:</span> <span class="hljs-string">&lt;host&gt;</span>            <span class="hljs-comment">#主机地址，共享IP或独站IP</span>
-    <span class="hljs-attr">user:</span> <span class="hljs-string">&lt;user&gt;</span>            <span class="hljs-comment">#虚拟主机提供商提供的FTP用户名</span>
-    <span class="hljs-attr">pass:</span> <span class="hljs-string">&lt;password&gt;</span>        <span class="hljs-comment">#FTP密码密码</span>
-    <span class="hljs-attr">remote:</span> [<span class="hljs-string">remote</span>]        <span class="hljs-comment">#上传到空间的指定目录。比如/public_html。默认为/</span>
-    <span class="hljs-attr">port:</span> [<span class="hljs-string">port</span>]            <span class="hljs-comment">#端口，默认为21</span>
-    <span class="hljs-attr">ignore:</span> [<span class="hljs-string">ignore</span>]        <span class="hljs-comment">#忽略的文件</span>
-    <span class="hljs-attr">connections:</span> [<span class="hljs-string">connections</span>]  <span class="hljs-comment">#使用的连接数，默认1</span>
-    <span class="hljs-attr">verbose:</span> [<span class="hljs-literal">true</span><span class="hljs-string">|false</span>]   <span class="hljs-comment">#显示调试信息，默认false</span></code></pre></div>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">deploy:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">git</span>				<span class="hljs-comment">#提交到git，此处保持不变</span><br>    <span class="hljs-attr">repo:</span> <span class="hljs-string">XXX</span>				<span class="hljs-comment">#提交到git，此处保持不变</span><br>    <span class="hljs-attr">branch:</span> <span class="hljs-string">XXX</span>				<span class="hljs-comment">#提交到git，此处保持不变</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">ftpsync</span>			<span class="hljs-comment">#提交到FTP</span><br>    <span class="hljs-attr">host:</span> <span class="hljs-string">&lt;host&gt;</span>            <span class="hljs-comment">#主机地址，共享IP或独站IP</span><br>    <span class="hljs-attr">user:</span> <span class="hljs-string">&lt;user&gt;</span>            <span class="hljs-comment">#虚拟主机提供商提供的FTP用户名</span><br>    <span class="hljs-attr">pass:</span> <span class="hljs-string">&lt;password&gt;</span>        <span class="hljs-comment">#FTP密码密码</span><br>    <span class="hljs-attr">remote:</span> [<span class="hljs-string">remote</span>]        <span class="hljs-comment">#上传到空间的指定目录。比如/public_html。默认为/</span><br>    <span class="hljs-attr">port:</span> [<span class="hljs-string">port</span>]            <span class="hljs-comment">#端口，默认为21</span><br>    <span class="hljs-attr">ignore:</span> [<span class="hljs-string">ignore</span>]        <span class="hljs-comment">#忽略的文件</span><br>    <span class="hljs-attr">connections:</span> [<span class="hljs-string">connections</span>]  <span class="hljs-comment">#使用的连接数，默认1</span><br>    <span class="hljs-attr">verbose:</span> [<span class="hljs-literal">true</span><span class="hljs-string">|false</span>]   <span class="hljs-comment">#显示调试信息，默认false</span><br></code></pre></div></td></tr></table></figure>
 <p>hexo-deployer-ftpsync插件并非直接上传生成的静态网站，而是将remote指向的目录的目录结构同步成与本地public文件完全相同的目录结构。也就是说如果你的虚拟主机上存有一些其他文件的话也将被全部删除。所以必要时，可以填写ignore键的值。 </p>
 <p>ignore格式： </p>
 <p> <code>ignore: [&#39;dir1&#39;,&#39;dir2&#39;,&#39;file1.htm&#39;]</code></p>
@@ -432,39 +382,19 @@ npm install hexo-generator-sitemap --save</code></pre></div>
 <p><strong>解决方案(临时)</strong></p>
 <p>修改node_modules\ftpsync\lib\ftpsync.js</p>
 <p>第1步 开头添加</p>
-<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> Client = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;ftp&#x27;</span>);
-<span class="hljs-keyword">var</span> ftpc = <span class="hljs-keyword">new</span> Client();</code></pre></div>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> Client = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;ftp&#x27;</span>);<br><span class="hljs-keyword">var</span> ftpc = <span class="hljs-keyword">new</span> Client();<br></code></pre></div></td></tr></table></figure>
 <p>第2步 sync的setup中在try里面，ftp全局对象的初始化下面添加对我上面定义的ftpc全局变量的初始化</p>
-<div class="hljs"><pre><code class="hljs javascript">ftpc.connect(&#123;
-    host:settings.host,
-    user: settings.user,
-    password: settings.pass,
-    port: settings.port
-&#125;);</code></pre></div>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">ftpc.connect(&#123;<br>    host:settings.host,<br>    user: settings.user,<br>    password: settings.pass,<br>    port: settings.port<br>&#125;);<br></code></pre></div></td></tr></table></figure>
 <p>第3步 utils的upload方法中把原来的ftp.put(…… 这一句替换成使用ftpc的put</p>
-<div class="hljs"><pre><code class="hljs javascript">ftpc.put(local, remote, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>&#123;
-  <span class="hljs-keyword">if</span> (err) &#123;
-    sync.log.error(<span class="hljs-string">&#x27;ftp.put failed.&#x27;</span>);
-    <span class="hljs-keyword">return</span> callback(err);
-  &#125;
-  <span class="hljs-keyword">if</span> (sync.log.verbose) &#123;
-    sync.log.write(<span class="hljs-string">&#x27;-&#x27;</span>, file, <span class="hljs-string">&#x27;uploaded successfuly&#x27;</span>);
-  &#125;
-  callback();
-&#125;);</code></pre></div>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">ftpc.put(local, remote, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (err) &#123;<br>    sync.log.error(<span class="hljs-string">&#x27;ftp.put failed.&#x27;</span>);<br>    <span class="hljs-keyword">return</span> callback(err);<br>  &#125;<br>  <span class="hljs-keyword">if</span> (sync.log.verbose) &#123;<br>    sync.log.write(<span class="hljs-string">&#x27;-&#x27;</span>, file, <span class="hljs-string">&#x27;uploaded successfuly&#x27;</span>);<br>  &#125;<br>  callback();<br>&#125;);<br></code></pre></div></td></tr></table></figure>
 <p>第4步 在utils的remove方法的最后添加关闭ftpc</p>
-<div class="hljs"><pre><code class="hljs javascript">ftpc.end();</code></pre></div>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">ftpc.end();<br></code></pre></div></td></tr></table></figure>
 <p>第5步 安装依赖，因为我们引入了ftp，所以执行 <code>npm install ftp --save</code></p>
 </blockquote>
 <h5 id="上传结束后卡住"><a href="#上传结束后卡住" class="headerlink" title="上传结束后卡住"></a>上传结束后卡住</h5><p>按常理，在显示Deploy done和Good bye之后，上传就结束了，应该退出上传程序，出现新的提示符。但是ftpsync偏偏在此处卡住。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/Kukmoon/Pictures/20200906112604.png" srcset="/img/loading.gif" alt="上传结束后卡住"></p>
 <p>实际上，ftpsync的作者已经提供了<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/hexojs/hexo-deployer-ftpsync/pull/28/commits/80815cbc83aebc3b68b641c856040fe343af9f70">解决方案</a>。只需要修改博客目录/node_modules/hexo-deployer-ftpsync/index.js文件，在ftpsync.run(callback)后面强行调用process.exit()即可。</p>
-<div class="hljs"><pre><code class="hljs javascript">ftpsync.run(callback);
-  ftpsync.run(<span class="hljs-function">()=&gt;</span>&#123;
-    callback();
-    process.exit();
-  &#125;);
-&#125;);</code></pre></div>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">ftpsync.run(callback);<br>  ftpsync.run(<span class="hljs-function">()=&gt;</span>&#123;<br>    callback();<br>    process.exit();<br>  &#125;);<br>&#125;);<br></code></pre></div></td></tr></table></figure>
 <p><img src="https://cdn.jsdelivr.net/gh/Kukmoon/Pictures/20200906113127.png" srcset="/img/loading.gif" alt="在如图所示的地方插入红框中的代码"></p>
 <h2 id="狡兔三窟：同时托管到GitHub、Netlify、云虚拟主机"><a href="#狡兔三窟：同时托管到GitHub、Netlify、云虚拟主机" class="headerlink" title="狡兔三窟：同时托管到GitHub、Netlify、云虚拟主机"></a>狡兔三窟：同时托管到GitHub、Netlify、云虚拟主机</h2><p>在本文的最后，谷月姐尝试同时把博客托管到GitHub、Netlify和云虚拟主机。</p>
 <p>目的是为了多重备份，以免丢失内容或与网友失联。</p>
@@ -487,9 +417,7 @@ npm install hexo-generator-sitemap --save</code></pre></div>
 <p><img src="https://cdn.jsdelivr.net/gh/Kukmoon/Pictures/20200906130253.png" srcset="/img/loading.gif" alt="创建私有仓库kukmoon_blog"></p>
 <p><strong>将本地的博客目录kukmoon_blog与新的远程仓库kukmoon_blog建立关联</strong>。在本地博客目录kukmoon_blog下，执行<code>git remote add origin git@github.com:kukmoon/kukmoon_blog.git</code>。</p>
 <p><strong>把本地博客目录下的所有内容推送到新的私有远程仓库kukmoon_blog上</strong>。在博客目录下，执行以下命令：</p>
-<div class="hljs"><pre><code class="hljs bash">git add .
-git commit -m <span class="hljs-string">&quot;Restore My Blog&quot;</span>
-git push -u origin master</code></pre></div>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">git add .<br>git commit -m <span class="hljs-string">&quot;Restore My Blog&quot;</span><br>git push -u origin master<br></code></pre></div></td></tr></table></figure>
 <p><strong>设置Netlify，让Netlify监视仓库kukmoon_blog并生成博客</strong>。登录Netlify，找到自己的网站，点击Site settings，在左侧导航栏找到Build &amp; deploy，在右侧的Build settings区域中找到Edit Settings，把仓库从github.com/Kukmoon/kukmoon.github.io改成github/Kukmoon/kukmoon_blog就可以了。待编译结束后，可以访问<a target="_blank" rel="noopener external nofollow noreferrer" href="http://kukmoon.netlify.app，查看是否编译成功。">http://kukmoon.netlify.app，查看是否编译成功。</a></p>
 <p><img src="https://cdn.jsdelivr.net/gh/Kukmoon/Pictures/20200906142622.png" srcset="/img/loading.gif" alt="设置Netlify"></p>
 <p><strong>修改_config.yml，让Hexo把博客部署到远程仓库kukmoon.github.io</strong></p>
@@ -754,6 +682,7 @@ git push -u origin master</code></pre></div>
 
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
 
 
 
