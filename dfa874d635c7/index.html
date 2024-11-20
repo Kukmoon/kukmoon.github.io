@@ -1,0 +1,1171 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <link rel="icon" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kukmoon谷月">
+  <meta name="keywords" content="MOS,认证,考试,微软,Office,2016,2019,苹果,Mac,虚拟机,Parallels Desktop,Office Tool Plus">
+  
+    <meta name="description" content="在 Mac 上安装虚拟机软件 Parallels Desktop ，创建虚拟机，并在虚拟机中安装 Windows 10 和 Office 2016&#x2F;2019，最终目的是在苹果电脑上无缝运行 Office 2016&#x2F;2019，助力读者复习备考 MOS 认证考试。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="史上最详细 Mac 虚拟机安装 Office 2016&#x2F;2019 备考 MOS 考试教程 (V3.0)">
+<meta property="og:url" content="https://blog.kukmoon.com/dfa874d635c7/index.html">
+<meta property="og:site_name" content="谷中望月">
+<meta property="og:description" content="在 Mac 上安装虚拟机软件 Parallels Desktop ，创建虚拟机，并在虚拟机中安装 Windows 10 和 Office 2016&#x2F;2019，最终目的是在苹果电脑上无缝运行 Office 2016&#x2F;2019，助力读者复习备考 MOS 认证考试。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/4705a651b97fa259ffce4a4e35346eee.jpg">
+<meta property="article:published_time" content="2020-12-05T18:42:10.000Z">
+<meta property="article:modified_time" content="2020-12-05T18:42:11.000Z">
+<meta property="article:author" content="Kukmoon谷月">
+<meta property="article:tag" content="Mac">
+<meta property="article:tag" content="谷月老师讲MOS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/4705a651b97fa259ffce4a4e35346eee.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>史上最详细 Mac 虚拟机安装 Office 2016/2019 备考 MOS 考试教程 (V3.0) - 谷中望月</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel-highlightjs.css">
+<link rel="stylesheet" href="/css/social-share.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":null},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="谷中望月" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>谷中望月</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-note"></i>
+                <span>镜像</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog.kukmoon.com" target="_self">
+                    
+                    <span>全球统一入口</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://kukmoon.github.io" target="_self">
+                    
+                    <span>镜像 0（GitHub Pages）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog1.kukmoon.com" target="_self">
+                    
+                    <span>镜像 1（香港）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog2.kukmoon.com" target="_self">
+                    
+                    <span>镜像 2（CF Pages）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog3.kukmoon.com" target="_self">
+                    
+                    <span>镜像 3（日本）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog5.kukmoon.com" target="_self">
+                    
+                    <span>镜像 5（香港）</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.kukmoon.com/banner_img/2020_01to12.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="史上最详细 Mac 虚拟机安装 Office 2016/2019 备考 MOS 考试教程 (V3.0)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Kukmoon谷月
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-12-06 02:42" pubdate>
+          2020年12月6日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          28 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">史上最详细 Mac 虚拟机安装 Office 2016/2019 备考 MOS 考试教程 (V3.0)</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2020-12-06T02:42:11+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="更新记录">更新记录</h2>
+<ul>
+<li>
+<p><strong>2020/12/6 (V3.0) 更新</strong>：用 MarkDown 重构全文，修改部分文字，增加 Parallels 16 安装包。</p>
+</li>
+<li>
+<p><strong>2019/12/29 (V2.2) 更新</strong>：已确定 Parallels 15 与mac OS X 10.14 Mojave无兼容性问题，如果 Mac 配置够高，强烈建议安装Parallels 15。</p>
+</li>
+<li>
+<p><strong>2019/12/28 (V2.1) 更新</strong>：增加了 Parallels 15 安装包。如果安装了 macOS X 10.15 Catalina，请安装 Parallels 15。10.14 Mojave及更低版本，还是用Parallel 14比较好，低版本的系统似乎与 Parallels 15 不兼容，谷月姐尚在实地测试中。</p>
+</li>
+<li>
+<p><strong>2019/10/28 (V2.0) 更新</strong>：增加了安装和激活 Office 2019 的内容</p>
+</li>
+</ul>
+<hr>
+<h2 id="摘要">摘要</h2>
+<p>在 Mac 上安装虚拟机软件 Parallels Desktop ，创建虚拟机，并在虚拟机中安装 Windows 10 和 Office 2016，最终目的是在苹果电脑上无缝运行 Office 2016/2019，助力读者复习备考 MOS 认证考试。</p>
+<hr>
+<h2 id="引言">引言</h2>
+<p>MOS（Microsoft Office Specialist）认证，官方中文名为「微软办公软件国际认证」，是微软官方推出的针对微软 Office 软件的认证考试。MOS 认证旨在提升学员使用Office软件解决职场实际问题的能力，它作为进入世界 500 强的敲门砖，在全球 140+ 国家和地区得到承认，是大学生和职场新人必考的证书。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/590cd7afa78c61af9298e3151c78ff2b.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>MOS 认证考试是以 Office for Windows 为准的。由于 Office for Mac 的界面和功能与 Office for Windows 存在一些区别，所以，Office for Mac 不完全适合用来复习备考MOS认证考试。<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/9e2692647437803ecea9ffaa26eb1982.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>这样，就给Mac用户出了一道难题。难道只有放弃苹果电脑，另外买一台PC吗？答案是否定的，<strong>谷月姐设计了一套完整的解决方案</strong>，借助神奇的虚拟机软件 Parallels Desktop、精简版 Windows 10 和 Office 2016 ，学员就可以在苹果电脑上顺利地复习备考MOS啦！<strong>这套解决方案的优点：</strong></p>
+<ul>
+<li>
+<p>兼容性优秀。Parallels Desktop 可以让 Windows 应用程序在 macOS 系统中无缝运行，兼容性很优秀。</p>
+</li>
+<li>
+<p>占用硬盘空间小。考虑到 Mac 电脑的硬盘空间普遍比较小，谷月姐经过反复尝试，选择了极度精简的 Windows 10 配合可以定制 Office 2016 安装的工具 Office Tool Plus，<strong>在 Mac 中最低占用 6.66 GB 硬盘空间</strong>，即使 128 GB 硬盘的苹果笔记本电脑也能轻松驾驭。</p>
+</li>
+<li>
+<p>操作简单。本文会图文讲解详细的操作步骤。</p>
+</li>
+<li>
+<p>对 Mac 续航影响极小。</p>
+</li>
+</ul>
+<p>表1：谷月姐的解决方案与其他方案对比</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">谷月姐的解决方案</th>
+<th style="text-align:center">Bootcamp 双系统</th>
+<th style="text-align:center">另外买一台 PC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>费用</td>
+<td style="text-align:center">极低</td>
+<td style="text-align:center">免费</td>
+<td style="text-align:center">昂贵，<br />数千元起</td>
+</tr>
+<tr>
+<td>兼容性</td>
+<td style="text-align:center">优秀</td>
+<td style="text-align:center">良好，<br /> Bootcamp 与某些版本的 Windows 兼容性不太好</td>
+<td style="text-align:center">优秀</td>
+</tr>
+<tr>
+<td>占用 Mac 硬盘空间</td>
+<td style="text-align:center">小，<br />经测试最小不到 7 GB</td>
+<td style="text-align:center">大，<br /> 32 GB 起步</td>
+<td style="text-align:center">——</td>
+</tr>
+<tr>
+<td>操作复杂程度</td>
+<td style="text-align:center">中等，<br />本文详细介绍</td>
+<td style="text-align:center">复杂，<br />有丢失数据的危险</td>
+<td style="text-align:center">低，<br />交钱就行</td>
+</tr>
+<tr>
+<td>对 Mac 续航的影响</td>
+<td style="text-align:center">低</td>
+<td style="text-align:center">高，<br />功耗偏高，屏幕默认亮度最大，键盘灯不能关闭</td>
+<td style="text-align:center">——</td>
+</tr>
+</tbody>
+</table>
+<p>**需要的软件工具，在此处下载：**请在「<strong>谷月老师的Office课堂</strong>」公众号（<strong>guyue-office</strong>）回复“苹果虚拟机”，获取下载地址。<strong>声明：这些软件下载，纯为学习之用，请在下载安装24小时之内删除！</strong></p>
+<h2 id="1-安装虚拟机软件-Parallels-Desktop">1 安装虚拟机软件 Parallels Desktop</h2>
+<p><strong>注意：</strong></p>
+<ol>
+<li>
+<p>Parallels 16 适合：配置足够高的 Mac 电脑，并且运行 macOS 11 Big Sur 操作系统。</p>
+</li>
+<li>
+<p>Parallels 15 适合：配置比较高的 Mac 电脑，并且运行 macOS 10.15 Catalina 操作系统。如果你的 Mac 电脑硬件配置比较低（2018 以前买的，并且有 SSD），并且没有把 macOS 升级到 10.15 Catalina，建议安装 Parallels 14。</p>
+</li>
+<li>
+<p>Parallels 14 适合：配置不算太高，并且运行 mac OS 10.14 Mojave、10.13 High Sierra 操作系统、10.12 Sierra 操作系统。</p>
+</li>
+<li>
+<p>Parallels 14/15/16 都只能运行在 Intel CPU 的 Mac 电脑。另外，如果 Mac 电脑没有配置 SSD或风扇，虚拟机中的 Windows 10 可能会运行得比较缓慢。所以，仅配置机械硬盘的 iMac 用户，或者 12 寸 MacBook 用户，使用 Parallels 虚拟机运行 Windows 10 的体验可能会比较差。</p>
+</li>
+</ol>
+<p>本文以 Parallels 14 为例，安装和运行 Parallels 15/16 的步骤与 14 基本没有区别。</p>
+<hr>
+<p>安装之前，一定需要断网。如果你用有线网，请拔掉网线。如果你用无线网，请点击屏幕右上角的 Wi-Fi 图标，然后选择“关闭 Wi-Fi”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/5244827aa82f91874b6f75f86ae34ee5.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>双击下载回来的 DMG 格式安装包，点击右下角“同意”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/61b20ec5dd8f013249d8247aab81661e.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>等进度条走完。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/63731a818f1c4d9bd53d1fabb040b370.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>出现了安装界面，<strong>一定要双击左侧的“安装”</strong>，不要把它拖动到右侧。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/9387499fa09dd6673ab55a55ac234aa5.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>Parallels 15/16，附送了 Parallels Tools，它是个工具套装，类似于 Windows 下的 Microsoft PowerToys，可装可不装。</p>
+<p>点击右下角“打开”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/6e43e40e6e1aad0d3a6e235d273c3801.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>系统会提示“正在安装”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/8887f84a592216aea863a3e23b7942e8.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>系统会提示需要互联网连接才能检查新版，不要连网，而是直接点击右下角的“安装当前的”按钮。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/ee99b0e01407b671f3aa8d2212b3c8e3.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>输入账号密码，点击“好”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/3aa601782eb9999a349691e0efbd0dc3.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>等待进度条走完，就安装完毕了。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/96d37e747c9b1c6f5040f47c510dd15c.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>趁这个机会连上网络。有线网，需要插上网线。无线网，需要点击屏幕右上角的Wi-Fi图标，在菜单中选择“打开 Wi-Fi”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/81a355db63d63ae8ce7f29e97520b93b.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>Parallels 15/16 在 mac OS X 10.15 Catalina 及更高版本的操作系统上首次运行时，会要求用户为 Parallels 授予可以更改系统和可以录屏的权限。用户只需要按照提示操作为它们授权即可。<br>
+<img src="https://smartsignature-img.oss-cn-hongkong.aliyuncs.com/article/2020/12/06/c33da594d58b6f9453d1ba2a2610d3ff.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="2-在虚拟机中安装-Windows-10">2  在虚拟机中安装 Windows 10</h2>
+<h3 id="2-1-创建虚拟机并安装-Windows-10">2.1  创建虚拟机并安装 Windows 10</h3>
+<p>Parallels Desktop 在安装结束后，会自动运行并提示用户新建虚拟机。选择“安装 Windows 或其他操作系统”，然后点击左下角的“继续”。</p>
+<p><strong>注意</strong>：如果你安装 Parallels 15/16，请不要直接从网上下载 Windows 10 安装包！否则，Paralles Desktop 会连接到微软美国的服务器上下载完整的 Windows 10 安装包，时间会非常漫长。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/cb1023a64cccbbd1335af7fa2a3977ee.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>因为本教程提供的 Windows 10 安装包是镜像文件（ISO 格式）的形式，所以需要点击“镜像文件”，然后点击“选择文件”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/3d0692d559121832aec04ac03590f765.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>定位到 Windows 10 安装包镜像文件，然后点击“打开”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/d9ed13b58f018080bbc0cc31809dcb63.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>回到刚才的界面，点击“继续”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/474fbb39d4f71e92e8a609e7cf4108af.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>再点击一次“继续”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/de5f61c9ee8e13aacba6efc63e0cdb21.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>因为创建虚拟机的主要目的是运行 Office for Windows，所以要选择“生产力”，然后点击“继续”。<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/9796ced785df2e98872db96fbb3f4a14.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>名称和位置保持默认即可，然后点击“继续”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/74dc7d466ebe224d250923c93f33b9b3.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>安装过程是全自动的，不需要用户手动输入参数，静等安装，直到虚拟机窗口出现“安装完成”为止，然后点击虚拟机窗口中的任意一处，继续。<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/c7f5031695f13dacd1b2953bf883b776.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>虚拟机窗口出现了 Windows10 的桌面，安装完成。注意：在Mac桌面底部的程序坞（Dock）中，出现了三个图标：Parallels Desktop 应用程序图标、Windows 10 虚拟机图标、Windows 10 应用程序（Windows 10 Applications）图标。第二个和第三个图标是最常用的。<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/dc8176971f5b4cfae05e40204119a9e8.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="2-2-安装-Parallels-Tools">2.2  安装 Parallels Tools</h3>
+<p>Parallels Tools 可以理解为虚拟机的增强组件，它能让虚拟机中的Windows 10及其应用程序更好地融入 macOS 操作系统。点击菜单“操作”→“安装 Paralles Tools”（或“重新安装 Parallels Tools”）。<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/f3e722dc2f84241fbf4d0c067a1f56b6.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>在弹出的对话框中点击“继续”或“是”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/bdd56b15ab4c531a034d3f7c07011bd1.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>如果安装没有自动开始，就要双击“此电脑”，打开光盘驱动器，双击根目录下的“Autorun.exe”。<strong>注意：是 Autorun.exe，不是 Setup.exe</strong>。如果安装自动开始，就不需要执行此步骤。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/2d611d826ddf7f4898e5924b340462eb.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>在虚拟机的桌面上，会弹出一个对话框提示正在安装 Parallels Tools。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/d52633f26a63e6d8d26b23890d527481.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>等进度条走完以后，点击“重新启动”即可。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/b68e2f5fbbbf0ab0749d44b207421b10.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="2-3-启用融合模式">2.3  启用融合模式</h3>
+<p>等虚拟机重启完毕，再次显示 Windows 10 桌面以后，点击Mac屏幕顶部菜单栏中的“查看”→“进入融合”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/76aef7c84727a65278dcd16a8afb368a.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>哎呀，虚拟机窗口不见了！怎么办？不要急，这是 Parallels Destkop 的特色功能——融合模式，与以前 Windows 7 中的“XP 模式”类似。融合模式可以让用户在 Mac 桌面上无缝运行Windows 应用程序，不会在屏幕上显示巨大的虚拟机窗口，就像正在使用 Windows 一样。</p>
+<p><strong>那么，如何调用Windows应用程序呢？有两种方法。</strong></p>
+<ul>
+<li>
+<p>方法一：点击程序坞中的 Windows 10 虚拟机图标，可以显示Windows10的开始菜单。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/fb982b7db57ceb7c044dda8495d6be4f.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>方法二：点击程序坞中的 Windows10 Applications 图标，可以显示虚拟机中安装的Windows应用程序，还可以显示“此电脑”、“我的文档”、“控制面板”等系统图标，相当于一个增强版的开始菜单。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/0f1264514ef3fd2e18d975b72eba0479.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ul>
+<h2 id="3-安装输入法">3  安装输入法</h2>
+<p>为了节约硬盘空间，而且让用户自主选择喜欢的输入法，这个 Windows 10 安装包是不包含输入法的，需要单独安装。谷月姐推荐两款轻量级的输入法——搜狗拼音精简版和精灵五笔，欢迎拼音和五笔用户选用。当然，读者也可以安装自己喜欢的输入法。</p>
+<p><strong>输入法的安装步骤如下：</strong></p>
+<ol>
+<li>
+<p>点击Mac屏幕右下角的 Windows 10 Applications 图标，在弹出的菜单中选择“此电脑”，此时，在Mac的桌面上，出现了我们熟悉的 Windows 10 文件资源管理器窗口，它无缝运行在 macOS 的桌面上，就像一个原生的 macOS 应用程序一样。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/f0378f0e21c67852dfb40993a9528fad.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>找到输入法安装包（EXE 文件）所在的文件夹，直接双击对应的 EXE 文件即可，就像使用 Windows 一样。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/ba3b6957f19b80056d4cb3c493d4e33f.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+<p><strong>要切换输入法也很简单：按 Control + 空格键，与 macOS 切换输入法的快捷键一致。</strong></p>
+<h2 id="4-安装Office-2016-2019">4  安装Office 2016/2019</h2>
+<p>因为 Office 2016/2019 包括 9 个组件，但是MOS考试仅涉及5个组件（Word、Excel、PowerPoint、Outlook、Access），<strong>为了节约硬盘空间，谷月姐推荐使用 Office Tool Plus来安装 Office 2016/2019。</strong></p>
+<p>Office Tool Plus 可以定制安装 Office 2016/2019/365，不但节约硬盘空间，而且，它是从微软官方的服务器上直接下载最新版的 Office 安装包来安装的，这样就保证了一安装就是最新版本。</p>
+<p>解压 Office Tool Plus.zip，然后在 Windows 10 的文件资源管理器窗口中，找到并双击Office Tool Plus.exe。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/4351a8b2aceb06c7004a9bab2e4b6b2e.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>这样就会启动 OfficeTool Plus 了，这款软件的主界面如下：<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/fc6681d7b8f7e7910d20d3e0d0ecc894.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>点击 Office Tool Plus 主界面顶部的“部署”，部署在这里是安装的意思。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/7c1820bc89fbb305c741265b106cb15b.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>进入 Office Tool Plus 的部署模块，点击“添加产品”。<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/017899a5d01ddaa47d5cf5860cb1c2a2.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>接下来是选择Office的版本，要么选择2016，要么选择2019。不建议两者共存。</strong></p>
+<h3 id="4-1-安装-Office-2016">4.1 安装 Office 2016</h3>
+<p>在这里选择“Office 专业增强版 2016 - 零售版 - [ProPlusRetail]”，然后勾选Access、Excel、Outlook、PowerPoint、Word五大组件，最后点击“开始部署”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/5c83b8603b4ad988197d50a6713a35f6.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>在弹出的对话框中点击“是”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/46fd637202c4eacc3f644d19764a3c64.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>系统会调用 Office2016/2019 的官方部署工具来进行在线安装，我们可以看到，仅安装刚才选中的5个组件。此时需要耐心等待。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/6f4cdeaca56ed4cceb2e9d3742fdcff0.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>耐心等待，直到系统提示“一切就绪！”为止，最后点击“关闭”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/9464a14983b3b33b53e04c20376d4eb3.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>点击 Mac 屏幕右下角的 Windows 10 Application 图标，可以看到，这里增加了 Office 五件套：Word、Excel、PowerPoint、Outlook、Access。<strong>而且这五件套都是最新版本的</strong>。<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/5155bd8c97fd1407f3f091b223093857.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="4-2-安装-Office-2019">4.2 安装 Office 2019</h3>
+<p>在这里选择“Office 专业增强版 2019 - 批量版 - [ProPlus2019Volume]”，然后勾选Access、Excel、Outlook、PowerPoint、Word五大组件，<strong>还要把“通道”改成“Office 2019 企业长期版”</strong>，最后点击“开始部署”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/e2926882a07cf718dee4ca76f66c8550.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>在弹出的对话框中点击“是”。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/badb8a76e87d68d9d462cfd5de9df126.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>系统会调用 Office2016/2019 的官方部署工具来进行在线安装，我们可以看到，仅安装刚才选中的5个组件。此时需要耐心等待。<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/6f4cdeaca56ed4cceb2e9d3742fdcff0.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>耐心等待，直到系统提示“一切就绪！”为止，最后点击“关闭”。<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/9464a14983b3b33b53e04c20376d4eb3.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>点击 Mac 屏幕右下角的 Windows 10 Application 图标，可以看到，这里增加了 Office 五件套：Word、Excel、PowerPoint、Outlook、Access。<strong>而且这五件套都是最新版本的</strong>。<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/5155bd8c97fd1407f3f091b223093857.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="5-激活-Windows-与-Office">5 激活 Windows 与 Office</h2>
+<p><strong>Windows 和 Office 可以用 HEU KMS Activator（它是比谷月姐以前推荐的KMSPico更强的激活工具）同时激活。</strong></p>
+<p><strong>激活操作步骤如下：</strong></p>
+<p>双击 HEU KMS Activator 的压缩包“HEU_KMS_Activator_CH_v19.6.0比KMSPico更强的激活工具.zip”，解压。</p>
+<p>然后，在解压出的文件夹里，双击“HEU_KMS_Activator_v19.6.0.exe”，启动它。HEU KMS Activator 的主界面如下图。直接点击“永久使用Windows+Office”按钮。<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/662cc774ef798d994ed35edad3aa065e.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>然后，稍等片刻，它会弹出一个对话框，提示激活完成。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/f68a1a157765fcc9296c79af1e45d272.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>可以看到，Windows 和 Office（2016 或 2019版）都已经激活了。<br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/3db822a47609d24071231cf8754ca85e.jpg" srcset="/img/loading.gif" lazyload alt=""><br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/41df81fc08fabaa5ae428924faa1e490.jpg" srcset="/img/loading.gif" lazyload alt=""><br>
+<img src="https://img.kukmoon.com/Mac-xu-ni-ji-an-zhuang-Offfice/39d6e8dc082763cc9d6e9d58f05b72f3.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<hr>
+<div style="text-align:center;">
+<h2 id="学-MOS-五分钟，少加班两小时">学 MOS 五分钟，少加班两小时</h2>
+<p><strong>MOS</strong> 认证考试的中文全称，</p>
+<p>是<strong>微软办公软件国际认证考试</strong>，</p>
+<p>它是微软公司针对自家 Office 软件推出的考试，</p>
+<p>具有无可比拟的权威性和含金量，</p>
+<p>也是世界五百强招聘考核员工的重要标准。</p>
+<h3 id="了解-MOS-考试">了解 MOS 考试</h3>
+<p><a href="https://blog.kukmoon.com/0d3e29c40f40/">什么是 MOS 认证考试？考什么？看完秒懂！</a></p>
+<h3 id="MOS报名入口">MOS报名入口</h3>
+<p><a href="https://blog.kukmoon.com/99da6e6bf0bc/">点击此处报名，可能会有优惠券或者其他礼物掉落哟~</a></p>
+<h3 id="学习社群">学习社群</h3>
+<p><a target="_blank" rel="noopener" href="https://jq.qq.com/?_wv=1027&amp;k=U38X9e9B">点击此处，加入我们的 QQ 群找谷月老师咨询报名</a></p>
+<p>--------------</p>
+<h3 id="关于谷月老师：">关于谷月老师：</h3>
+<p><strong>谷月老师拥有博士学位，</strong></p>
+<p>多年来从事 MOS 考试的研究、培训、营销，</p>
+<p>具有丰富的经验，</p>
+<p>欢迎找谷月老师咨询报名哟~</p>
+<p>谷月老师微信号： <code>kukmoon</code></p>
+<p>或微信识别以下二维码加谷月老师</p>
+<p><img src="https://img.kukmoon.com/kukmoon-wei-xin-er-wei-ma.jpg" srcset="/img/loading.gif" lazyload alt="谷月老师微信二维码"></p>
+<p>--------------</p>
+</div>
+<h2 id="图片版权">图片版权</h2>
+<p>题图：自绘。</p>
+<p>头图：Image by <a target="_blank" rel="noopener" href="https://pixabay.com/users/tayebmezahdia-4194100/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3174729">Tayeb MEZAHDIA</a> from <a target="_blank" rel="noopener" href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3174729">Pixabay</a></p>
+
+                
+              </div>
+            
+            <div>
+                <!-- 引入自己编写的“分享到”模块（新） -->
+                <div style="text-align:right;"> <!-- 自己添加的“分享到”模块：开始。用的是 social-share.js。让所有的分享按钮右对齐-->
+	
+	<div class="social-share-container" style="margin-top: 15px;"> <!-- 生成一组分享按钮 -->
+		 <!--如果博客语言是中文，就显示“点击分享到：”，非中文一律显示“Share it:”-->
+			点击分享到：&nbsp;&nbsp;
+		
+	</div>
+	<!-- 加载 jQuery 库 -->
+	
+<script src="/js/jquery.min.js"></script>
+
+	<!-- 导入 qrcode.min.js -->
+	
+<script src="/js/qrcode.min.js"></script>
+
+	<!-- 加载 social-share.js 的 js 库，另外还要加载 social-share.js 的 CSS，可以修改 `_config.fluid.yml` 的 `custom_css` 加载，也可以修改 `themes/fluid/layout/_partial/css.ejs` 加载。-->
+	
+<script src="/js/social-share.min.js"></script>
+
+	<script> 
+	/* 执行 js 代码，new 一个新对象，详见 social-share.js 在 GitHub 的文档 */
+		new SocialShare('.social-share-container', {
+			theme: 'circle',  // 使用圆形主题
+			// 单独定义wechat分享参数
+			wechat: {
+				sort: 1, // 排序参数，数字较小的展示在前面,默认999
+			}
+		});		
+	</script>
+</div> <!-- 自己添加的“分享到”模块：结束。-->            
+                <hr/>
+                <!-- 引入自己编写的打赏模块（新） -->
+                <div style="text-align: center; margin: auto auto 1.5em;"><!--自己添加的打赏模块：开始-->
+  <!--如果主题的  _config.yml 中开启打赏-->
+    <div style="border-style:solid none none none; border-color: #663399; border-width: 0.5em; color: #663399; font-weight:bold; font-size: 1.2em; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+	   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+	    求扫码打赏
+	  	
+	</div>
+    <div style="font-size: 14px;margin-bottom: 10px;">
+	  “我这么可爱，请给我钱 o(*^ω^*)o” <!--在主题的 _config.yml 中设置打赏提示语-->
+	</div>
+    <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+	  <img src="/img/zhi-fu-bao-shou-kuan-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/wei-xin-zan-shang-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+	</div>
+  
+</div> <!--自己添加的打赏模块：结束-->
+                <hr/>
+            </div>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/IT%E6%8A%80%E6%9C%AF/" class="category-chain-item">IT技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Mac/" class="print-no-link">#Mac</a>
+      
+        <a href="/tags/%E8%B0%B7%E6%9C%88%E8%80%81%E5%B8%88%E8%AE%B2MOS/" class="print-no-link">#谷月老师讲MOS</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>史上最详细 Mac 虚拟机安装 Office 2016/2019 备考 MOS 考试教程 (V3.0)</div>
+      <div>https://blog.kukmoon.com/dfa874d635c7/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Kukmoon谷月</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年12月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/5a8b5a96fc5a/" title="【Liella！】《未来は風のように》中日双语LRC歌詞">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Liella！】《未来は風のように》中日双语LRC歌詞</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/99da6e6bf0bc/" title="一张图带你看懂MOS认证考试，来报名吧~">
+                        <span class="hidden-mobile">一张图带你看懂MOS认证考试，来报名吧~</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appKey":"lvOI6tnv4jNUP9tEnIYJNKtW","path":"window.location.pathname","placeholder":"您的评论","avatar":"wavatar","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://qk25tpv2.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appkey":"lvOI6tnv4jNUP9tEnIYJNKtW"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
