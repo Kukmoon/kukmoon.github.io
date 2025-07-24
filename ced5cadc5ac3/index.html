@@ -1,0 +1,945 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <link rel="icon" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kukmoon谷月">
+  <meta name="keywords" content="Linux,Ubuntu,字体,字体平滑,渲染,LXDE,Unifont,文泉驿点阵宋,WenQuanYi Bitmap Song">
+  
+    <meta name="description" content="原因是：Linux 桌面的矢量字体渲染技术不行，电脑屏幕不行，开源矢量字体设计不行。本文也提供了解决方案。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 字体显示为什么不像 Android 一样清晰？">
+<meta property="og:url" content="https://blog.kukmoon.com/ced5cadc5ac3/index.html">
+<meta property="og:site_name" content="谷中望月">
+<meta property="og:description" content="原因是：Linux 桌面的矢量字体渲染技术不行，电脑屏幕不行，开源矢量字体设计不行。本文也提供了解决方案。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.kukmoon.com/2024-04-06-21-21-34.png">
+<meta property="article:published_time" content="2024-04-06T12:01:54.000Z">
+<meta property="article:modified_time" content="2024-04-06T12:01:55.000Z">
+<meta property="article:author" content="Kukmoon谷月">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="字体">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.kukmoon.com/2024-04-06-21-21-34.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Linux 字体显示为什么不像 Android 一样清晰？ - 谷中望月</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel-highlightjs.css">
+<link rel="stylesheet" href="/css/social-share.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":null},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="谷中望月" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>谷中望月</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-note"></i>
+                <span>镜像</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog.kukmoon.com" target="_self">
+                    
+                    <span>全球统一入口</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://kukmoon.github.io" target="_self">
+                    
+                    <span>镜像 0（GitHub Pages）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog1.kukmoon.com" target="_self">
+                    
+                    <span>镜像 1（日本）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog2.kukmoon.com" target="_self">
+                    
+                    <span>镜像 2（CF Pages）</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.kukmoon.com/banner_img/2024_03and04.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Linux 字体显示为什么不像 Android 一样清晰？"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Kukmoon谷月
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-06 20:01" pubdate>
+          2024年4月6日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Linux 字体显示为什么不像 Android 一样清晰？</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2024-04-06T20:01:55+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://img.kukmoon.com/2024-04-06-21-21-34.png" srcset="/img/loading.gif" lazyload alt="Linux 字体显示为什么不像 Android 一样清晰？"></p>
+<p>先说答案：Linux 桌面的矢量字体渲染技术不行，电脑屏幕不行，开源矢量字体设计不行。</p>
+<p>补充一句：其实早期 Android 手机屏幕分辨率和像素密度双低的时代，字体显示比电脑还糊。我曾经用过华为 C8500 和 HTC G8 Wildfire，两台机器都是 2.8 寸 QVGA 屏，字体糊得瞎眼。以下两幅图片是华为 C8500 的主界面和应用抽屉，大家可以看看上古时代的 Android 机字体显示有多模糊。</p>
+<p><img src="https://img.kukmoon.com/2024-04-06-20-03-43.png" srcset="/img/loading.gif" lazyload alt="图片来源：https://tech.sina.cn/mobile/pc/2011-06-09/detail-ianfzhne6978815.d.html"></p>
+<p><img src="https://img.kukmoon.com/2024-04-06-20-04-07.png" srcset="/img/loading.gif" lazyload alt="图片来源：https://tech.sina.cn/mobile/pc/2011-06-09/detail-ianfzhne6978815.d.html"></p>
+<p>我在 Linux 桌面上，已经放弃了优化渲染的努力，而是改用点阵字体了。我电脑屏幕分辨率是 1080p，像素密度是 96 dpi。操作系统是 Ubuntu Server 20.04 LTS，桌面是 LXDE，X 窗口管理器是 X11。我无论怎么调节渲染，Linux 桌面 UI 的中文矢量字体都是模模糊糊的，当然，英文矢量字体还算清晰。</p>
+<p>作为从 DOS/Win9x 时代过来的人，我还是喜欢点阵字体。它干脆利落、毫不拖泥带水，非常适合低分辨率（1080p 以下，下同）、低像素密度（96 dpi 及以下，下同）的屏幕。所以，我干脆全盘换用点阵字体：Unifont 和 文泉驿点阵宋。</p>
+<p>下面两张截屏是换用点阵字体前后的对比。</p>
+<p><img src="https://img.kukmoon.com/2024-04-06-20-05-07.png" srcset="/img/loading.gif" lazyload alt="默认字体 + 默认字号 + 默认字体平滑，文字糊得一批"></p>
+<p><img src="https://img.kukmoon.com/2024-04-06-20-05-35.png" srcset="/img/loading.gif" lazyload alt="点阵字体 + 12 pt 字号 + 关掉 Linux 桌面的字体平滑，文字十分清楚"></p>
+<h2 id="什么方法能让字体清晰显示？">什么方法能让字体清晰显示？</h2>
+<p>现在主流字体是矢量字体。矢量字体显示的清晰程度，主要取决于三个要素：操作系统对矢量字体的渲染技术，屏幕的像素密度，字体的设计。</p>
+<p>因此，要让矢量字体在屏幕上清晰地显示，要求字符的框架清楚，笔画的边缘不模糊，有三种主要的方法：</p>
+<h3 id="一是软件方法（渲染技术）">一是软件方法（渲染技术）</h3>
+<p>调节字体的渲染，尤其是次像素渲染，从而让矢量字体在屏幕上显示更清晰。XP 时代，微软独门绝技 ClearType 借助次像素强化字体的描边，适合低分辨率（1080p 以下，下同）、低像素密度（96 dpi 及以下，下同）的屏幕。XP 时代后期异军突起的 MacType 则是借助 GDI 极大地加强次像素渲染，显示效果更胜 ClearType 一筹。但是，Linux 主流 GUI 桌面的字体渲染技术，调节很复杂，功能很局限。我受够了不想再调了。</p>
+<h3 id="二是硬件方法（屏幕像素）">二是硬件方法（屏幕像素）</h3>
+<p>大力出奇迹，暴力堆像素，无脑增加像素密度。苹果 iPhone 一般是 300 dpi 起步，安卓手机一般是 400 dpi 起步。台式机显示器一般是 93—185 dpi。字体渲染技术不够？没关系，屏幕像素密度高了，字体自然就清晰了。但是，电脑屏幕限制，导致它真的没法像手机那样追求极限。</p>
+<p>不过有个好消息。据我观察，电脑屏幕达到 163 dpi（相当于 27 寸 4K 分辨率）左右，字体就很清晰了，运行 Windows、macOS、Linux 的效果都不错。</p>
+<h3 id="三是魔改字体（针对屏幕显示优化）">三是魔改字体（针对屏幕显示优化）</h3>
+<p>1990—2000 年代，微软最喜欢魔改字体了，针对屏幕显示来刻意设计字体。</p>
+<p>魔改主要有两种手段：</p>
+<ul>
+<li><strong>嵌入点阵法</strong>。给同一个 TTF 字体文件同时配备点阵字库和矢量字库。在低像素密度的屏幕上，小字号用点阵字库显示，大字号用矢量字库显示。毕竟，点阵字体在低分辨率、低像素密度的屏幕上，比矢量字体清晰得多。</li>
+<li><strong>强化描边法</strong>。强化矢量字库的描边（Kerning），翻译成人话就是故意把字体中每个字模的轮廓设计得粗一点，这样就适合低分辨率、低像素密度屏幕显示。再结合 ClearType 之类的渲染技术，更是锦上添花。</li>
+</ul>
+<p>早期微软 Windows 内置的西文 TTF 字体，例如经典的 Arial、Courier New、Verdana、Tahoma（它是 Windows 2000 的默认 UI 字体，也是 XP 经典主题的默认 UI 字体）、Times New Roman、Trebuchet MS 等，同时使用了上述两种手段。</p>
+<p>至于 Windows 内置的中文字体，宋体（中易宋体）和细明体使用了嵌入点阵法，微软雅黑和微软正黑使用了强化描边法。从 Windows 9x 时代过来的人都知道，当初 8 pt 的宋体显示极为扭曲，而 8 pt 的细明体显示锐利清晰，是因为宋体的开发者中易中标没有做 8 pt 的点阵字库，而细明体的开发商华康科技（现名威锋数位）做了 8 pt 的点阵字库。这也导致微软在 Windows 2000/XP 中人为把 8 pt 的西文字体回落到 9 pt 的宋体，确保在 UI 默认字号为 8 pt 的 Windows 环境中清晰地显示宋体汉字。</p>
+<p>但是，在今天，这两种手段都不好用。据我所知，用嵌入点阵法制作的字体，逐步被各大 Linux 发行版淘汰了，用户无法启用点阵，而且，没有哪个中文字体的描边（Kerning）比微软雅黑更黑更粗。假如你不在乎微软雅黑是闭源商业字体，那么在 Linux 中安装微软雅黑自用，不失为一种临时的解决办法。</p>
+<h2 id="让-Linux-字体显示更清晰的解决办法">让 Linux 字体显示更清晰的解决办法</h2>
+<h3 id="一是调渲染">一是调渲染</h3>
+<p>既然屏幕像素密度有限，而且开源中文字体的描边太糟糕，那么调节字体渲染参数就失去了意义。</p>
+<h3 id="二是换屏幕">二是换屏幕</h3>
+<p>更换像素密度更高的屏幕。<strong>这是最根本的解决办法</strong>。台式机最好换成 27 寸 4K 显示器。笔记本倒是基本不用操心，如今的笔记本屏幕像素密度不算太低。换屏幕后，记得在 Linux 桌面中开启高分屏支持， 据我所知，Kali 和 Ubuntu 20+ 的默认桌面 Gnome 均具有此功能。</p>
+<h3 id="三是换字体">三是换字体</h3>
+<p>如果不能换屏幕，就换个字体吧。点阵字体最适合低分辨率、低像素密度屏幕。我现在用两款开源点阵字体：文泉驿点阵宋、Unifont。</p>
+<p>如果 Linux 桌面支持 PCF 或 BDF 格式的纯点阵字体，就用文泉驿点阵宋，这个字体相当美观，而且是国产字体。</p>
+<p>如果 Linux 桌面不支持这两种纯点阵字体，那就用 Unifont，这个字体有 TTF 版，是用矢量字体模拟点阵字体，只要不开启字体平滑，它就清晰美观。此外，也可以用微软雅黑。</p>
+<p>我同时使用两者。桌面和应用程序的 UI 字体用 Unifont，Firefox 浏览网页的中文字体用文泉驿点阵宋。</p>
+<p><img src="https://img.kukmoon.com/2024-04-06-20-18-11.png" srcset="/img/loading.gif" lazyload alt="更换字体后的桌面截图"></p>
+<h2 id="更换点阵字体的操作">更换点阵字体的操作</h2>
+<p>此处以 Ubuntu Server 20.06 为例，桌面是 LXDE，窗口管理器是 X11。</p>
+<p><strong>Step 1.</strong> 安装 Unifont 和文泉驿点阵宋。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt install *unifont xfonts-wqy<br></code></pre></td></tr></table></figure>
+<p><strong>Step 2.</strong> 解除 Ubuntu 对纯点阵字体的限制。其他发行版可能也有类似的限制，请读者自行解决。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">unlink</span> /etc/fonts/conf.d/70-no-bitmaps.conf<br>sudo dpkg-reconfigure fontconfig<br></code></pre></td></tr></table></figure>
+<p><strong>Step 3.</strong> 把桌面的默认 UI 字体设置为 Unifont，字号设置为 12 pt，并关闭字体平滑。Unifont 是假点阵字体，即伪装成点阵字体形式的矢量字体，12 pt 最清晰，但是，如果不关闭字体平滑，它就会边缘模糊。LXDE 的设置方法如图所示。其他桌面系统的设置，请读者自行完成。</p>
+<p>设置默认 UI 字体：<br>
+<img src="https://img.kukmoon.com/2024-04-06-20-28-16.png" srcset="/img/loading.gif" lazyload alt="设置默认 UI 字体"></p>
+<p>关闭字体平滑：<br>
+<img src="https://img.kukmoon.com/2024-04-06-20-29-03.png" srcset="/img/loading.gif" lazyload alt="关闭字体平滑"></p>
+<p><strong>Step 4.</strong> 把 Firefox 浏览网页使用的默认简中字体设置为文泉驿点阵宋（此处显示其英文名称：WenQuanYi Bitmap Song）。之所以这样设置，是因为我想让 Firefox 只渲染西文，不渲染中文。如果不让 Firefox 渲染西文，那么西文的显示效果特别粗糙难看。而文泉驿点阵宋是打包成 PCF 或者 BDF 格式的纯点阵字体，Firefox 的字体平滑对它不起作用。</p>
+<p><img src="https://img.kukmoon.com/2024-04-06-20-37-15.png" srcset="/img/loading.gif" lazyload alt="在 Firefox 中使用文泉驿点阵宋"></p>
+<p><img src="https://img.kukmoon.com/2024-04-06-21-08-50.png" srcset="/img/loading.gif" lazyload alt="Firefox 渲染中英文对比"></p>
+<h2 id="图片版权">图片版权</h2>
+<p>题图：自制</p>
+<p>头图：<a target="_blank" rel="noopener" href="https://pixabay.com/zh/photos/pond-cherry-trees-dusk-6648129/">https://pixabay.com/zh/photos/pond-cherry-trees-dusk-6648129/</a></p>
+
+                
+              </div>
+            
+            <div>
+                <!-- 引入自己编写的“分享到”模块（新） -->
+                <div style="text-align:right;"> <!-- 自己添加的“分享到”模块：开始。用的是 social-share.js。让所有的分享按钮右对齐-->
+	
+	<div class="social-share-container" style="margin-top: 15px;"> <!-- 生成一组分享按钮 -->
+		 <!--如果博客语言是中文，就显示“点击分享到：”，非中文一律显示“Share it:”-->
+			点击分享到：&nbsp;&nbsp;
+		
+	</div>
+	<!-- 加载 jQuery 库 -->
+	
+<script src="/js/jquery.min.js"></script>
+
+	<!-- 导入 qrcode.min.js -->
+	
+<script src="/js/qrcode.min.js"></script>
+
+	<!-- 加载 social-share.js 的 js 库，另外还要加载 social-share.js 的 CSS，可以修改 `_config.fluid.yml` 的 `custom_css` 加载，也可以修改 `themes/fluid/layout/_partial/css.ejs` 加载。-->
+	
+<script src="/js/social-share.min.js"></script>
+
+	<script> 
+	/* 执行 js 代码，new 一个新对象，详见 social-share.js 在 GitHub 的文档 */
+		new SocialShare('.social-share-container', {
+			theme: 'circle',  // 使用圆形主题
+			// 单独定义wechat分享参数
+			wechat: {
+				sort: 1, // 排序参数，数字较小的展示在前面,默认999
+			}
+		});		
+	</script>
+</div> <!-- 自己添加的“分享到”模块：结束。-->            
+                <hr/>
+                <!-- 引入自己编写的打赏模块（新） -->
+                <div style="text-align: center; margin: auto auto 1.5em;"><!--自己添加的打赏模块：开始-->
+  <!--如果主题的  _config.yml 中开启打赏-->
+    <div style="border-style:solid none none none; border-color: #663399; border-width: 0.5em; color: #663399; font-weight:bold; font-size: 1.2em; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+	   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+	    求扫码打赏
+	  	
+	</div>
+    <div style="font-size: 14px;margin-bottom: 10px;">
+	  “我这么可爱，请给我钱 o(*^ω^*)o” <!--在主题的 _config.yml 中设置打赏提示语-->
+	</div>
+    <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+	  <img src="/img/zhi-fu-bao-shou-kuan-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/wei-xin-zan-shang-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+	</div>
+  
+</div> <!--自己添加的打赏模块：结束-->
+                <hr/>
+            </div>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+        <a href="/tags/Ubuntu/" class="print-no-link">#Ubuntu</a>
+      
+        <a href="/tags/%E5%AD%97%E4%BD%93/" class="print-no-link">#字体</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Linux 字体显示为什么不像 Android 一样清晰？</div>
+      <div>https://blog.kukmoon.com/ced5cadc5ac3/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Kukmoon谷月</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年4月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/c7dea9f9b136/" title="如何修改 MP4 电影中音频轨道的语言和标题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">如何修改 MP4 电影中音频轨道的语言和标题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/95505eb594c3/" title="HDR 4K H265 批量转 1080p H264 并保留色彩">
+                        <span class="hidden-mobile">HDR 4K H265 批量转 1080p H264 并保留色彩</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appKey":"lvOI6tnv4jNUP9tEnIYJNKtW","path":"window.location.pathname","placeholder":"您的评论","avatar":"wavatar","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://qk25tpv2.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appkey":"lvOI6tnv4jNUP9tEnIYJNKtW"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

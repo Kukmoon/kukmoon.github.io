@@ -1,0 +1,1203 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <link rel="icon" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kukmoon谷月">
+  <meta name="keywords" content="Hexo,GitHub,Netlify,Cloudflare,JSDelivr,博客,CDN">
+  
+    <meta name="description" content="本文面向零基础小白用户，详细讲解了使用Hexo、GitHub、Netlify、Cloudflare、JSDeliver等工具搭建个人博客的全过程，看完这篇文章，就能轻松搞定自己的博客。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo+GitHub+Netlify+Cloudflare+JSDelivr搭建个人博客详细教程（小白向）">
+<meta property="og:url" content="https://blog.kukmoon.com/d9a35bfb54d9/index.html">
+<meta property="og:site_name" content="谷中望月">
+<meta property="og:description" content="本文面向零基础小白用户，详细讲解了使用Hexo、GitHub、Netlify、Cloudflare、JSDeliver等工具搭建个人博客的全过程，看完这篇文章，就能轻松搞定自己的博客。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.kukmoon.com/%E9%BB%98%E8%AE%A4%E6%A0%87%E9%A2%98_%E5%85%AC%E4%BC%97%E5%8F%B7%E5%B0%81%E9%9D%A2%E9%A6%96%E5%9B%BE_2020-08-18-1.png">
+<meta property="article:published_time" content="2020-08-17T16:55:29.000Z">
+<meta property="article:modified_time" content="2020-08-17T16:55:30.000Z">
+<meta property="article:author" content="Kukmoon谷月">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="GitHub">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.kukmoon.com/%E9%BB%98%E8%AE%A4%E6%A0%87%E9%A2%98_%E5%85%AC%E4%BC%97%E5%8F%B7%E5%B0%81%E9%9D%A2%E9%A6%96%E5%9B%BE_2020-08-18-1.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Hexo+GitHub+Netlify+Cloudflare+JSDelivr搭建个人博客详细教程（小白向） - 谷中望月</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel-highlightjs.css">
+<link rel="stylesheet" href="/css/social-share.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":null},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="谷中望月" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>谷中望月</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-note"></i>
+                <span>镜像</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog.kukmoon.com" target="_self">
+                    
+                    <span>全球统一入口</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://kukmoon.github.io" target="_self">
+                    
+                    <span>镜像 0（GitHub Pages）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog1.kukmoon.com" target="_self">
+                    
+                    <span>镜像 1（日本）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog2.kukmoon.com" target="_self">
+                    
+                    <span>镜像 2（CF Pages）</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.kukmoon.com/banner_img/2020_01to12.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Hexo+GitHub+Netlify+Cloudflare+JSDelivr搭建个人博客详细教程（小白向）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Kukmoon谷月
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-08-18 00:55" pubdate>
+          2020年8月18日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          47 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Hexo+GitHub+Netlify+Cloudflare+JSDelivr搭建个人博客详细教程（小白向）</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2020-08-18T00:55:30+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>喵喵喵喵喵</p>
+<p>在2020年8月的一个深夜，谷月姐决定搭建自己的个人博客。</p>
+<p>此前，谷月姐用过百度空间、网易博客、新浪博客、知乎专栏、CSDN博客、简书。百度空间和网易博客宣布停止服务，新浪博客的编辑器非常难用，知乎专栏降权，CSDN博客禁止营销，简书商业化非常严重。</p>
+<p>有鉴于此，谷月姐决定自己另起炉灶，从头开始搞自己的个人博客。</p>
+<p>作为一个对前端一窍不通的小白，谷月姐经过无数次比较和尝试，决定采用Hexo搭建博客，将博客源文件上传到GitHub以便多设备同步，但是将编译后的静态页面部署到Netlify以实现自动部署，并借助Cloudflare和JSDelivr加速，最后将博客登记到各大搜索引擎，让读者能搜索到博文。</p>
+<p>并且，谷月姐将以上操作步骤记录下来，就写成了这篇文章。</p>
+<p>读者不必担心，这篇文章会用最通俗易懂的语言详细解释操作步骤，不会有复杂艰深的计算机专业知识。即使小白也能看懂。</p>
+<p>OK，就让我们开始吧！</p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1597695143350&amp;di=5d02e08de6d38e79902ed002f626b824&amp;imgtype=0&amp;src=http%3A%2F%2F08imgmini.eastday.com%2Fmobile%2F20181017%2F20181017154952_ec81b511cc9b6202f994b05b25539b87_1.png" srcset="/img/loading.gif" lazyload alt="Lets go!"></p>
+<h2 id="用Hexo搭建博客">用Hexo搭建博客</h2>
+<h3 id="下载安装Hexo">下载安装Hexo</h3>
+<h3 id="初始化博客">初始化博客</h3>
+<p>谷月姐将博客文件夹放在 <code>C:\Users\Kukmoon\kukmoon_blog</code> 文件夹中。其中，<code>C:\Users\Kukmoon</code> 是用户主文件夹，在 Windows 中可以用环境变量 <code>%userprofile%</code> 表示，相当于 Unix/Linux/macOS 系统的 <code>~</code> 文件夹。</p>
+<p>谷月姐使用多种命令行工具，包括 Windows Terminal、PowerShell、CMD（命令提示符）、Git Bash等。后文如果不特别指明，任何一种命令行工具都可以。</p>
+<p>在 Git Bash中，执行以下命令，建立博客所在的文件夹：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ <span class="hljs-built_in">cd</span> ~<br>$ <span class="hljs-built_in">mkdir</span> kukmoon_blog<br></code></pre></td></tr></table></figure>
+<p>然后，再执行以下命令，初始化文件夹。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ <span class="hljs-built_in">cd</span> kukmoon_blog<br>$ hexo init<br></code></pre></td></tr></table></figure>
+<p>以上四条命令，如果在在 Windows Terminal、PowerShell 或 CMD 中，就变成了这样：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">cd</span> %userprofile%<br><span class="hljs-built_in">md</span> kukmoon_blog<br><span class="hljs-built_in">cd</span> kukmoon_blog<br>hexo init<br></code></pre></td></tr></table></figure>
+<h3 id="配置config-yml">配置config.yml</h3>
+<h3 id="写第一篇博文">写第一篇博文</h3>
+<h3 id="预览">预览</h3>
+<h3 id="选择并配置主题">选择并配置主题</h3>
+<h3 id="再次预览">再次预览</h3>
+<h3 id="博客所在文件夹的云备份">博客所在文件夹的云备份</h3>
+<h4 id="1-使用云盘">(1) 使用云盘</h4>
+<p>谷月姐使用了 7zip 的命令行程序 <code>7z.exe</code>，结合微软 OneDrive 来备份博客所在文件夹。</p>
+<p>在命令行中，执行以下命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-string">&quot;C:\Program Files\7zip\7z.exe&quot;</span> u <span class="hljs-literal">-mmt4</span> <span class="hljs-literal">-mx9</span> <span class="hljs-literal">-sccUTF-8</span> <span class="hljs-literal">-scsUTF-8</span> C:\Users\Kukmoon\OneDrive\kukmoon_blog.<span class="hljs-number">7</span>z C:\Users\Kukmoon\kukmoon_blog\<br></code></pre></td></tr></table></figure>
+<p><strong>解析</strong>：</p>
+<ol>
+<li>这条命令是调用 <code>7z.exe</code> ，将博客所在文件夹压缩成一个压缩包 <code>kukmoon_blog.7z</code>，并将压缩包放在 OneDrive 的同步文件夹（<code>C:\Users\Kukmoon\OneDrive</code>) 下，让 OneDrive 把它上传到云端。</li>
+<li>里面的 <code>u</code> 命令表示更新压缩文件。</li>
+<li>里面的 <code>-mmt4</code> 开关表示四线程压缩，可以节约时间，建议把 <code>4</code> 改成读者自己的 CPU 的线程数。</li>
+<li>里面的 <code>-mx9</code> 开关表示最高级别的压缩，可以节约存储空间和同步流量。</li>
+<li>里面的 <code>-sccUTF-8</code> 和 <code>-scsUTF-8</code> 是指对文件名用 UTF-8 编码来存储，由于谷月姐还需要在 Mac 电脑和运行 Linux 的设备上书写博客，为了避免乱码，因此在此处选择用 UTF-8 来存储文件夹名。</li>
+</ol>
+<p><strong>注意</strong>：</p>
+<ol>
+<li>读者可以换用自己喜欢的命令行压缩工具（例如 <code>RAR.exe</code>、<code>PKZIP.exe</code>……）生成压缩包。</li>
+<li>读者也可以换用自己喜欢的云盘（例如苹果 iCloud、Google Drive、Dropbox、百度云盘……），只需要把 <code>C:\Users\Kukmoon\OneDrive</code> 改成你的云盘所在的本地同步文件夹的路径（例如 <code>C:\Users\Kukmoon\iCloud</code> ）即可。</li>
+<li>也许有读者会问，直接把博客所在文件夹建在 OneDrive 云盘的本地同步文件夹 <code>C:\Users\Kukmoon\OneDrive</code> 不行吗？当然可以，但是用 Hexo 搭建博客会生成大量小文件，而 OneDrive，以及其他云盘，处理大量小文件的效率是很低的。所以谷月姐建议只用云盘来同步压缩包。</li>
+<li>在 PowerShell 中无法执行此命令，提示「表达式或语句中包含意外的标记“<code>u</code>”」。解决方案是：将这条命令保存为一个批处理文件，在 PowerShell 中，运行这个批处理文件。</li>
+</ol>
+<h4 id="2-使用-GitHub">(2) 使用 GitHub</h4>
+<p>需要在 GitHub 新建一个私有仓库，用 git 命令把博客所在文件夹 <code>C:\Users\Kukmoon\kukmoon_blog\</code> 里面的所有文件推送到这个私有仓库。</p>
+<p>下次如果更新博客，只需要推送新增的文件即可。</p>
+<p>如果要在其他电脑上撰写博客，只需要在其他电脑上安装 Git，将私有仓库克隆到本地即可。</p>
+<hr>
+<h2 id="将博客上传到GitHub">将博客上传到GitHub</h2>
+<h3 id="注册GitHub账号">注册GitHub账号</h3>
+<h3 id="新建仓库">新建仓库</h3>
+<h3 id="配置SSH密钥">配置SSH密钥</h3>
+<h3 id="将博客的本地文件Push到GitHub">将博客的本地文件Push到GitHub</h3>
+<hr>
+<h2 id="将博客部署到Netlify">将博客部署到Netlify</h2>
+<h3 id="注册Netlify账号">注册Netlify账号</h3>
+<h3 id="配置个人博客">配置个人博客</h3>
+<h3 id="自定义二级域名">自定义二级域名</h3>
+<hr>
+<h2 id="注册自己的顶级域名">注册自己的顶级域名</h2>
+<h3 id="注册NameSilo账号">注册NameSilo账号</h3>
+<h3 id="挑选域名并付费">挑选域名并付费</h3>
+<hr>
+<h2 id="用Cloudflare加速">用Cloudflare加速</h2>
+<h3 id="注册Cloudflare账号">注册Cloudflare账号</h3>
+<h3 id="将你的顶级域名解析到Cloudflare">将你的顶级域名解析到Cloudflare</h3>
+<hr>
+<h2 id="SEO优化">SEO优化</h2>
+<p><strong>SEO（Search Engine Optimization）</strong>：中文译为搜索引擎优化，即利用搜索引擎的规则提高网站搜索引擎内自然排名。主要通过站内优化比如网站结构调整、网站内容建设、网站代码优化等以及站外优化等方式实现。</p>
+<p>对博客进行SEO非常重要。我们搭建的博客，无法被搜索引擎搜到，相当于一个信息孤岛，只能自娱自乐，不利于个人品牌的推广和宣传。所以，我们需要SEO，让谷歌、百度等搜索引擎搜到我们的博客。</p>
+<h3 id="将你的博客登记到谷歌">将你的博客登记到谷歌</h3>
+<h4 id="博客的登记与验证">博客的登记与验证</h4>
+<p>用谷歌账号登录<a target="_blank" rel="noopener" href="https://search.google.com/search-console/welcome?hl=zh-CN">谷歌站长平台</a>，把资源类型设置为“网域”<a target="_blank" rel="noopener" href="http://xn--kukmoon-ri9ko9lf2bmwtfll3hjk11ggt1d.com">并输入博客的域名kukmoon.com</a>（前面不要加<a target="_blank" rel="noopener" href="https://www">https://www</a>），点击“继续”。</p>
+<p><img src="https://img.kukmoon.com/20200818134538.png" srcset="/img/loading.gif" lazyload alt="选择资源"></p>
+<p>接下来，谷歌要求我们通过DNS方式验证网站。</p>
+<p><img src="https://img.kukmoon.com/20200818134716.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>因为之前为博客启用了Cloudflare加速，所以需要在Cloudflare中设置域名解析。登录Cloudflare，找到我们的博客，点击上方导航栏的DNS按钮，然后点击“添加记录”，添加一条TXT记录，点击“保存。</p>
+<p><img src="https://img.kukmoon.com/20200818140031.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>因为我们的域名是在Namesilo注册的，所以还需要在Namesilo中设置域名解析。登录NameSilo，进入domain manager。</p>
+<p><img src="https://img.kukmoon.com/20200818130059.png" srcset="/img/loading.gif" lazyload alt="进入Domain manager"></p>
+<p>此时，它列出了我们注册的所有域名，点击kukmoon.com最右侧的蓝色地球图标。</p>
+<p><img src="https://img.kukmoon.com/20200818130704.png" srcset="/img/loading.gif" lazyload alt="点击蓝色地球图标"></p>
+<p>此时，我们进入DNS设置，点击TXT，添加一条TXT记录，最后点击“保存”。</p>
+<p><img src="https://img.kukmoon.com/20200818135508.png" srcset="/img/loading.gif" lazyload alt="添加一条TXT记录"></p>
+<h3 id="将你的博客登记到百度">将你的博客登记到百度</h3>
+<h4 id="博客的登记与验证-2">博客的登记与验证</h4>
+<p>用百度账号登录<a target="_blank" rel="noopener" href="https://ziyuan.baidu.com">百度站长平台</a>（现在改名叫百度搜索资源平台了），点击“用户中心”→“站点管理”→“添加网站”。</p>
+<p><img src="https://img.kukmoon.com/20200818124116.png" srcset="/img/loading.gif" lazyload alt="添加网站"></p>
+<p>然后，按照百度的要求，输入网站的域名：<a target="_blank" rel="noopener" href="https://www.kukmoon.com">https://www.kukmoon.com</a>，点击“下一步。”</p>
+<p>接下来，选择站点的属性，所谓属性，就是指你的博客主要发布什么类型的文章，选好以后点击“下一步”。</p>
+<p>接下来，要验证网站，验证网站的意思是，告诉百度，这个博客是你的。百度提供了三种验证方式：</p>
+<ul>
+<li>文件验证。上传一个文件到你的博客根目录。</li>
+<li>HTML标签验证。在博客首页添加一段HTML代码。</li>
+<li>CNAME验证。<a target="_blank" rel="noopener" href="http://xn--CNAMEziyuan-811rtmv53aixt121a02nwkv862dkufxdu64s6ic1t6hf0jg30h.baidu.com">把百度给你的验证网址使用CNAME解析到ziyuan.baidu.com</a>。</li>
+</ul>
+<p>经过谷月姐本人实践，如果将博客部署到Netlify并用Cloudflare加速，这三种方法都无法通过验证。原因可能是Netlify屏蔽百度。谷月姐试了第三种方法，在Cloudflare和Netlify都设置了解析，验证通过了，但是百度始终没有收录www.kukmoon.com的内容。</p>
+<p>直到谷月姐把博客迁移到虚拟主机上，才能让自己的网站通过百度的验证。文件验证或CNAME验证都可以通过。以下以第三种方式CNAME验证为例。</p>
+<p><img src="https://img.kukmoon.com/20200818125152.png" srcset="/img/loading.gif" lazyload alt="使用CNAME验证"></p>
+<p>因为我们的域名是在Namesilo注册的，所以需要在Namesilo中设置域名解析。登录NameSilo，进入domain manager。</p>
+<p><img src="https://img.kukmoon.com/20200818130059.png" srcset="/img/loading.gif" lazyload alt="进入Domain manager"></p>
+<p>此时，它列出了我们注册的所有域名，点击kukmoon.com最右侧的蓝色地球图标。</p>
+<p><img src="https://img.kukmoon.com/20200818130704.png" srcset="/img/loading.gif" lazyload alt="点击蓝色地球图标"></p>
+<p>此时，我们进入DNS设置，点击CNAME，添加一条CNAME记录，最后点击“保存”。</p>
+<p><img src="https://img.kukmoon.com/20200818131041.png" srcset="/img/loading.gif" lazyload alt="添加一条CNAME记录"></p>
+<p>再回到百度，点击“完成验证”即可。如果百度提示“没有找到对应的DNS CNAME记录“，这说明域名解析记录还没有生效，需要等一段时间，最多24小时。</p>
+<h4 id="站点地图">站点地图</h4>
+<p>在博客根目录（kukmoon_blogs）安装插件hexo-generator-baidu-sitemap和hexo-generator-sitemap</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install hexo-generator-baidu-sitemap --save<br>npm install hexo-generator-sitemap --save<br></code></pre></td></tr></table></figure>
+<p>查看Hexo根目录_config.yml文件中url的值，URL必须是我们博客在百度登记的域名。例如：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># URL</span><br><span class="hljs-comment">## If your site is put in a subdirectory, set url as &#x27;http://yoursite.com/child&#x27; and root as &#x27;/child/&#x27;</span><br><span class="hljs-attr">url:</span> <span class="hljs-string">https://www.kukmoon.com/</span><br><span class="hljs-attr">root:</span> <span class="hljs-string">/</span><br><span class="hljs-attr">permalink:</span> <span class="hljs-string">:abbrlink.html</span><br><span class="hljs-attr">permalink_defaults:</span><br><span class="hljs-attr">pretty_urls:</span><br>  <span class="hljs-attr">trailing_index:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span><br>  <span class="hljs-attr">trailing_html:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span><br></code></pre></td></tr></table></figure>
+<p><strong>强烈建议安装Permalink插件缩短博文的URL。</strong></p>
+<p>然后，将博客部署到Netlify，然后访问<a target="_blank" rel="noopener" href="https://www.kukmoon.com/baqidusitemap.xml%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E7%BD%91%E7%AB%99%E5%9C%B0%E5%9B%BE%E3%80%82">https://www.kukmoon.com/baqidusitemap.xml就可以看到网站地图。</a></p>
+<p>接下来，我们在百度站长平台点击“搜索服务”→“普通收录”。</p>
+<p><img src="https://img.kukmoon.com/20200818132031.png" srcset="/img/loading.gif" lazyload alt="普通收录"></p>
+<p>在“资源提交”中，点击”Sitemap“，把<a target="_blank" rel="noopener" href="https://www.kukmoon.com/baidusitemap.xml%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E5%88%B0%E6%96%87%E6%9C%AC%E6%A1%86%E4%B8%AD%EF%BC%8C%E7%82%B9%E5%87%BB%E2%80%9C%E6%8F%90%E4%BA%A4%E2%80%9D%E5%8D%B3%E5%8F%AF%E3%80%82">https://www.kukmoon.com/baidusitemap.xml复制粘贴到文本框中，点击“提交”即可。</a></p>
+<p><img src="https://img.kukmoon.com/20200818132229.png" srcset="/img/loading.gif" lazyload alt="提交Sitemap"></p>
+<h4 id="Robots-txt">Robots.txt</h4>
+<p>robots.txt（统一小写）是一种存放于网站根目录下的ASCII编码的文本文件，它的作用是告诉搜索引擎此网站中哪些内容是可以被爬取的，哪些是禁止爬取的。<br>
+在 source目录下增加 robots.txt 文件，网站生成后在网站的根目录(站点目录/public/)下。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">User-agent:</span> <span class="hljs-string">*</span><br><span class="hljs-attr">Allow:</span> <span class="hljs-string">/</span><br><span class="hljs-attr">Allow:</span> <span class="hljs-string">/home/</span><br><span class="hljs-attr">Allow:</span> <span class="hljs-string">/archives/</span><br><span class="hljs-attr">Allow:</span> <span class="hljs-string">/about/</span><br><span class="hljs-attr">Allow:</span> <span class="hljs-string">/link/</span><br><span class="hljs-attr">Disallow:</span> <span class="hljs-string">/vendors/</span><br><span class="hljs-attr">Disallow:</span> <span class="hljs-string">/js/</span><br><span class="hljs-attr">Disallow:</span> <span class="hljs-string">/css/</span><br><span class="hljs-attr">Disallow:</span> <span class="hljs-string">/fonts/</span><br><span class="hljs-attr">Sitemap:</span> <span class="hljs-string">http://www.kukmoon.com/sitemap.xml</span><br><span class="hljs-attr">Sitemap:</span> <span class="hljs-string">http://www.kukmoon.com/baidusitemap.xml</span><br></code></pre></td></tr></table></figure>
+<p>但是，根据谷月姐本人实践，百度无法识别博客根目录的Robots.txt。</p>
+<h4 id="将博文主动推送到百度">将博文主动推送到百度</h4>
+<p>在博客根目录（kukmoon_blogs）安装插件hexo-baidu-url-submit。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install hexo-baidu-url-submit --save<br></code></pre></td></tr></table></figure>
+<p>然后，在博客根目录的_config.yml文件里写入以下配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">baidu_url_submit:<br>  count: 100                           <span class="hljs-comment"># 提交最新的多少个链接</span><br>  host: https://www.kukmoon.com/    <span class="hljs-comment"># 在百度站长平台中添加的域名</span><br>  token: your_token             	  <span class="hljs-comment"># 秘钥</span><br>  path: baidu_urls.txt                <span class="hljs-comment"># 文本文档的地址,新链接会保存在此文本文档里</span><br></code></pre></td></tr></table></figure>
+<p>注意：host的值一定要与_config.yml文件的url的值一致，都是在百度站长平台登记的域名。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># URL</span><br><span class="hljs-comment">## If your site is put in a subdirectory, set url as &#x27;http://yoursite.com/child&#x27; and root as &#x27;/child/&#x27;</span><br><span class="hljs-attr">url:</span> <span class="hljs-string">https://www.kukmoon.com/</span><br><span class="hljs-attr">root:</span> <span class="hljs-string">/</span><br><span class="hljs-attr">permalink:</span> <span class="hljs-string">:abbrlink.html</span><br><span class="hljs-attr">permalink_defaults:</span><br><span class="hljs-attr">pretty_urls:</span><br>  <span class="hljs-attr">trailing_index:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span><br>  <span class="hljs-attr">trailing_html:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span><br></code></pre></td></tr></table></figure>
+<p>但是，密钥在哪里获取呢？仍然需要登录百度站长平台，点击“搜索服务”→“普通收录”。</p>
+<p><img src="https://img.kukmoon.com/20200818132031.png" srcset="/img/loading.gif" lazyload alt="普通收录"></p>
+<p>在“资源提交”中，点击“API提交“，在”接口调用地址“的最后，就是token。</p>
+<p><img src="https://img.kukmoon.com/20200818133011.png" srcset="/img/loading.gif" lazyload alt="Token"></p>
+<p>在博客根目录的_config.yml文件里增加以下配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># Deployment</span><br><span class="hljs-comment">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="hljs-attr">deploy:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>    <span class="hljs-attr">repo:</span><br>    <span class="hljs-attr">branch:</span>     <br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">baidu_url_submitter</span><br></code></pre></td></tr></table></figure>
+<p>将博客部署到Netlify，无法实现主动推送。需要将博客部署到虚拟主机。</p>
+<h3 id="将你的博客登记到必应">将你的博客登记到必应</h3>
+<h3 id="将你的博客登记到360">将你的博客登记到360</h3>
+<h3 id="将你的博客登记到搜狗">将你的博客登记到搜狗</h3>
+<h3 id="生成站点目录">生成站点目录</h3>
+<hr>
+<h2 id="书写并编辑博文">书写并编辑博文</h2>
+<h3 id="用NotePad-写">用NotePad++写</h3>
+<h3 id="用Typora写">用Typora写</h3>
+<h3 id="Picgo与GitHub图床">Picgo与GitHub图床</h3>
+<h3 id="多设备（Mac、PC）同步博文">多设备（Mac、PC）同步博文</h3>
+<hr>
+<h2 id="将博客部署到内地">将博客部署到内地</h2>
+<h3 id="域名备案">域名备案</h3>
+<h3 id="将博客部署到Coding">将博客部署到Coding</h3>
+<h3 id="将博客部署到21云盒子">将博客部署到21云盒子</h3>
+<h2 id="将博客部署到虚拟主机或VPS">将博客部署到虚拟主机或VPS</h2>
+<h3 id="将博客部署到虚拟主机">将博客部署到虚拟主机</h3>
+<p>谷月姐经过尝试发现，如果将博客部署到Netlify，百度就无法搜索到博客，这对SEO工作是不利的。</p>
+<p>谷月姐购买了一个香港的共享IP虚拟主机（<a target="_blank" rel="noopener" href="https://www.laoxuehost.com/">老薛主机</a>），尝试将博客部署到虚拟主机，以改善百度SEO结果。之所以购买香港的虚拟主机而不是内地的，原因是谷月姐不想备案。毕竟备案太麻烦。</p>
+<p>要使用共享IP的虚拟主机部署博客，需要先绑定域名，因为共享IP的虚拟主机无法使用IP进行直接访问。</p>
+<h4 id="取消域名与Netlify和Cloudflare的绑定">取消域名与Netlify和Cloudflare的绑定</h4>
+<p>由于谷月姐之前为部署到Netlify的博客加了Cloudflare的CDN，并且在Cloudflare设置了域名解析。现在将博客部署到虚拟主机，并且暂时不再使用Cloudflare，就需要把域名绑定到虚拟主机，不能再绑定到Cloudflare或Netlify。</p>
+<p>所以，谷月姐需要在Cloudflare中先删除自己的站点。操作方法也很简单：</p>
+<p>登录Cloudflare，找到自己的站点，点击进入；</p>
+<p><img src="https://img.kukmoon.com/20200905222800.png" srcset="/img/loading.gif" lazyload alt="找到自己的站点"></p>
+<p>找到右下角的“从Cloudflare中删除站点”。</p>
+<p><img src="https://img.kukmoon.com/20200905222927.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>接下来，解除域名与Netlify的绑定。</p>
+<p><a target="_blank" rel="noopener" href="http://xn--www-sj3fu53h.netlify.com">登录www.netlify.com</a>，登录，找到自己的站点；</p>
+<p><img src="https://img.kukmoon.com/20200905230355.png" srcset="/img/loading.gif" lazyload alt="找到自己的站点"></p>
+<p>点击进入，点击Domain Settings，然后，在Custom Domain区域中，<a target="_blank" rel="noopener" href="http://xn--www-gt5h952j.kukmoon.xn--comkukmoon-jh7q.com">移除www.kukmoon.com和kukmoon.com</a>。</p>
+<h4 id="将域名绑定到虚拟主机">将域名绑定到虚拟主机</h4>
+<p>谷月姐是在Namesilo注册的域名，要设置它，需要登录<a target="_blank" rel="noopener" href="https://www.namesillo.com">https://www.namesillo.com</a>，点击My account→domain manager，然后在出现的页面中点击域名kukmoon.com后面的蓝色地球图标，设置DNS。</p>
+<p>因为谷月姐之前使用了Cloudflare的CDN，所以在Namesilo中，将DNS设置为Cloudflare的DNS服务器。现在，谷月姐需要在Namesilo中DNS设为默认的DNS，<a target="_blank" rel="noopener" href="http://xn--ns1-4l3e.dnsowl.com">即ns1.dnsowl.com</a>、<a target="_blank" rel="noopener" href="http://ns2.dnsowl.xn--comns3-k76j.dnsowl.com">ns2.dnsowl.com和ns3.dnsowl.com</a>。再点击“Submit“按钮，提交。</p>
+<p><img src="https://img.kukmoon.com/20200905231129.png" srcset="/img/loading.gif" lazyload alt="将DNS设置默认DNS"></p>
+<p>接下来，删除www.kukmoon.com的解析记录，之后，新建2条A记录，<a target="_blank" rel="noopener" href="http://xn--www-g88dl7omgy8jd63ct7b.kukmoon.xn--comkukmoon-jh7q.com">主机名分别是www.kukmoon.com和kukmoon.com</a>，它们都指向虚拟主机提供的IP地址，其中TTL可以设为3600。点击Submit按钮，提交。</p>
+<p><img src="https://img.kukmoon.com/20200905232244.png" srcset="/img/loading.gif" lazyload alt="新建两条A记录"></p>
+<p>提交后，需要一段时间才能生效，最长24小时。如果ping www.kukmoon.com找不到主机名，或者得到的IP地址并不是之前配置的IP地址，说明DNS解析尚未生效，需要耐心等待。</p>
+<h4 id="将Hexo博客部署到虚拟主机">将Hexo博客部署到虚拟主机</h4>
+<p>将Hexo博客部署到虚拟主机，主要有两种方法：</p>
+<ol>
+<li>在虚拟主机安装Node.js和npm，将原始文件上传到虚拟主机，在虚拟主机中编译。前提是虚拟主机允许用户安装Node.js，而且用户要懂一些Linux命令。</li>
+<li>用FTP方式直接将Hexo编译出的public文件夹上传到虚拟主机。</li>
+</ol>
+<p>第 2 种方法又可以衍生出三种方法：</p>
+<p>2.1 用FTP软件，例如ftp命令、FlashFXP、CuteFTP、FileZilla等软件，将public文件夹手工上传到主机。</p>
+<p>2.2 借助Hexo的插件hexo-deployer-ftpsync来部署。</p>
+<p>2.3 借助git-ftp，将public文件夹手工上传到主机，这种方法的好处是可以控制版本，并且可以在命令行中操作。</p>
+<p>谷月姐介绍方法2.2。</p>
+<p>首先，安装hexo-deployer-ftpsync。</p>
+<p>在博客根目录运行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install hexo-deployer-ftpsync --save<br></code></pre></td></tr></table></figure>
+<p>然后，在博客根目录中的_config.yml中添加以下内容：</p>
+<p>（如果deploy节已经有内容，例如部署到Git，那么建议写成以下形式）</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">deploy:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">git</span>				<span class="hljs-comment">#提交到git，此处保持不变</span><br>    <span class="hljs-attr">repo:</span> <span class="hljs-string">XXX</span>				<span class="hljs-comment">#提交到git，此处保持不变</span><br>    <span class="hljs-attr">branch:</span> <span class="hljs-string">XXX</span>				<span class="hljs-comment">#提交到git，此处保持不变</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">ftpsync</span>			<span class="hljs-comment">#提交到FTP</span><br>    <span class="hljs-attr">host:</span> <span class="hljs-string">&lt;host&gt;</span>            <span class="hljs-comment">#主机地址，共享IP或独站IP</span><br>    <span class="hljs-attr">user:</span> <span class="hljs-string">&lt;user&gt;</span>            <span class="hljs-comment">#虚拟主机提供商提供的FTP用户名</span><br>    <span class="hljs-attr">pass:</span> <span class="hljs-string">&lt;password&gt;</span>        <span class="hljs-comment">#FTP密码密码</span><br>    <span class="hljs-attr">remote:</span> [<span class="hljs-string">remote</span>]        <span class="hljs-comment">#上传到空间的指定目录。比如/public_html。默认为/</span><br>    <span class="hljs-attr">port:</span> [<span class="hljs-string">port</span>]            <span class="hljs-comment">#端口，默认为21</span><br>    <span class="hljs-attr">ignore:</span> [<span class="hljs-string">ignore</span>]        <span class="hljs-comment">#忽略的文件</span><br>    <span class="hljs-attr">connections:</span> [<span class="hljs-string">connections</span>]  <span class="hljs-comment">#使用的连接数，默认1</span><br>    <span class="hljs-attr">verbose:</span> [<span class="hljs-literal">true</span><span class="hljs-string">|false</span>]   <span class="hljs-comment">#显示调试信息，默认false</span><br></code></pre></td></tr></table></figure>
+<p>hexo-deployer-ftpsync插件并非直接上传生成的静态网站，而是将remote指向的目录的目录结构同步成与本地public文件完全相同的目录结构。也就是说如果你的虚拟主机上存有一些其他文件的话也将被全部删除。所以必要时，可以填写ignore键的值。</p>
+<p>ignore格式：</p>
+<p><code>ignore: ['dir1','dir2','file1.htm'] </code></p>
+<p>注意：方括号不能丢掉，引号用单引号或者双引号都可以。</p>
+<p>注意，假如你在百度搜索资源平台使用文件验证的方式验证你的博客，那么需要将百度提供的验证文件加入到ignore段。例如：</p>
+<p><code>ignore: ['/cgi-bin','Baidu_XXXXXXXXXXXXXXX.html']</code></p>
+<p>其中的Baidu_XXXXXXXXXXXXXXX.htm是百度提供的验证文件。</p>
+<p>然后，就可以执行<code>hexo clean</code>、<code>hexo g</code>、<code>hexo d</code>命令三连，部署博客了。</p>
+<h4 id="hexo-d部署博客出错">hexo d部署博客出错</h4>
+<h5 id="在committing…处卡住">在committing…处卡住</h5>
+<p>committing表示ftpsync插件正在将public文件夹下的内容上传到虚拟主机。但是在谷月姐的电脑上，在这一步卡住了。谷月姐用谷歌找了很久，终于找到了一个<a target="_blank" rel="noopener" href="https://es2q.com/blog/2019/05/12/Hexo-ftpsync-bug/">解决方案</a>，抱着死马当活马医的心态，修改了博客目录/node-modules/ftpsync/lib/ftpsync.js文件，用npm安装了新的ftp库，居然解决了这个问题。</p>
+<p>以下是对解决方案原文的部分引（抄）用（袭）。</p>
+<blockquote>
+<p><strong>解决方案(临时)</strong></p>
+<p>修改node_modules\ftpsync\lib\ftpsync.js</p>
+<p>第1步 开头添加</p>
+</blockquote>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> <span class="hljs-title class_">Client</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;ftp&#x27;</span>);<br><span class="hljs-keyword">var</span> ftpc = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Client</span>();<br></code></pre></td></tr></table></figure>
+<p>第2步 sync的setup中在try里面，ftp全局对象的初始化下面添加对我上面定义的ftpc全局变量的初始化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript">ftpc.<span class="hljs-title function_">connect</span>(&#123;<br>    <span class="hljs-attr">host</span>:settings.<span class="hljs-property">host</span>,<br>    <span class="hljs-attr">user</span>: settings.<span class="hljs-property">user</span>,<br>    <span class="hljs-attr">password</span>: settings.<span class="hljs-property">pass</span>,<br>    <span class="hljs-attr">port</span>: settings.<span class="hljs-property">port</span><br>&#125;);<br></code></pre></td></tr></table></figure>
+<p>第3步 utils的upload方法中把原来的ftp.put(…… 这一句替换成使用ftpc的put</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript">ftpc.<span class="hljs-title function_">put</span>(local, remote, <span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) &#123;<br>  <span class="hljs-keyword">if</span> (err) &#123;<br>    sync.<span class="hljs-property">log</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;ftp.put failed.&#x27;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">callback</span>(err);<br>  &#125;<br>  <span class="hljs-keyword">if</span> (sync.<span class="hljs-property">log</span>.<span class="hljs-property">verbose</span>) &#123;<br>    sync.<span class="hljs-property">log</span>.<span class="hljs-title function_">write</span>(<span class="hljs-string">&#x27;-&#x27;</span>, file, <span class="hljs-string">&#x27;uploaded successfuly&#x27;</span>);<br>  &#125;<br>  <span class="hljs-title function_">callback</span>();<br>&#125;);<br></code></pre></td></tr></table></figure>
+<p>第4步 在utils的remove方法的最后添加关闭ftpc</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">ftpc.<span class="hljs-title function_">end</span>();<br></code></pre></td></tr></table></figure>
+<p>第5步 安装依赖，因为我们引入了ftp，所以执行 <code>npm install ftp --save</code></p>
+</blockquote>
+<h5 id="上传结束后卡住">上传结束后卡住</h5>
+<p>按常理，在显示Deploy done和Good bye之后，上传就结束了，应该退出上传程序，出现新的提示符。但是ftpsync偏偏在此处卡住。</p>
+<p><img src="https://img.kukmoon.com/20200906112604.png" srcset="/img/loading.gif" lazyload alt="上传结束后卡住"></p>
+<p>实际上，ftpsync的作者已经提供了<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-deployer-ftpsync/pull/28/commits/80815cbc83aebc3b68b641c856040fe343af9f70">解决方案</a>。只需要修改博客目录/node_modules/hexo-deployer-ftpsync/index.js文件，在ftpsync.run(callback)后面强行调用process.exit()即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript">ftpsync.<span class="hljs-title function_">run</span>(callback);<br>  ftpsync.<span class="hljs-title function_">run</span>(<span class="hljs-function">()=&gt;</span>&#123;<br>    <span class="hljs-title function_">callback</span>();<br>    process.<span class="hljs-title function_">exit</span>();<br>  &#125;);<br>&#125;);<br></code></pre></td></tr></table></figure>
+<p><img src="https://img.kukmoon.com/20200906113127.png" srcset="/img/loading.gif" lazyload alt="在如图所示的地方插入红框中的代码"></p>
+<h2 id="狡兔三窟：同时托管到GitHub、Netlify、云虚拟主机">狡兔三窟：同时托管到GitHub、Netlify、云虚拟主机</h2>
+<p>在本文的最后，谷月姐尝试同时把博客托管到GitHub、Netlify和云虚拟主机。</p>
+<p>目的是为了多重备份，以免丢失内容或与网友失联。</p>
+<p>谷月姐要分析一下狡兔三窟的可行性：</p>
+<ol>
+<li>要实现多设备同步编写博客和把博客托管到Netlify，必须要把源码上传到GitHub；</li>
+<li>要实现把博客托管到GitHub，必须要把Hexo编译出的public目录上传到GitHub；</li>
+<li>为了避免FTP密码、谷歌或者百度的密钥等重要信息泄露，必须把源码所在的GitHub仓库设为私有；</li>
+<li>如果把GitHub仓库设为私有，那么将无法通过kukmoon.github.io的方式访问博客，而且谷歌也无法抓取托管到GitHub博客中的内容。</li>
+</ol>
+<p>考虑到以上4条，谷月姐决定使用两个仓库，一个公开仓库kukmoon.github.io上传Hexo编译出的public目录，一个私有仓库上传源码并让Netlify与这个仓库关联。</p>
+<p>在电脑上写完博文并且编译博客以后，用git把源码上传到私有仓库，此时Netlify会抓取源码并自动编译，再用hexo d命令将博客部署到公开仓库和虚拟主机。</p>
+<p>但是，在之前的操作中，谷月姐把仓库kukmoon.github.io设置为私有仓库并用来上传博客源码，此时必须新建一个新的私有仓库（起名叫kukmoon_blog），将kukmoon.github.io中的内容转移到kukmoon_blog，<a target="_blank" rel="noopener" href="http://xn--kukmoon-fy3ly34qnxgtq1a.github.io">然后清空kukmoon.github.io</a>，再把它改成公开仓库。</p>
+<h3 id="处理仓库">处理仓库</h3>
+<p><strong>备份本地博客目录</strong>，我在资源管理器中把本地博客目录C:\Users\Kukmoon\kukmoon_blog整个压缩成一个zip文件，放在C:\Users\Kukmoon目录。</p>
+<p><strong>将本地的博客目录与原来的远程仓库kukmoon.github.io取消关联</strong>。在博客目录下，执行 <code>git remote remove origin</code>。</p>
+<p><strong><a target="_blank" rel="noopener" href="http://xn--kukmoon-d74kj9vp2dkx3beew2s7bhlktx3fi3va.github.io">删除原来的远程仓库kukmoon.github.io</a></strong>。登录GitHub，<a target="_blank" rel="noopener" href="http://xn--kukmoon-d74k54qbo2b9e7dqyucoa.github.io">进入远程仓库kukmoon.github.io</a>，点击Settings，然后在Settings页面的最底部点击Delete this repository，按照网站的提示操作即可。</p>
+<p><strong><a target="_blank" rel="noopener" href="http://xn--kukmoon-d74k66qbm2bk6adcx94j.github.io">新建公开仓库kukmoon.github.io</a></strong>。登录GitHub，点击右上角的Create a new repo按钮，创建一个新仓库，<a target="_blank" rel="noopener" href="http://xn--kukmoon-e73k103bzpa.github.io">取名为kukmoon.github.io</a>，保持其他不变，点击Create repository。</p>
+<p><img src="https://img.kukmoon.com/20200906151919.png" srcset="/img/loading.gif" lazyload alt="创建新仓库kukmoon.github.io"></p>
+<p><strong>新建私有仓库kukmoon_blog</strong>。登录GitHub，点击右上角的Create a new repo按钮，创建一个新仓库，取名为kukmoon_blog，把它设为Private（私有仓库），保持其他不变，点击Create repository。</p>
+<p><img src="https://img.kukmoon.com/20200906130253.png" srcset="/img/loading.gif" lazyload alt="创建私有仓库kukmoon_blog"></p>
+<p><strong>将本地的博客目录kukmoon_blog与新的远程仓库kukmoon_blog建立关联</strong>。在本地博客目录kukmoon_blog下，执行<code>git remote add origin git@github.com:kukmoon/kukmoon_blog.git</code>。</p>
+<p><strong>把本地博客目录下的所有内容推送到新的私有远程仓库kukmoon_blog上</strong>。在博客目录下，执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">git add .<br>git commit -m <span class="hljs-string">&quot;Restore My Blog&quot;</span><br>git push -u origin master<br></code></pre></td></tr></table></figure>
+<p><strong>设置Netlify，让Netlify监视仓库kukmoon_blog并生成博客</strong>。登录Netlify，找到自己的网站，点击Site settings，在左侧导航栏找到Build &amp; deploy，在右侧的Build settings区域中找到Edit Settings，<a target="_blank" rel="noopener" href="http://xn--github-ht8ijby631a7ji.com/Kukmoon/kukmoon.github.io%E6%94%B9%E6%88%90github/Kukmoon/kukmoon_blog%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BA%86%E3%80%82%E5%BE%85%E7%BC%96%E8%AF%91%E7%BB%93%E6%9D%9F%E5%90%8E%EF%BC%8C%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE">把仓库从github.com/Kukmoon/kukmoon.github.io改成github/Kukmoon/kukmoon_blog就可以了。待编译结束后，可以访问</a><a target="_blank" rel="noopener" href="http://kukmoon.netlify.app">http://kukmoon.netlify.app</a>，查看是否编译成功。</p>
+<p><img src="https://img.kukmoon.com/20200906142622.png" srcset="/img/loading.gif" lazyload alt="设置Netlify"></p>
+<p><strong>修改_config.yml，<a target="_blank" rel="noopener" href="http://xn--Hexokukmoon-0o0ry36ag6du24bk3j42qtz3hzpvaw09cjpsnif.github.io">让Hexo把博客部署到远程仓库kukmoon.github.io</a></strong></p>
+<h2 id="改域名">改域名</h2>
+<p>谷月姐听从了一位公司老总的建议，<a target="_blank" rel="noopener" href="http://xn--blog-ps5fu9w29as5qv5imwqhhbx5riy4d.kukmoon.com">把博客的域名改成了blog.kukmoon.com</a>，然后把www.kukmoon.com留待日后使用。</p>
+<p>这样，需要执行以下步骤：</p>
+<ol>
+<li>
+<p>首先要把博客目录/_config.yaml中的所有www.kukmoon.com替换成blog.kukmoon.com；</p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="http://xn--Robots-vo7l.xn--txtwww-dw7im48k98i.kukmoon.xn--comblog-5d7n78gjym.kukmoon.com">把Robots.txt中所有www.kukmoon.com替换成blog.kukmoon.com</a>；</p>
+</li>
+<li>
+<p>在Namesillo中新增一条域名解析记录，让blog.kukmoon.com指向主机的IP地址；</p>
+</li>
+<li>
+<p>在各大搜索引擎网站修改网站登记信息，<a target="_blank" rel="noopener" href="http://xn--www-m75f.kukmoon.xn--comblog-416kv16kevg.kukmoon.com">把www.kukmoon.com修改成blog.kukmoon.com</a>。</p>
+</li>
+</ol>
+<h2 id="图片版权">图片版权</h2>
+<p>题图：作者自制。</p>
+<p>头图：Image by <a target="_blank" rel="noopener" href="https://pixabay.com/users/tayebmezahdia-4194100/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3174729">Tayeb MEZAHDIA</a> from <a target="_blank" rel="noopener" href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3174729">Pixabay</a></p>
+<h2 id="参考文献">参考文献</h2>
+<p><a target="_blank" rel="noopener" href="https://easyhexo.com">https://easyhexo.com</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liangllhahaha/article/details/105343008">https://blog.csdn.net/liangllhahaha/article/details/105343008</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c20bb9df1867">https://www.jianshu.com/p/c20bb9df1867</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.yuan-ji.me/Hexo-%E4%BC%98%E5%8C%96%EF%BC%9A%E6%8F%90%E4%BA%A4sitemap%E5%8F%8A%E8%A7%A3%E5%86%B3%E7%99%BE%E5%BA%A6%E7%88%AC%E8%99%AB%E6%8A%93%E5%8F%96-GitHub-Pages-%E9%97%AE%E9%A2%98/">http://www.yuan-ji.me/Hexo-优化：提交sitemap及解决百度爬虫抓取-GitHub-Pages-问题/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c20bb9df1867">https://www.jianshu.com/p/c20bb9df1867</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lfri/p/12219639.html">https://www.cnblogs.com/lfri/p/12219639.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/q871063970/article/details/52459183">https://blog.csdn.net/q871063970/article/details/52459183</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014792304/article/details/78688424">https://blog.csdn.net/u014792304/article/details/78688424</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.jeepxie.net/article/311871.html">http://www.jeepxie.net/article/311871.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/docs/deployment.html">https://hexo.io/docs/deployment.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/86961133">https://zhuanlan.zhihu.com/p/86961133</a></p>
+<p><a target="_blank" rel="noopener" href="https://help.laoxuehost.com/domain-name/add-a-record.html">https://help.laoxuehost.com/domain-name/add-a-record.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000015332130">https://segmentfault.com/a/1190000015332130</a></p>
+<p><a target="_blank" rel="noopener" href="http://k99k.com/2015/hexo-ftpsync-bug/">http://k99k.com/2015/hexo-ftpsync-bug/</a></p>
+<p><a target="_blank" rel="noopener" href="https://es2q.com/blog/2019/05/12/Hexo-ftpsync-bug/">https://es2q.com/blog/2019/05/12/Hexo-ftpsync-bug/</a></p>
+<p><a target="_blank" rel="noopener" href="http://k99k.com/2015/hexo-ftpsync-bug/">http://k99k.com/2015/hexo-ftpsync-bug/</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-deployer-ftpsync/pull/28/commits/80815cbc83aebc3b68b641c856040fe343af9f70">https://github.com/hexojs/hexo-deployer-ftpsync/pull/28/commits/80815cbc83aebc3b68b641c856040fe343af9f70</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wsycsdn19930512/article/details/50574217">https://blog.csdn.net/wsycsdn19930512/article/details/50574217</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600/898732864121440">https://www.liaoxuefeng.com/wiki/896043488029600/898732864121440</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014203449/article/details/79974857">https://blog.csdn.net/u014203449/article/details/79974857</a></p>
+<p><a target="_blank" rel="noopener" href="https://yuhongjun.github.io/tech/2017/04/28/git%E4%BB%93%E5%BA%93%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95-%E6%88%90%E4%B8%BA%E4%B8%80%E4%B8%AA%E5%B9%B2%E5%87%80%E7%9A%84%E6%96%B0%E4%BB%93%E5%BA%93.html">https://yuhongjun.github.io/tech/2017/04/28/git仓库删除所有提交历史记录-成为一个干净的新仓库.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/kaerxifa/p/11211956.html">https://www.cnblogs.com/kaerxifa/p/11211956.html</a></p>
+
+                
+              </div>
+            
+            <div>
+                <!-- 引入自己编写的“分享到”模块（新） -->
+                <div style="text-align:right;"> <!-- 自己添加的“分享到”模块：开始。用的是 social-share.js。让所有的分享按钮右对齐-->
+	
+	<div class="social-share-container" style="margin-top: 15px;"> <!-- 生成一组分享按钮 -->
+		 <!--如果博客语言是中文，就显示“点击分享到：”，非中文一律显示“Share it:”-->
+			点击分享到：&nbsp;&nbsp;
+		
+	</div>
+	<!-- 加载 jQuery 库 -->
+	
+<script src="/js/jquery.min.js"></script>
+
+	<!-- 导入 qrcode.min.js -->
+	
+<script src="/js/qrcode.min.js"></script>
+
+	<!-- 加载 social-share.js 的 js 库，另外还要加载 social-share.js 的 CSS，可以修改 `_config.fluid.yml` 的 `custom_css` 加载，也可以修改 `themes/fluid/layout/_partial/css.ejs` 加载。-->
+	
+<script src="/js/social-share.min.js"></script>
+
+	<script> 
+	/* 执行 js 代码，new 一个新对象，详见 social-share.js 在 GitHub 的文档 */
+		new SocialShare('.social-share-container', {
+			theme: 'circle',  // 使用圆形主题
+			// 单独定义wechat分享参数
+			wechat: {
+				sort: 1, // 排序参数，数字较小的展示在前面,默认999
+			}
+		});		
+	</script>
+</div> <!-- 自己添加的“分享到”模块：结束。-->            
+                <hr/>
+                <!-- 引入自己编写的打赏模块（新） -->
+                <div style="text-align: center; margin: auto auto 1.5em;"><!--自己添加的打赏模块：开始-->
+  <!--如果主题的  _config.yml 中开启打赏-->
+    <div style="border-style:solid none none none; border-color: #663399; border-width: 0.5em; color: #663399; font-weight:bold; font-size: 1.2em; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+	   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+	    求扫码打赏
+	  	
+	</div>
+    <div style="font-size: 14px;margin-bottom: 10px;">
+	  “我这么可爱，请给我钱 o(*^ω^*)o” <!--在主题的 _config.yml 中设置打赏提示语-->
+	</div>
+    <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+	  <img src="/img/zhi-fu-bao-shou-kuan-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/wei-xin-zan-shang-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+	</div>
+  
+</div> <!--自己添加的打赏模块：结束-->
+                <hr/>
+            </div>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/IT%E6%8A%80%E6%9C%AF/" class="category-chain-item">IT技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Hexo/" class="print-no-link">#Hexo</a>
+      
+        <a href="/tags/GitHub/" class="print-no-link">#GitHub</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Hexo+GitHub+Netlify+Cloudflare+JSDelivr搭建个人博客详细教程（小白向）</div>
+      <div>https://blog.kukmoon.com/d9a35bfb54d9/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Kukmoon谷月</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年8月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/9ad05a5813b8/" title="为什么微信屏蔽抖音，头条不让你放外链？简体中文互联网已经分裂了！BATB难辞其咎">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">为什么微信屏蔽抖音，头条不让你放外链？简体中文互联网已经分裂了！BATB难辞其咎</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/12488c55d32b/" title="建立博客的目的">
+                        <span class="hidden-mobile">建立博客的目的</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appKey":"lvOI6tnv4jNUP9tEnIYJNKtW","path":"window.location.pathname","placeholder":"您的评论","avatar":"wavatar","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://qk25tpv2.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appkey":"lvOI6tnv4jNUP9tEnIYJNKtW"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

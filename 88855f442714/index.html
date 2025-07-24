@@ -1,0 +1,1148 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <link rel="icon" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kukmoon谷月">
+  <meta name="keywords" content="MOS,认证,考试,微软,Office,2021,苹果,Mac,虚拟机,VMWare Fusion,Office Tool Plus">
+  
+    <meta name="description" content="在 ARM 芯片（Apple Silicon 芯片）的 Mac 上安装虚拟机软件 VMWare Fusion，创建虚拟机，并在虚拟机中安装 Windows 11 和 Office 2021 LTSC x86。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="史上最详细 ARM Mac 虚拟机安装 Office 2021 教程 （VMWare 版）">
+<meta property="og:url" content="https://blog.kukmoon.com/88855f442714/index.html">
+<meta property="og:site_name" content="谷中望月">
+<meta property="og:description" content="在 ARM 芯片（Apple Silicon 芯片）的 Mac 上安装虚拟机软件 VMWare Fusion，创建虚拟机，并在虚拟机中安装 Windows 11 和 Office 2021 LTSC x86。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.kukmoon.com/banner_img/mos-banner-img.jpg">
+<meta property="article:published_time" content="2024-07-07T23:06:15.000Z">
+<meta property="article:modified_time" content="2024-11-29T11:55:59.000Z">
+<meta property="article:author" content="Kukmoon谷月">
+<meta property="article:tag" content="Mac">
+<meta property="article:tag" content="谷月老师讲MOS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.kukmoon.com/banner_img/mos-banner-img.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>史上最详细 ARM Mac 虚拟机安装 Office 2021 教程 （VMWare 版） - 谷中望月</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel-highlightjs.css">
+<link rel="stylesheet" href="/css/social-share.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":null},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="谷中望月" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>谷中望月</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-note"></i>
+                <span>镜像</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog.kukmoon.com" target="_self">
+                    
+                    <span>全球统一入口</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://kukmoon.github.io" target="_self">
+                    
+                    <span>镜像 0（GitHub Pages）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog1.kukmoon.com" target="_self">
+                    
+                    <span>镜像 1（日本）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog2.kukmoon.com" target="_self">
+                    
+                    <span>镜像 2（CF Pages）</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/banner_img.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="史上最详细 ARM Mac 虚拟机安装 Office 2021 教程 （VMWare 版）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Kukmoon谷月
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-08 07:06" pubdate>
+          2024年7月8日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">史上最详细 ARM Mac 虚拟机安装 Office 2021 教程 （VMWare 版）</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2024-11-29T19:55:59+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="note note-success">
+            <h2 id="更新记录">更新记录</h2><ul><li><strong>2024/7/8 (V1.0)</strong>：详细讲解在 ARM Mac 上安装虚拟机软件 VMWare Fusion，并在虚拟机中安装 Windows 11 ARM 和 Office 2021 LTSC x86 for Windows。</li></ul>
+          </div>
+<div class="note note-primary">
+            <h2 id="摘要">摘要</h2><p>在 ARM 芯片（Apple Silicon 芯片）的 Mac 上安装虚拟机软件 VMWare Fusion，创建虚拟机，并在虚拟机中安装 Windows 11 ARM 和 Office 2021 LTSC x86，最终目的是在苹果电脑上无缝运行 Windows 版的 Office 2021，满足读者在 Mac 上使用 Windows 版 Office 办公和复习备考 MOS 认证考试的需求。</p>
+          </div>
+<h2 id="1-引言">1 引言</h2>
+<p>随着 2020 年 M1 MacBook Air 闪亮登场，全新 ARM 架构的 Apple Silicon M 系列芯片也走进了人们的视线。凭借高速低功耗的突出优点，Apple Silicon M 系列芯片让用户对采用这一产品线的 Mac 电脑赞不绝口。到 2024 年，经历了后续的 M2、M3，该系列芯片已经迭代到第四代 M4。ARM 芯片也已经覆盖到了 Mac 的每一条产品线。</p>
+<p>但是，这一局面让购置 ARM Mac 用于运行微软 Office 办公软件的用户一度陷入了两难境地：该放弃 ARM Mac？还是该放弃 Office？</p>
+<p>这是为什么呢？原因主要在于以下三方面：</p>
+<ol>
+<li>
+<p>Office x86 （以及 Office x64） 与 ARM Mac 互不兼容，全新的 Apple Silicon M 系列芯片是 ARM 架构，然而，事实上已经形成业界标准的微软 Office 软件只能运行在 X86 架构的计算机上，这样，以前的老办法——在 Intel 芯片的 Mac 上安装 Windows 和 Office ——就失效了。</p>
+</li>
+<li>
+<p>其次，Office for Mac 缺点众多。Office for Mac 主要有三大缺点：不够稳定（时常卡死，尤其当处理某些来自 PC 的文档时），功能限制（不能运行大多数流行的功能组件或第三方插件，除非开发商单独开发一个 Mac 版；而且 VBA 有 Bug）和使用不便（界面和快捷键与 Office for Windows 不同）。与 Office for Mac 相比，用户更倾向于选用 Office for Windows。</p>
+</li>
+<li>
+<p>有些用户必须用 Office for Windows 在 Mac 上办公。这些用户一般需要运行一些第三方插件，包括但不限于 VBA 宏、COM 组件、用 VSTO 开发的插件等。</p>
+</li>
+</ol>
+<p>难道就没有办法让鱼与熊掌两者兼得吗？</p>
+<p>当然有的。就是在 ARM Mac 上用虚拟机安装 Windows ARM，然后在 Windows ARM 中安装 Office x86。</p>
+<p>早期，这条路线还不成熟、不稳定，所以不建议普通用户使用，更不建议生产力环境用。2024 年以来，随着 Windows 11 ARM 日益稳定、转译（此处特指把 x86 指令翻译成 ARM 指令，从而在 ARM 计算机及操作系统上运行 x86 应用软件）能力日益增强，在虚拟机上用 Windows 11 ARM 运行 Office 2021 x86 的时机终于成熟。再加上老牌虚拟机软件 VMWare Fusion 突然对个人用户免费，为个人普通用户消除了最后一道阻碍。</p>
+<p>谷月老师这篇教程，就是为零基础个人用户满足在 ARM Mac 上安装运行 Office 2021 x86 的需求而写的。操作非常简单，每个步骤都有配图，只需要按照步骤操作就可以。</p>
+<p>**需要的软件工具，在此处下载：<a target="_blank" rel="noopener" href="https://clouddrive.kukmoon.com/OneDrive1/Mac_%E8%99%9A%E6%8B%9F%E6%9C%BA_Apple_Silicon/">https://clouddrive.kukmoon.com/OneDrive1/Mac_%E8%99%9A%E6%8B%9F%E6%9C%BA_Apple_Silicon/</a>。<strong>声明：这些软件下载，纯为学习之用，请在下载安装24小时之内删除</strong>！</p>
+<h2 id="2-准备工作">2 准备工作</h2>
+<p>准备要用到的软件，如图所示：</p>
+<ul>
+<li><code>Microsoft-Activation-Scripts-master-开源WIN和Office激活.zip</code> ：激活工具。</li>
+<li><code>Office_LTSC_2021_x86_2108_离线安装包_适合WIN11ARM64.iso</code> ：Office LTSC 2021 x86 离线安装包，自带 Office Tool Plus。</li>
+<li><code>Office_Tool_with_runtime_v10.11.5.0_arm64.zip</code> ：Office Tool Plus ARM64 版，可用于在线安装 Office。</li>
+<li><code>ToDesk_4.7.2.1.pkg</code> ：ToDesk 远程桌面软件，可用于远程安装。</li>
+<li><code>VMware_Fusion_Pro_13_for_Personal_Use.zip</code> ：VMWare Fusion 虚拟机。</li>
+<li><code>tiny11-core-arm64.iso</code> ：精简版 Windows 11 ARM64 安装光盘映像，由谷月老师制作，其中的无人值守文件由谷月老师根据虚拟机实际情况编写。</li>
+</ul>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2020.52.02.png" srcset="/img/loading.gif" lazyload alt="要用到的软件"></p>
+<p><strong>声明：这些软件下载，纯为学习之用，请在下载安装24小时之内删除！</strong></p>
+<h2 id="3-安装-VMWare-Fusion-虚拟机">3 安装 VMWare Fusion 虚拟机</h2>
+<p>双击解压 <code>VMware_Fusion_Pro_13_for_Personal_Use.zip</code>。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2020.59.33.png" srcset="/img/loading.gif" lazyload alt="解压"></p>
+<p>在解压得到的文件夹 <code>VMware Fusion Pro 13 for Personal Use</code> 中，双击 VMWare Fusion 的安装包 <code>VMware-Fusion-13.5.2-23775688_universal.dmg</code> 。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2021.06.22.png" srcset="/img/loading.gif" lazyload alt="双击 DMG 安装包"></p>
+<p>在新打开的「VMWare Fusion」窗口中，双击正中间的「VMWare Fusion」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2021.08.38.png" srcset="/img/loading.gif" lazyload alt="双击 VMWare Fusion"></p>
+<p>稍候片刻，然后按照提示，输入登录密码，然后点击「好」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2021.10.57.png" srcset="/img/loading.gif" lazyload alt="输入密码"></p>
+<p>系统会提示 VMWare Fusion 已经添加了后台项之类。接下来，在此处点击「同意」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2021.13.35.png" srcset="/img/loading.gif" lazyload alt="点击「同意」"></p>
+<p>授予许可。VMWare Fusion 13 面向个人免费使用，所以此处应该选择「我希望授予将 VMWare Fusion 13 Pro 用于个人用途的许可」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2021.14.15.png" srcset="/img/loading.gif" lazyload alt="授予许可"></p>
+<p>点击「完成」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2021.16.15.png" srcset="/img/loading.gif" lazyload alt="点击「完成」"></p>
+<p>允许 VMWare Fusion 控制系统事件（System Events）。点击「允许」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2021.17.15.png" srcset="/img/loading.gif" lazyload alt="System Events"></p>
+<p>设置辅助功能。点击「好」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2021.17.22.png" srcset="/img/loading.gif" lazyload alt="辅助功能"></p>
+<p>点击「打开系统设置」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2021.19.23.png" srcset="/img/loading.gif" lazyload alt="点击「打开系统设置」"></p>
+<p>在「辅助功能」的设置中，允许 VMWare Fusion 控制你的电脑。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2021.20.43.png" srcset="/img/loading.gif" lazyload alt="允许 VMWare Fusion 控制你的电脑"></p>
+<p>再输入密码。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2021.26.09.png" srcset="/img/loading.gif" lazyload alt="输入密码"></p>
+<p>VMWare Fusion 安装成功，撒花🎉🎉🎉！记得右击桌面上的「VMWare Fusion」（它是 VMWare Fusion 安装包的磁盘映像），选择「推出 VMWare Fusion」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2021.36.55.png" srcset="/img/loading.gif" lazyload alt="推出 VMWare Fusion"></p>
+<p>接下来，我们要安装 Windows 11 ARM64。</p>
+<h2 id="4-安装-Windows-11-ARM64">4 安装 Windows 11 ARM64</h2>
+<h3 id="4-1-新建虚拟机">4.1 新建虚拟机</h3>
+<p>VMWare Fusion 安装成功以后，它会新建一个「选择安装方法」窗口。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2021.33.34.png" srcset="/img/loading.gif" lazyload alt="「选择安装方法」窗口"></p>
+<p>只需要把 Windows 11 ARM64 安装光盘映像（<code>tiny11-core-arm64.iso</code>）拖进这个窗口就可以安装了。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2022.06.27.png" srcset="/img/loading.gif" lazyload alt="把安装光盘映像拖进这个窗口"></p>
+<p>点击「继续」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2022.09.02.png" srcset="/img/loading.gif" lazyload alt="点击「继续」"></p>
+<p>Windows 11 需要开启「UEFI 安全引导」，所以需要选择「UEFI」和「UEFI 安全引导」。然后点击「继续」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2022.12.41.png" srcset="/img/loading.gif" lazyload alt="UEFI 安全引导"></p>
+<p>设置 TPM 密码。Windows 11 需要开启 TPM，VMWare Fusion 需要为 TPM 指定一个加密密码。选择「快速加密」（Partial Encryption），然后输入一个至少 8 位字符的密码。这个密码必须牢记，以免无法恢复虚拟硬盘中的数据。最后点击「继续」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2022.17.01.png" srcset="/img/loading.gif" lazyload alt="TPM 密码"></p>
+<p>虚拟机配置完成，撒花🎉🎉🎉！注意：我们的 Windows 11 是精简版的，所以默认 4 GB 内存够用了；如果只是运行 Office，那么默认的 2 内核也够用了。最后点击「完成」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2022.19.23.png" srcset="/img/loading.gif" lazyload alt="虚拟机配置完成"></p>
+<p>点击「完成」以后，再点击一次「存储」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2022.20.59.png" srcset="/img/loading.gif" lazyload alt="点击「存储」"></p>
+<p><strong>注意</strong>：虚拟机的默认存储位置是在家目录下面的「虚拟机」子目录（<code>~/Virtual\ Machines.localized/</code>）</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2022.21.49.png" srcset="/img/loading.gif" lazyload alt="虚拟机的默认存储位置"></p>
+<p>蓝牙。点击「允许」</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2022.22.58.png" srcset="/img/loading.gif" lazyload alt="截屏2024-06-14%2022.22.58"></p>
+<p>接下来进入操作系统的安装过程。</p>
+<h3 id="4-2-在虚拟机安装-Windows-11-ARM64">4.2 在虚拟机安装 Windows 11 ARM64</h3>
+<p>在上文中，点击「存储」按钮后，VMWare Fusion 就会自动启动虚拟机，并进入 Windows 11 ARM64 的安装流程。</p>
+<p>在虚拟机窗口中出现「Press any key to boot from CD or DVD」时，<strong>迅速</strong>点击虚拟机窗口内任意一处地方，然后按下键盘上<strong>任意</strong>一个键（一般来说，<strong>下列键不可以按</strong>：Esc、F1～F12、电源键、Shift、Fn、Control、Option、Command）。这样才能进入 Windows 安装程序。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2023.27.24.png" srcset="/img/loading.gif" lazyload alt="「Press any key to boot from CD or DVD」"></p>
+<p>小贴士：此时鼠标被虚拟机捕获，无法移出虚拟机窗口。如果要把鼠标移出虚拟机窗口，需要同时按下 Control 和 Command。</p>
+<p>Windows 安装程序的欢迎页面。直接点击「下一页」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2023.32.36.png" srcset="/img/loading.gif" lazyload alt="欢迎页面"></p>
+<p>许可条款。在「我接受」前面打钩，然后点击「下一页」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2023.33.51.png" srcset="/img/loading.gif" lazyload alt="许可条款"></p>
+<p>给虚拟硬盘分区。直接点击「新建」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2023.36.52.png" srcset="/img/loading.gif" lazyload alt="新建分区"></p>
+<p>然后直接点击「应用」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2023.37.50.png" srcset="/img/loading.gif" lazyload alt="点击「确定」"></p>
+<p>直接点击「确定」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2023.38.23.png" srcset="/img/loading.gif" lazyload alt="直接点击「确定」"></p>
+<p>Windows 安装程序创建了 3 个分区，并且将会把 Windows 安装到「分区 3」。直接点击「下一页」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2023.44.05.png" srcset="/img/loading.gif" lazyload alt="自动选择「分区 3」"></p>
+<p>正在安装 Windows。此时只需等待。安装结束后会自动重启。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2023.44.45.png" srcset="/img/loading.gif" lazyload alt="正在安装 Windows"></p>
+<p>重启之后，经过漫长的等待，终于进入了 Windows 11 的桌面。Windows 11 安装结束，撒花🎉🎉🎉！</p>
+<p>为什么安装结束后直接进入桌面呢？原因是，为了尽可能简化操作，这个精简版的 Windows 11 安装光盘映像中包含无人应答文件，除了个别必要的步骤（欢迎页面、许可条款、硬盘分区）以外，其它需要人工选择和设置的步骤统统跳过，安装完成就进入桌面。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2023.48.26.png" srcset="/img/loading.gif" lazyload alt="安装完成就进入桌面"></p>
+<h3 id="4-3-安装-VMWare-Tools">4.3 安装 VMWare Tools</h3>
+<p>VMWare Tools 是虚拟机的增强组件，它为虚拟机中的 Windows 补全了驱动程序和增强组件，让虚拟机中的 Windows 能够更好地与宿主机的 macOS 协同工作。</p>
+<p>点击「Windows 11 64 位 ARM」窗口，然后点击屏幕顶部菜单栏中的「虚拟机」➡️「安装 VMWare Tools」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2023.54.01.png" srcset="/img/loading.gif" lazyload alt="安装 VMWare Tools"></p>
+<p>直接点击「安装」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2023.58.29.png" srcset="/img/loading.gif" lazyload alt="点击「安装」"></p>
+<p>稍等片刻，点击虚拟机屏幕<strong>右下角</strong>出现的「自动播放」弹窗。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2023.59.19.png" srcset="/img/loading.gif" lazyload alt="「自动播放」弹窗"></p>
+<p>在屏幕右上角出现的「DVD 驱动器 (D:) VMware…」弹窗中，选择「运行 setup.exe」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-14%2023.59.31.png" srcset="/img/loading.gif" lazyload alt="选择「运行 setup.exe」"></p>
+<p>VMWare Tools 的欢迎页面。直接点击「下一步」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-15%2000.02.08.png" srcset="/img/loading.gif" lazyload alt="VMWare Tools 的欢迎页面"></p>
+<p>安装类型。选择「典型安装」，点击「下一步」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-15%2000.03.06.png" srcset="/img/loading.gif" lazyload alt="安装类型"></p>
+<p>单击「安装」。然后等待安装完成。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-15%2000.04.23.png" srcset="/img/loading.gif" lazyload alt="单击「安装」"></p>
+<p>安装已完成，撒花🎉🎉🎉！点击「完成」结束。为什么安装结束后变这么小？这是因为 VMWare Tools 安装了虚拟显卡的驱动程序，并且开启了 HiDPI。需要重启虚拟机才恢复正常。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-15%2000.05.47.png" srcset="/img/loading.gif" lazyload alt="安装已完成"></p>
+<p>点击「是」重启虚拟机。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-15%2000.09.32.png" srcset="/img/loading.gif" lazyload alt="点击「是」重启虚拟机"></p>
+<p>重启后桌面恢复正常。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-15%2000.13.17.png" srcset="/img/loading.gif" lazyload alt="重启后桌面恢复正常"></p>
+<h3 id="4-4-修改分辨率和-DPI-缩放比例">4.4 修改分辨率和 DPI 缩放比例</h3>
+<p>右击 Windows 11 的桌面，在菜单中选择「显示设置」，通过平滑清晰的字体我们可以看出，虚拟机中的 Windows 11 已经开启了 HiDPI。但是默认的分辨率（2048 x 1536）和 DPI 缩放比例（250%）不够合理。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-15%2000.16.18.png" srcset="/img/loading.gif" lazyload alt="显示设置"></p>
+<h4 id="4-4-1-为什么要修改分辨率和-DPI-缩放比例？">4.4.1 为什么要修改分辨率和 DPI 缩放比例？</h4>
+<p>接下来我们把虚拟机的分辨率修改为 2560 x 1600，DPI 缩放比例修改为 200%，让它更加匹配 macOS。</p>
+<p>因为VMWare 的特色 Unity 技术（直接在 Mac 的桌面上显示 Windows 应用程序的窗口，相当于Parallels Desktop 的「融合模式」）不支持 ARM Mac，所以 VMWare Fusion 只能以窗口或全屏模式在 Mac 上运行。</p>
+<p>一般来说，虚拟机分辨率不低于 2560 x 1600 ，DPI 缩放比例设置为 200%，就可以保证良好的使用体验。</p>
+<p>早期的 M1 Air 和 M1 Pro 的屏幕分辨率是 2560 x 1600，这样的话，还是全屏运行虚拟机比较好。</p>
+<h4 id="4-4-2-操作步骤">4.4.2 操作步骤</h4>
+<p>第一步是点击上图中的「关闭自定义缩放并注销」。</p>
+<p>第二步是重新登录。登录时无须输入密码，因为这个 Windows 11 ARM64 精简版默认没有设置密码。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-15%2000.18.40.png" srcset="/img/loading.gif" lazyload alt="登录时无须输入密码"></p>
+<p>登录后，我们可以看到文字又变小了。右击 Windows 11 的桌面，在菜单中选择「显示设置」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-15%2000.20.45.png" srcset="/img/loading.gif" lazyload alt="选择「显示设置」"></p>
+<p>将「分辨率」改成 2560 x 1600，然后点击「保留更改」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-15%2000.38.11.png" srcset="/img/loading.gif" lazyload alt="修改分辨率"></p>
+<p>将「缩放」改成 200%，它会自动生效，无需再次确认。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-15%2000.44.44.png" srcset="/img/loading.gif" lazyload alt="截屏2024-06-15%2000.44.44"></p>
+<h3 id="4-5-激活-Windows">4.5 激活 Windows</h3>
+<p>参见「6 激活 Windows 与 Office」，把 Windows 与 Office 一起激活。</p>
+<h2 id="5-离线安装-Office-LTSC-2021-x86">5 离线安装 Office LTSC 2021 x86</h2>
+<p>为什么选择离线安装？因为最近一段时间以来受到网络波动的影响，有些地方的用户，或者有些运营商的用户，在线安装 Office 非常容易失败，所以谷月老师向读者介绍离线安装，并提供正版离线安装包，其来源是通过微软官方的 Office 部署工具从官方服务器下载的。</p>
+<p>为什么选择 Office LTSC 2021 而不是其他版本？目前市面上有四个主流版本：Office 2016、Office 2019、Office LTSC 2021 和 Microsoft 365。经过反复测试，确定 Office 2016/2019 无法在本文所述的平台上安装。而 Microsoft 365 自有其离线安装包与激活方式（输入微软账号密码登录），无需另行赘述。</p>
+<p>为什么选择 x86（32 位）而不是 amd64（64 位）？这是因为 x86 版的 Office 兼容性最好，它既能运行 PowerQuery、PowerPivot 之类半独立于 Office 的功能组件，又能运行 iSlide 之类的第三方插件，还能无缝运行 VBA 宏。而且借助微软 Windows 11 ARM64 强大的转译能力，x86 版的 Office 也能顺利地运行在 ARM 芯片的 Mac 的虚拟机上运行。这样，Office 高级用户就可以摆脱 Office for Mac 的功能限制（不能运行功能组件、第三方插件，VBA 有 Bug）和使用不便（界面和快捷键与 Office for Windows 不同）。</p>
+<h3 id="5-1-安装步骤">5.1 安装步骤</h3>
+<p>启动虚拟机，点击菜单「虚拟机」➡️「CD/DVD (SATA)」➡️「选择光盘或光盘映像」，然后打开 Office 2021 离线安装包 <code>Office_LTSC_2021_x86_2108_离线安装包_适合WIN11ARM64</code>。这个光盘映像文件包含 Office LTSC 2021 五件套的离线安装包，以及 Office 安装和高级设置工具 Office Tool Plus。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-15%2021.09.46.png" srcset="/img/loading.gif" lazyload alt="选择光盘或光盘映像"></p>
+<p>忽略 Windows 11 的自动播放，而是直接打开文件资源管理器，双击 D 盘里的 <code>Office Tool Plus.exe</code> 。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-15%2021.15.54.png" srcset="/img/loading.gif" lazyload alt="双击 D 盘里的 Office Tool Plus.exe"></p>
+<p>许可条款。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-17%2011.26.05.png" srcset="/img/loading.gif" lazyload alt="许可条款"></p>
+<p>不要更新！不要更新！不要更新！直接点击「否」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-17%2011.28.32.png" srcset="/img/loading.gif" lazyload alt="不要更新！不要更新！不要更新！"></p>
+<p>点击左侧的「部署」，部署在这里是安装的意思。<strong>首先</strong>，在右侧必须把「安装模块」设置为「Office Tool Plus」，否则会出错。<strong>其次</strong>，点击「添加产品」，必须选择「Office LTSC 专业增强版 2021 - 批量许可证」（产品 ID 是 ProPlus2021Volume），注意后缀是「Volume」，否则无法离线安装。<strong>第三</strong>，只保留 Word、Excel、PowerPoint、Outlook、Access 五件套，微软办公软件国际认证考试（MOS 考试）也是考这五个软件。<strong>最后</strong>，点击右上角的「开始部署」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-17%2011.43.33.png" srcset="/img/loading.gif" lazyload alt="部署"></p>
+<p>点击「是」。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-17%2011.55.25.png" srcset="/img/loading.gif" lazyload alt="点击「是」"></p>
+<p>稍候片刻……</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-17%2011.56.37.png" srcset="/img/loading.gif" lazyload alt="正在安装 Office"></p>
+<p>安装完成。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-17%2011.56.38.png" srcset="/img/loading.gif" lazyload alt="安装完成"></p>
+<p>「开始」菜单中出现了新安装的 Office 套件。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-17%2012.12.24.png" srcset="/img/loading.gif" lazyload alt="「开始」菜单中出现了新安装的 Office 套件"></p>
+<h3 id="5-2-激活-Office">5.2 激活 Office</h3>
+<p>参见「6 激活 Windows 与 Office」，把 Windows 与 Office 一起激活。</p>
+<h2 id="6-激活-Windows-与-Office">6 激活 Windows 与 Office</h2>
+<div class="note note-warning">
+<b>关于涉及破解软件的免责声明</b>：<br/>
+本站所发布的一切破解补丁、注册机和注册信息及软件的解密分析文章仅限用于学习和研究目的，不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。本站信息来自网络，版权争议与本站无关。您必须在下载后的24个小时之内，从您的电脑中彻底删除上述内容。如果您喜欢该程序，请支持正版软件，购买注册，得到更好的正版服务。<br/>
+<b>关于各类资源的著作权免责声明</b>：<br/>
+根据二○○二年一月一日《计算机软件保护条例》第十七条规定：为了学习和研究软件内含的设计思想和原理，通过安装、显示、传输或者存储软件等方式使用软件的，可以不经软件著作权人许可，不向其支付报酬！鉴于此，也希望大家按此说明研究软件！谢谢！<br/>
+</div>
+<p>测试了多个激活工具，谷月老师选择了开源的 Microsoft Activation Scripts All In One（MAS_AIO）。它完全开源，整个程序全部以 Windows 命令提示符脚本（*.cmd）的形式存在，不会给系统带来任何安全风险。相对而言，操作就稍微麻烦些。如果读者不喜欢，也可以使用其他的一键激活工具来激活。</p>
+<p>双击解压 <code>Microsoft-Activation-Scripts-master-开源WIN和Office激活.zip</code>，再双击打开解压得到的目录 <code>Microsoft-Activation-Scripts-master-开源WIN和Office激活</code>，在 <code>All-In-One-Version</code> 子目录中找到 <code>MAS_AIO.cmd</code>。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-17%2012.23.13.png" srcset="/img/loading.gif" lazyload alt="MAS_AIO.cmd"></p>
+<p>在虚拟机中打开「文件资源管理器」，找到「下载」文件夹，将 <code>MAS_AIO.cmd</code> 拖动到这里。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-17%2012.25.43.png" srcset="/img/loading.gif" lazyload alt="拖动过来"></p>
+<p>右击 <code>MAS_AIO.cmd</code>，选择“以管理员身份运行”。<br>
+<img src="https://img.kukmoon.com/2025-04-14-21-53-47.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>注意：如果本地的 MAS 版本比云端的 MAS 版本要旧，在运行 MAS_AIO.cmd 时，它会弹出如图所示的提示，只需要按键盘上的 [0] 键，继续使用旧版即可。<br>
+<img src="https://img.kukmoon.com/2025-03-30-07-37-49.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>在命令提示符窗口内出现 Microsoft Activation Scripts （MAS）的主界面。<br>
+<img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-06-17%20123305.png" srcset="/img/loading.gif" lazyload alt="MAS_AIO 主界面"></p>
+<p>我们选择最流行、最通用的 KMS 激活方式。在上图界面中按下「5」键，选择「[5] Online KMS  |  Windows / Office  |  180 Days」，出现下图所示的 Online KMS 界面。我们可以在此处一次性激活 Windows 和 Office。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-06-17%20123548.png" srcset="/img/loading.gif" lazyload alt="Online KMS 界面"></p>
+<p>在上图界面中按下「3」键，选择「[3] Activate - All」，稍候片刻，静等激活完成，出现下图界面。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-06-17%20123958.png" srcset="/img/loading.gif" lazyload alt="激活完成"></p>
+<p>按下键盘上<strong>任意</strong>一个键（一般来说，Esc、F1～F12、电源键、Shift、Fn、Control、Option、Command 这些键不可以按），回到刚才的 Online KMS 界面。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-06-17%20123548.png" srcset="/img/loading.gif" lazyload alt="Online KMS 界面"></p>
+<p>KMS 激活方式的有效期是 180 天，到期后需要续期，但是好在 MAS_AIO 提供了自动续期功能，我们需要安装自动续期服务，免去每 180 天手动续期的麻烦。在上图界面中按下「4」键，选择「[4] Install Auto-Renewal」，稍候片刻，静等自动续期服务安装，出现下图界面。然后直接关闭这个窗口就可以了。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-06-17%20124819.png" srcset="/img/loading.gif" lazyload alt="自动续期"></p>
+<p>我们可以看到，Windows 和 Office 均已激活。（注意：首次启动 Office 组件时，它会提示你接受许可协议和隐私提示，点击「确定」即可，此处不再配图）</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-17%2012.52.03.png" srcset="/img/loading.gif" lazyload alt="Windows 已激活"></p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-17%2012.54.10.png" srcset="/img/loading.gif" lazyload alt="Office 已激活"></p>
+<h2 id="7-硬盘占用及其他">7 硬盘占用及其他</h2>
+<p>在虚拟机中安装 Windows 11 ARM64 精简版和 Office LTSC 2021 x86 五件套后，虚拟机占用硬盘空间约 14 GB。</p>
+<p><img src="https://img.kukmoon.com/ARM64-Mac-an-zhuang-VMWare-xu-ni-ji/%E6%88%AA%E5%B1%8F2024-06-17%2018.23.13.png" srcset="/img/loading.gif" lazyload alt="截屏2024-06-17%2018.23.13"></p>
+<h2 id="8-总结及预告">8 总结及预告</h2>
+<p>我们在 ARM 芯片（Apple Silicon 芯片）的 Mac 上安装虚拟机软件 VMWare Fusion，创建虚拟机，并在虚拟机中安装 Windows 11 ARM 和 Office 2021 LTSC x86，最终目的是在苹果电脑上无缝运行 Windows 版的 Office 2021，满足读者在 Mac 上使用 Windows 版 Office 办公和复习备考 MOS 认证考试的需求。</p>
+<p>接下来谷月老师会推出基于 Paralles Desktop 的教程，敬请期待(^_^)</p>
+<h2 id="相关阅读">相关阅读</h2>
+<p><a href="https://blog.kukmoon.com/a4afcfa86990/">史上最详细 Mac 虚拟机安装 Office 2016/2019/365 备考 MOS 考试教程 (V4.0)</a></p>
+<hr>
+<div style="text-align:center;">
+<h2 id="学-MOS-五分钟，少加班两小时">学 MOS 五分钟，少加班两小时</h2>
+<p><strong>MOS</strong> 认证考试的中文全称，</p>
+<p>是<strong>微软办公软件国际认证考试</strong>，</p>
+<p>它是微软公司针对自家 Office 软件推出的考试，</p>
+<p>具有无可比拟的权威性和含金量，</p>
+<p>也是世界五百强招聘考核员工的重要标准。</p>
+<h3 id="了解-MOS-考试">了解 MOS 考试</h3>
+<p><a href="https://blog.kukmoon.com/0d3e29c40f40/">什么是 MOS 认证考试？考什么？看完秒懂！</a></p>
+<h3 id="MOS报名入口">MOS报名入口</h3>
+<p><a href="https://blog.kukmoon.com/99da6e6bf0bc/">点击此处报名，可能会有优惠券或者其他礼物掉落哟~</a></p>
+<h3 id="学习社群">学习社群</h3>
+<p><a target="_blank" rel="noopener" href="https://jq.qq.com/?_wv=1027&amp;k=U38X9e9B">点击此处，加入我们的 QQ 群找谷月老师咨询报名</a></p>
+<p>--------------</p>
+<h3 id="关于谷月老师：">关于谷月老师：</h3>
+<p><strong>谷月老师拥有博士学位，</strong></p>
+<p>多年来从事 MOS 考试的研究、培训、营销，</p>
+<p>具有丰富的经验，</p>
+<p>欢迎找谷月老师咨询报名哟~</p>
+<p>谷月老师微信号： <code>kukmoon</code></p>
+<p>或微信识别以下二维码加谷月老师</p>
+<p><img src="https://img.kukmoon.com/kukmoon-wei-xin-er-wei-ma.jpg" srcset="/img/loading.gif" lazyload alt="谷月老师微信二维码"></p>
+<p>--------------</p>
+</div>
+<h2 id="图片版权">图片版权</h2>
+<p>题图：自绘，其中背景部分来自 <a target="_blank" rel="noopener" href="https://pixabay.com/photos/laptop-digital-device-technology-5673901/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=5673901">Pixabay</a>，作者为<a target="_blank" rel="noopener" href="https://pixabay.com/users/deactivated-12734309/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=5673901">Deactivated</a></p>
+<p>头图：Image by <a target="_blank" rel="noopener" href="https://pixabay.com/users/deactivated-12734309/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=5673901">Deactivated</a> from <a target="_blank" rel="noopener" href="https://pixabay.com/photos/laptop-digital-device-technology-5673901/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=5673901">Pixabay</a></p>
+
+                
+              </div>
+            
+            <div>
+                <!-- 引入自己编写的“分享到”模块（新） -->
+                <div style="text-align:right;"> <!-- 自己添加的“分享到”模块：开始。用的是 social-share.js。让所有的分享按钮右对齐-->
+	
+	<div class="social-share-container" style="margin-top: 15px;"> <!-- 生成一组分享按钮 -->
+		 <!--如果博客语言是中文，就显示“点击分享到：”，非中文一律显示“Share it:”-->
+			点击分享到：&nbsp;&nbsp;
+		
+	</div>
+	<!-- 加载 jQuery 库 -->
+	
+<script src="/js/jquery.min.js"></script>
+
+	<!-- 导入 qrcode.min.js -->
+	
+<script src="/js/qrcode.min.js"></script>
+
+	<!-- 加载 social-share.js 的 js 库，另外还要加载 social-share.js 的 CSS，可以修改 `_config.fluid.yml` 的 `custom_css` 加载，也可以修改 `themes/fluid/layout/_partial/css.ejs` 加载。-->
+	
+<script src="/js/social-share.min.js"></script>
+
+	<script> 
+	/* 执行 js 代码，new 一个新对象，详见 social-share.js 在 GitHub 的文档 */
+		new SocialShare('.social-share-container', {
+			theme: 'circle',  // 使用圆形主题
+			// 单独定义wechat分享参数
+			wechat: {
+				sort: 1, // 排序参数，数字较小的展示在前面,默认999
+			}
+		});		
+	</script>
+</div> <!-- 自己添加的“分享到”模块：结束。-->            
+                <hr/>
+                <!-- 引入自己编写的打赏模块（新） -->
+                <div style="text-align: center; margin: auto auto 1.5em;"><!--自己添加的打赏模块：开始-->
+  <!--如果主题的  _config.yml 中开启打赏-->
+    <div style="border-style:solid none none none; border-color: #663399; border-width: 0.5em; color: #663399; font-weight:bold; font-size: 1.2em; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+	   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+	    求扫码打赏
+	  	
+	</div>
+    <div style="font-size: 14px;margin-bottom: 10px;">
+	  “我这么可爱，请给我钱 o(*^ω^*)o” <!--在主题的 _config.yml 中设置打赏提示语-->
+	</div>
+    <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+	  <img src="/img/zhi-fu-bao-shou-kuan-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/wei-xin-zan-shang-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+	</div>
+  
+</div> <!--自己添加的打赏模块：结束-->
+                <hr/>
+            </div>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/IT%E6%8A%80%E6%9C%AF/" class="category-chain-item">IT技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Mac/" class="print-no-link">#Mac</a>
+      
+        <a href="/tags/%E8%B0%B7%E6%9C%88%E8%80%81%E5%B8%88%E8%AE%B2MOS/" class="print-no-link">#谷月老师讲MOS</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>史上最详细 ARM Mac 虚拟机安装 Office 2021 教程 （VMWare 版）</div>
+      <div>https://blog.kukmoon.com/88855f442714/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Kukmoon谷月</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/a1edf80cd28a/" title="《从本能寺开始与信长统一天下》第 1 卷书评">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">《从本能寺开始与信长统一天下》第 1 卷书评</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2be6cab6eec4/" title="如何迁移OneDrive中的文件到另一个OneDrive？">
+                        <span class="hidden-mobile">如何迁移OneDrive中的文件到另一个OneDrive？</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appKey":"lvOI6tnv4jNUP9tEnIYJNKtW","path":"window.location.pathname","placeholder":"您的评论","avatar":"wavatar","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://qk25tpv2.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appkey":"lvOI6tnv4jNUP9tEnIYJNKtW"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
