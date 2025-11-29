@@ -1,0 +1,935 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <link rel="icon" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kukmoon谷月">
+  <meta name="keywords" content="网络技术,互联网,服务器,RDP,IPv6,DDNS,ddns-go">
+  
+    <meta name="description" content="本文介绍了在家庭宽带无 IPv4 公网但有动态 IPv6 地址的情况下，如何通过动态 DNS 解析来实现远程桌面（RDP）直连。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IPv6 + DDNS + RDP 实现内网穿透">
+<meta property="og:url" content="https://blog.kukmoon.com/45daf17f6cf7/index.html">
+<meta property="og:site_name" content="谷中望月">
+<meta property="og:description" content="本文介绍了在家庭宽带无 IPv4 公网但有动态 IPv6 地址的情况下，如何通过动态 DNS 解析来实现远程桌面（RDP）直连。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.kukmoon.com/2025-10-13-15-08-58.png">
+<meta property="article:published_time" content="2025-10-13T06:33:53.000Z">
+<meta property="article:modified_time" content="2025-10-13T06:33:53.000Z">
+<meta property="article:author" content="Kukmoon谷月">
+<meta property="article:tag" content="远程桌面">
+<meta property="article:tag" content="网络技术">
+<meta property="article:tag" content="互联网">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.kukmoon.com/2025-10-13-15-08-58.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>IPv6 + DDNS + RDP 实现内网穿透 - 谷中望月</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel-highlightjs.css">
+<link rel="stylesheet" href="/css/social-share.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":null},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="谷中望月" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>谷中望月</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-note"></i>
+                <span>镜像</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog.kukmoon.com" target="_self">
+                    
+                    <span>全球统一入口</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://kukmoon.github.io" target="_self">
+                    
+                    <span>镜像 0（GitHub Pages）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog1.kukmoon.com" target="_self">
+                    
+                    <span>镜像 1（日本）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog2.kukmoon.com" target="_self">
+                    
+                    <span>镜像 2（CF Pages）</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.kukmoon.com/banner_img/2025_09and10.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="IPv6 + DDNS + RDP 实现内网穿透"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Kukmoon谷月
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-13 14:33" pubdate>
+          2025年10月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          743 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">IPv6 + DDNS + RDP 实现内网穿透</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://img.kukmoon.com/2025-10-13-15-08-58.png" srcset="/img/loading.gif" lazyload alt="IPv6 + DDNS + RDP 实现内网穿透"></p>
+<p>当外出时，我需要用笔记本电脑或者手机通过远程桌面（微软的 RDP）连接到家里台式机。众所周知，RDP 需要一个 IP 地址才能连接。虽然我家的宽带没有 IPv4 公网地址，但是 IPv6 已开通，所以我可以通过 RDP 直连我家台式机的 IPv6 地址。然而，运营商分配给我家宽带的 IPv6 地址是动态的，所以还需要通过 DDNS （动态 DNS 解析）将这个动态 IPv6 地址解析到一个域名，在 RDP 中连接这个域名。以下是操作步骤。</p>
+<h2 id="一、准备工作">一、准备工作</h2>
+<ol>
+<li>
+<p>找电信运营商开通 IPv6。</p>
+</li>
+<li>
+<p>在光猫中将连接方式改为桥接。</p>
+</li>
+<li>
+<p>需要支持 IPv6 的路由器。我的路由器是小米 AX1800 路由器，打开了 SSH，并且用 iptables 命令控制 IPv6 防火墙。（该路由器无法用图形界面控制 IPv6 防火墙）。</p>
+</li>
+<li>
+<p>购买域名，注册 Cloudflare 账号，并将域名添加到 Cloudflare。</p>
+</li>
+<li>
+<p>在家里的台式机上启用远程桌面。</p>
+</li>
+</ol>
+<h2 id="二、安装并配置-ddns-go">二、安装并配置 ddns-go</h2>
+<p>DDNS-GO 是动态 DNS 解析工具。下载<a target="_blank" rel="noopener" href="https://github.com/jeessy2/ddns-go/releases"><em><code>DDNS-GO</code></em></a>到本地并解压，使用管理员权限运行 Windows 终端，在 PowerShell 中执行以下命令安装并设置 DDNS-GO：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">cd</span> <span class="hljs-string">&quot;c:\program files\ddns-go&quot;</span><br>.\ddns<span class="hljs-literal">-go</span>.exe <span class="hljs-literal">-s</span> install<br><span class="hljs-built_in">Set-Service</span> <span class="hljs-literal">-Name</span> <span class="hljs-string">&quot;ddns-go&quot;</span> <span class="hljs-literal">-StartupType</span> Automatic<br></code></pre></td></tr></table></figure>
+<p>在浏览器中打开 <code>127.0.0.1:9876</code> ，配置 DDNS-GO。</p>
+<ol>
+<li>
+<p>DNS 服务商设置为 Cloudflare。</p>
+</li>
+<li>
+<p>在 Cloudflare 中创建一个 Token（令牌），模板为“编辑区域 DNS”，在“区域资源”中选择“所有区域”，然后点击“创建”。把创建的 Token 复制到 DDNS-GO 中，点击“保存”。</p>
+</li>
+<li>
+<p>在 DDNS-GO 中，取消勾选“IPv4”，保持勾选“IPv6”，把“获取 IP 方式”设置为“通过网卡获取”，“Domains”输入域名，此处假设为 <a target="_blank" rel="noopener" href="http://rdp.kukmoon.com">rdp.kukmoon.com</a>。</p>
+</li>
+<li>
+<p>DDNS-GO 会在 Cloudflare 中自动新建一条 DNS 解析记录，域名为 <a target="_blank" rel="noopener" href="http://rdp.kukmoon.com">rdp.kukmoon.com</a>，IP 地址为“通过网卡获取”的 IP 地址。</p>
+</li>
+<li>
+<p>配置路由器防火墙，允许访问 3389 端口的流量通过。</p>
+</li>
+</ol>
+<h2 id="三、为了安全，更改-RDP-端口">三、为了安全，更改 RDP 端口</h2>
+<ol>
+<li>
+<p>打开注册表，<code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp</code>，导出 <code>RDP-Tcp</code> 为 reg 文件。</p>
+</li>
+<li>
+<p>复制 reg 文件，然后编辑这个复制的reg文件。找到 <code>[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp]</code> 这行，把最后的RDP-Tcp改成RDP-Tcp-1。再把 <code>PortNumber</code> 这行的值改成 <code>0000d431</code>（对应十进制的 54321）。</p>
+</li>
+<li>
+<p>将这个reg文件导入注册表，重启电脑，就可以通过 3389 和 54321 端口访问本机的远程桌面了。</p>
+</li>
+<li>
+<p>配置本机防火墙和路由器防火墙，开启 54321 端口。</p>
+</li>
+</ol>
+<p><strong>注意</strong>：路由器不开启 3389 端口，这样就不允许外网访问 3389 端口，3389 仅在我家内部的局域网中使用。</p>
+<h2 id="四、测试">四、测试</h2>
+<p>手机（网络为中国电信 4G）开热点共享给笔记本电脑，在笔记本上新建远程连接，地址为“<a target="_blank" rel="noopener" href="http://rdp.kukmoon.com:54321">rdp.kukmoon.com:54321</a>”，连接很顺利，操作比较流畅。</p>
+<h2 id="五、图片版权">五、图片版权</h2>
+<p>题图：By Rawpixel from <a target="_blank" rel="noopener" href="https://negativespace.co/man-jeans-laptop-office-work/">Negativespace.co</a></p>
+<p>头图：<a target="_blank" rel="noopener" href="https://stocksnap.io/photo/seasonal-leaf-WXREXGYBC6">Photo</a> by <a target="_blank" rel="noopener" href="https://stocksnap.io/author/freephotos">FreePhotos</a> on <a target="_blank" rel="noopener" href="https://stocksnap.io">StockSnap</a></p>
+
+                
+              </div>
+            
+            <div>
+                <!-- 引入自己编写的“分享到”模块（新） -->
+                <div style="text-align:right;"> <!-- 自己添加的“分享到”模块：开始。用的是 social-share.js。让所有的分享按钮右对齐-->
+	
+	<div class="social-share-container" style="margin-top: 15px;"> <!-- 生成一组分享按钮 -->
+		 <!--如果博客语言是中文，就显示“点击分享到：”，非中文一律显示“Share it:”-->
+			点击分享到：&nbsp;&nbsp;
+		
+	</div>
+	<!-- 加载 jQuery 库 -->
+	
+<script src="/js/jquery.min.js"></script>
+
+	<!-- 导入 qrcode.min.js -->
+	
+<script src="/js/qrcode.min.js"></script>
+
+	<!-- 加载 social-share.js 的 js 库，另外还要加载 social-share.js 的 CSS，可以修改 `_config.fluid.yml` 的 `custom_css` 加载，也可以修改 `themes/fluid/layout/_partial/css.ejs` 加载。-->
+	
+<script src="/js/social-share.min.js"></script>
+
+	<script> 
+	/* 执行 js 代码，new 一个新对象，详见 social-share.js 在 GitHub 的文档 */
+		new SocialShare('.social-share-container', {
+			theme: 'circle',  // 使用圆形主题
+			// 单独定义wechat分享参数
+			wechat: {
+				sort: 1, // 排序参数，数字较小的展示在前面,默认999
+			}
+		});		
+	</script>
+</div> <!-- 自己添加的“分享到”模块：结束。-->            
+                <hr/>
+                <!-- 引入自己编写的打赏模块（新） -->
+                <div style="text-align: center; margin: auto auto 1.5em;"><!--自己添加的打赏模块：开始-->
+  <!--如果主题的  _config.yml 中开启打赏-->
+    <div style="border-style:solid none none none; border-color: #663399; border-width: 0.5em; color: #663399; font-weight:bold; font-size: 1.2em; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+	   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+	    求扫码打赏
+	  	
+	</div>
+    <div style="font-size: 14px;margin-bottom: 10px;">
+	  “我这么可爱，请给我钱 o(*^ω^*)o” <!--在主题的 _config.yml 中设置打赏提示语-->
+	</div>
+    <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+	  <img src="/img/zhi-fu-bao-shou-kuan-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/wei-xin-zan-shang-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+	</div>
+  
+</div> <!--自己添加的打赏模块：结束-->
+                <hr/>
+            </div>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/IT%E6%8A%80%E6%9C%AF/" class="category-chain-item">IT技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/" class="print-no-link">#远程桌面</a>
+      
+        <a href="/tags/%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/" class="print-no-link">#网络技术</a>
+      
+        <a href="/tags/%E4%BA%92%E8%81%94%E7%BD%91/" class="print-no-link">#互联网</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>IPv6 + DDNS + RDP 实现内网穿透</div>
+      <div>https://blog.kukmoon.com/45daf17f6cf7/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Kukmoon谷月</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年10月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/86cb38173214/" title="芭蕾男娘变装被绑装箱记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">芭蕾男娘变装被绑装箱记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/a7d96a12ed08/" title="IPv6 + DDNS + WebDAV 搭建文件访问服务">
+                        <span class="hidden-mobile">IPv6 + DDNS + WebDAV 搭建文件访问服务</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appKey":"lvOI6tnv4jNUP9tEnIYJNKtW","path":"window.location.pathname","placeholder":"您的评论","avatar":"wavatar","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://qk25tpv2.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appkey":"lvOI6tnv4jNUP9tEnIYJNKtW"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

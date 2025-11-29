@@ -1,0 +1,1073 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <link rel="icon" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kukmoon谷月">
+  <meta name="keywords" content="博客,Hexo,对象存储,腾讯云 COS,DNSPod,双线部署,SSL 证书,https">
+  
+    <meta name="description" content="把我博客的镜像分别部署到腾讯云 COS 和 Cloudflare Pages，在 DNSPod 设置双线解析，境内线路解析到前者，境外线路解析到后者。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="双线 DNS 解析我的博客到腾讯云 COS 和 CFPages">
+<meta property="og:url" content="https://blog.kukmoon.com/7dc752917138/index.html">
+<meta property="og:site_name" content="谷中望月">
+<meta property="og:description" content="把我博客的镜像分别部署到腾讯云 COS 和 Cloudflare Pages，在 DNSPod 设置双线解析，境内线路解析到前者，境外线路解析到后者。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.kukmoon.com/2024-06-23-14-59-15.jpg">
+<meta property="article:published_time" content="2024-06-21T16:37:35.000Z">
+<meta property="article:modified_time" content="2024-06-27T09:58:00.000Z">
+<meta property="article:author" content="Kukmoon谷月">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="对象存储">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.kukmoon.com/2024-06-23-14-59-15.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>双线 DNS 解析我的博客到腾讯云 COS 和 CFPages - 谷中望月</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel-highlightjs.css">
+<link rel="stylesheet" href="/css/social-share.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":null},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="谷中望月" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>谷中望月</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-note"></i>
+                <span>镜像</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog.kukmoon.com" target="_self">
+                    
+                    <span>全球统一入口</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://kukmoon.github.io" target="_self">
+                    
+                    <span>镜像 0（GitHub Pages）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog1.kukmoon.com" target="_self">
+                    
+                    <span>镜像 1（日本）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog2.kukmoon.com" target="_self">
+                    
+                    <span>镜像 2（CF Pages）</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.kukmoon.com/banner_img/2024_05and06.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="双线 DNS 解析我的博客到腾讯云 COS 和 CFPages"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Kukmoon谷月
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-22 00:37" pubdate>
+          2024年6月22日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">双线 DNS 解析我的博客到腾讯云 COS 和 CFPages</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2024-06-27T17:58:00+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p class="note note-primary">双线部署完毕，撒花庆祝🎉🎊！<br />现在用浏览器访问 <a href="https://blog.kukmoon.com" target="_blank">https://blog.kukmoon.com</a>，DNSPod 就会进行双线解析。</a>
+<p><img src="https://img.kukmoon.com/2024-06-23-14-59-15.jpg" srcset="/img/loading.gif" lazyload alt="双线 DNS 解析我的博客到腾讯云 COS 和 CFPages"></p>
+<h2 id="1-引言">1 引言</h2>
+<p>我有一个博客（以下简称<a href="https://blog.kukmoon.com">本博</a>），希望能够让全球用户都顺畅访问。</p>
+<p>但是，简中互联网和全球互联网已经相行渐远。它们不但在内容和用户偏好方面裂痕明显，而且 GFW 的建设和中美海底光缆建设计划的取消也使得简中和全球互联网从网络结构到物理线路上都出现了脱钩的趋势。</p>
+<p>那么，我应该怎样才能在简中互联网和全球互联网相行渐远的背景下，勉强维持全球用户顺畅访问<a href="https://blog.kukmoon.com">本博</a>呢？</p>
+<p>显然，部署双线访问是个好主意。在国内部署一个镜像，在国外部署一个镜像。再为<a href="https://blog.kukmoon.com">本博</a>的域名部署双线 DNS 解析，让境内用户跳转到国内镜像，让境外用户跳转到国外镜像。</p>
+<p>笔者采取了 A/B 测试方式，暂时保持原域名 <a href="https://blog.kukmoon.com">blog.kukmoon.com</a> 不动，另建一个新域名 <a target="_blank" rel="noopener" href="https://blog.kukmoon.tech">blog.kukmoon.tech</a> 作为测试双线 DNS 解析的统一域名。</p>
+<p class="note note-warning">警告：域名 <a href="https://blog.kukmoon.tech" target="_blank">blog.kukmoon.tech</a> 将在 2025-06-21 失效。</span>
+<h2 id="2-方法、步骤与结果">2 方法、步骤与结果</h2>
+<h3 id="2-1-在国外部署博客镜像">2.1 在国外部署博客镜像</h3>
+<p>我不想花钱买服务器，所以想找免费的无服务器（Serverless）平台搭建博客。还真让我找到了国外的 Cloudflare Pages 和国内的腾讯云 COS。</p>
+<p><a href="https://blog.kukmoon.com">本博</a>的国外镜像，就是部署在 Cloudflare Pages（下文简称 CFPages）的平台上<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="[谷月：Cloudflare Pages 不支持 Hexo 怎么办？](https://blog.kukmoon.tech/1abcd8ce26b4/)">[1]</span></a></sup>。CFPages 的功能实在太强大了，使用实在太简单了，堪称全球最伟大的全栈应用部署工具也毫不为过，用它搭个静态博客还不是小菜一碟？而且免费版本对我来说就足够了。</p>
+<p>我为上述镜像设置了两个域名：<code>blog2.kukmoon.com</code> 和 <code>kukmoon.pages.dev</code>。后续还会用到。</p>
+<h3 id="2-2-在国内部署博客镜像">2.2 在国内部署博客镜像</h3>
+<p><a href="https://blog.kukmoon.com">本博</a>的国内镜像，部署在腾讯云 COS 香港区域。理由如下：一是免备案，二是从内地访问很快，三是从内地访问的费用相对低廉（目前平均一天一分钱）。</p>
+<p class="note note-danger"><b>注意</b>：<br/><br/>香港是国内，也是境外。<br/>香港是国内，也是境外。<br/>香港是国内，也是境外。<br/><br/>重要的事说三遍！</span>
+<p>之前考虑过阿里云 OSS，但是它要求香港区域用户即使搭建静态网站也必须备案，所以我就果断把它从采购名单上划掉了。</p>
+<h4 id="2-2-1-新建存储桶">2.2.1 新建存储桶</h4>
+<p>参照官方文档<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="[创建存储桶](https://cloud.tencent.com/document/product/436/13309)">[2]</span></a></sup>，在腾讯云 COS 控制台中新建一个存储桶。</p>
+<p>所属地域为香港，名称为 <code>kukmoon-blog-12345678</code>（其中 <code>kukmoon-blog</code> 为存储桶的名称，<code>kukmoon-blog-12345678</code> 为存储桶的全名，注意 <code>12345678</code> 是我的 APPID，后面会用到）。访问权限为公有读私有写。</p>
+<p>高级可选配置中的选项不作修改。</p>
+<h4 id="2-2-2-将博客部署到存储桶">2.2.2 将博客部署到存储桶</h4>
+<p><strong>Step 1</strong> 安装 Hexo 插件 <code>hexo-deployer-qcloud-cos</code> 并配置 Hexo 博客的 <code>_config.yml</code> 文件<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="[Wertycn: 一键部署hexo博客到腾讯云COS对象存储 ](https://werty.cn/2019/06/hexo/%E8%85%BE%E8%AE%AF%E4%BA%91COS%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E9%83%A8%E7%BD%B2hexo%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2/)">[3]</span></a></sup>。</p>
+<p>注意：</p>
+<ol>
+<li>腾讯云 COS 存储桶的名称被<strong>从右往左数的第一个 <code>-</code></strong> 分成两部分，它后面的纯数字是你的 APPID，它前面的字符串（可以包含字母、数字、其他的<code>-</code>）才是存储桶的内部名称。例如我的存储桶名称是 <code>kukmoon-blog-12345678</code>。</li>
+<li>在配置 <code>_config.yml</code> 时，<code>cosBucket</code> 只需要填写<strong>从右往左数的第一个 <code>-</code> 前面的字符串</strong>就可以了。例如我这里只需要填写 <code>kukmoon-blog</code>。</li>
+</ol>
+<p><img src="https://img.kukmoon.com/2024-06-22-11-36-14.png" srcset="/img/loading.gif" lazyload alt="配置 Hexo 博客的 "></p>
+<p><strong>Step 2</strong> 保存 <code>_config.yml</code>，然后生成并部署。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo d -g<br></code></pre></td></tr></table></figure>
+<h4 id="2-2-3-为存储桶配置静态网站">2.2.3 为存储桶配置静态网站</h4>
+<p>参照官方文档<sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span class="hint--top hint--rounded" aria-label="[设置静态网站](https://cloud.tencent.com/document/product/436/14984)">[4]</span></a></sup>，在腾讯云 COS 控制台中，找到刚才建立的存储桶 <code>kukmoon-blog-12345678</code>，在「基础配置」➡「静态网站」中，进行设置。我在此处只是把「当前状态」设置为打开，其他选项没有修改。</p>
+<p>腾讯云 COS 为这个存储桶自动生成一个域名，<code>kukmoon-blog-12345678.cos-website.ap-hongkong.myqcloud.com</code>，后续还会用到。</p>
+<h3 id="2-3-部署-DNS-双线解析">2.3 部署 DNS 双线解析</h3>
+<p>部署 DNS 双线解析是用已经被腾讯云收购的 DNSPod。我在此处用 <code>blog.kukmoon.tech</code> 作为测试双线解析使用的域名。</p>
+<h4 id="2-3-1-注册域名并用-DNSPod-提供-DNS-解析">2.3.1 注册域名并用 DNSPod 提供 DNS 解析</h4>
+<p>注册二级域名 <code>kukmoon.tech</code>，在它的注册商网站上，把它的 NS 服务器设置为 DNSPod 提供的 NS 服务器。</p>
+<p>然后，静等 NS 服务器的修改生效（不超过 24 小时）。</p>
+<h4 id="2-3-2-在-Cloudflare-中添加自定义主机名">2.3.2 在 Cloudflare 中添加自定义主机名</h4>
+<p>参照这篇文章<sup id="fnref:5" class="footnote-ref"><a href="#fn:5" rel="footnote"><span class="hint--top hint--rounded" aria-label="[Luminous：【CloudFlare】官方免费CNAME接入教程](https://luotianyi.vc/6185.html)">[5]</span></a></sup>，在 Cloudflare 中打开我的站点 <code>kukmoon.com</code>，点击左侧的「SSL/TLS」➡「自定义主机名」，点击右侧的「启用CloudFlare for SaaS」，根据指示绑定外币卡或者PayPal，订阅CloudFlare for SaaS 功能。<br>
+<img src="https://img.kukmoon.com/2024-06-22-20-27-23.jpg" srcset="/img/loading.gif" lazyload alt="图源：https://luotianyi.vc/6185.html"></p>
+<p>这样就开启了「自定义主机名」功能，如图所示。注意：该功能最多可以容纳 50 个自定义主机名，超过 50 个才开始收费。<br>
+<img src="https://img.kukmoon.com/2024-06-22-20-30-12.png" srcset="/img/loading.gif" lazyload alt="自定义主机名"></p>
+<p>在右侧的「回退源」中输入 <code>blog2.kukmoon.com</code>，这是我在 CFPages 中为博客设置的域名之一。此处不可以使用 CFPages 的默认域名 <code>*.pages.dev</code>。<br>
+<img src="https://img.kukmoon.com/2024-06-22-22-43-51.png" srcset="/img/loading.gif" lazyload alt="2024-06-22-22-43-51"></p>
+<p>点击右侧的「添加自定义主机名」，将「自定义主机名」设为 <code>blog.kukmoon.tech</code>，其他保持不变，点击右下角的「添加自定义主机名」。回到「自定义主机名」画面。<br>
+<img src="https://img.kukmoon.com/2024-06-22-22-44-47.png" srcset="/img/loading.gif" lazyload alt="2024-06-22-22-44-47"></p>
+<p>点开新出现的「kukmoon.tech」，可以看到 Cloudflare 给出了一组 TXT 记录，要求我添加到 <code>blog.kukmoon.tech</code> 的 DNS 中作为验证，验证通过后，Cloudflare 才能给 <code>blog.kukmoon.tech</code> 颁发 SSL 证书。<br>
+<img src="https://img.kukmoon.com/2024-06-22-22-45-50.png" srcset="/img/loading.gif" lazyload alt="2024-06-22-22-45-50"></p>
+<p>那么在 DNSPod 中添加一条 TXT 记录。注意：由于 Cloudflare 和 DNSPod 规则的不同，在 DNS 中添加的记录，「主机记录」必须是 <code>_cf-custom-hostname.blog</code>（不包括 <code>.kukmoon.tech</code> 后缀），「记录值」是 <code>104d36cc-cbd3-43f1-aa03-6b8f2349a2aa</code> 不变。点击「确认」。<br>
+<img src="https://img.kukmoon.com/2024-06-22-22-48-05.png" srcset="/img/loading.gif" lazyload alt="2024-06-22-22-48-05"></p>
+<p>过一会儿（一般不超过 15 分钟），回到 Cloudflare 刷新一下，出现如下图所示的提示，说明已经把 <code>blog.kukmoon.tech</code> 添加到了 Cloudflare，而且 Cloudflare 给这个域名颁发了 SSL 证书。<br>
+<img src="https://img.kukmoon.com/2024-06-22-22-52-48.png" srcset="/img/loading.gif" lazyload alt="2024-06-22-22-52-48"></p>
+<h4 id="2-3-3-在-CFPages-中绑定自定义域名">2.3.3 在 CFPages 中绑定自定义域名</h4>
+<p>在 「Workers 和 Pages」 的「概述」页面中，点击打开<a href="https://blog.kukmoon.com">本博</a>所对应的项目。<br>
+<img src="https://img.kukmoon.com/2024-06-22-01-48-05.png" srcset="/img/loading.gif" lazyload alt="2024-06-22-01-48-05"></p>
+<p>点击「自定义域」➡「设置自定义域」。<br>
+<img src="https://img.kukmoon.com/2024-06-22-01-50-34.png" srcset="/img/loading.gif" lazyload alt="2024-06-22-01-50-34"></p>
+<p>输入 <code>blog.kukmoon.tech</code>，点击「继续」。<br>
+<img src="https://img.kukmoon.com/2024-06-22-01-53-00.png" srcset="/img/loading.gif" lazyload alt="2024-06-22-01-53-00"></p>
+<p>Cloudflare 会提示配置 DNS 记录。<br>
+<img src="https://img.kukmoon.com/2024-06-22-01-53-47.png" srcset="/img/loading.gif" lazyload alt="2024-06-22-01-53-47"></p>
+<p>点击「开始 CNAME 设置」，Cloudflare 会出现如下提示。<br>
+<img src="https://img.kukmoon.com/2024-06-22-01-56-40.png" srcset="/img/loading.gif" lazyload alt="CNAME 设置"></p>
+<p>打开 DNSPod 的控制台，点击「我的域名」➡「kukmoon.tech」。<br>
+<img src="https://img.kukmoon.com/2024-06-22-02-00-24.png" srcset="/img/loading.gif" lazyload alt="2024-06-22-02-00-24"></p>
+<p>点击「添加记录」，在 <code>kukmoon.tech</code> 下面，增加一条「境外」记录，「主机记录」是 <code>blog</code>，「记录类型」是 「CNAME」，「记录值」指向 <code>kukmoon.pages.dev</code>。<br>
+<img src="https://img.kukmoon.com/2024-06-27-17-51-19.png" srcset="/img/loading.gif" lazyload alt="2024-06-27-17-51-19"></p>
+<p>回到 CFPages，点击「检查 DNS 记录」，然后点击右下角的「稍后完成 DNS 设置」。静等 DNS 设置生效。<br>
+<img src="https://img.kukmoon.com/2024-06-22-01-56-40.png" srcset="/img/loading.gif" lazyload alt="CNAME 设置"></p>
+<p>通过境外线路访问 <a target="_blank" rel="noopener" href="https://blog.kukmoon.tech">https://blog.kukmoon.tech</a>，可以正常访问，这说明 DNS 配置正确而且路由无误。而且 SSL 加密正常。<br>
+<img src="https://img.kukmoon.com/2024-06-22-23-01-21.png" srcset="/img/loading.gif" lazyload alt="2024-06-22-23-01-21"></p>
+<h4 id="2-3-4-在腾讯云-COS-中设置自定义域名">2.3.4 在腾讯云 COS 中设置自定义域名</h4>
+<p>参照官方文档<sup id="fnref:6" class="footnote-ref"><a href="#fn:6" rel="footnote"><span class="hint--top hint--rounded" aria-label="[开启自定义源站域名](https://cloud.tencent.com/document/product/436/36638)">[6]</span></a></sup>，在腾讯云 COS 控制台中，找到刚才建立的存储桶 <code>kukmoon-blog-12345678</code>，在「域名与传输管理」➡「自定义源站域名」中，点击「添加域名」。把「自定义域名」设为 <code>blog.kukmoon.tech</code>，「源站类型」设置为「静态网站源站」，其他不需要改动。点击「创建」。<br>
+<img src="https://img.kukmoon.com/2024-06-22-12-58-49.png" srcset="/img/loading.gif" lazyload alt="设置自定义域名"></p>
+<p>创建完成后需要绑定证书。<br>
+<img src="https://img.kukmoon.com/2024-06-23-08-18-53.png" srcset="/img/loading.gif" lazyload alt="2024-06-23-08-18-53"></p>
+<p>点击上图中的「绑定证书」，再点击下图中的「申请腾讯云证书」。<br>
+<img src="https://img.kukmoon.com/2024-06-23-08-19-57.png" srcset="/img/loading.gif" lazyload alt="2024-06-23-08-19-57"></p>
+<p>跳转到腾讯云证书申请界面，点击「申请免费证书」。<br>
+<img src="https://img.kukmoon.com/2024-06-23-08-21-08.png" srcset="/img/loading.gif" lazyload alt="2024-06-23-08-21-08"></p>
+<p>证书绑定域名填写 <code>blog.kukmoon.tech</code>，再填上邮箱，其他不需要改动。点击左下角「提交申请，进行域名验证」。<br>
+<img src="https://img.kukmoon.com/2024-06-23-08-22-45.png" srcset="/img/loading.gif" lazyload alt="2024-06-23-08-22-45"></p>
+<p>等待域名完成验证和审批通过。不超过一个工作日。点击左下角「完成」可以退出这个界面。<br>
+<img src="https://img.kukmoon.com/2024-06-23-08-23-50.png" srcset="/img/loading.gif" lazyload alt="2024-06-23-08-23-50"></p>
+<p>又回到腾讯云证书申请界面。点击「关闭」。<br>
+<img src="https://img.kukmoon.com/2024-06-23-08-21-08.png" srcset="/img/loading.gif" lazyload alt="2024-06-23-08-21-08"></p>
+<p>必须要等到新申请的证书处于「已签发」状态时，才能进行下一步操作。<br>
+<img src="https://img.kukmoon.com/2024-06-23-13-07-53.png" srcset="/img/loading.gif" lazyload alt="2024-06-23-13-07-53"></p>
+<p>可以先给它重命名一下，取个新名字，例如「blog.kukmoon.tech 的 SSL 证书」。<br>
+<img src="https://img.kukmoon.com/2024-06-23-13-09-01.png" srcset="/img/loading.gif" lazyload alt="2024-06-23-13-09-01"></p>
+<p>点击「去托管」。设置一下托管（自动续期什么的）。<br>
+<img src="https://img.kukmoon.com/2024-06-23-13-10-46.png" srcset="/img/loading.gif" lazyload alt="2024-06-23-13-10-46"></p>
+<p>如图所示操作。最后点击最后一行的「托管」。<br>
+<img src="https://img.kukmoon.com/2024-06-23-13-11-33.png" srcset="/img/loading.gif" lazyload alt="2024-06-23-13-11-33"></p>
+<p>选择「自动托管」。<br>
+<img src="https://img.kukmoon.com/2024-06-23-13-12-10.png" srcset="/img/loading.gif" lazyload alt="2024-06-23-13-12-10"></p>
+<p>回到「自定义源站域名」界面，点击 <code>blog.kukmoon.tech</code> 最右边「操作」一列中的「绑定证书」。<br>
+<img src="https://img.kukmoon.com/2024-06-23-13-13-36.png" srcset="/img/loading.gif" lazyload alt="2024-06-23-13-13-36"></p>
+<p>选择「已托管证书」，并选中之前申请的证书，点击「确定」。静等证书绑定生效，一般不超过 30 分钟。<br>
+<img src="https://img.kukmoon.com/2024-06-23-13-14-25.png" srcset="/img/loading.gif" lazyload alt="2024-06-23-13-14-25"></p>
+<h4 id="2-3-5-在-DNSPod-中部署境内解析">2.3.5 在 DNSPod 中部署境内解析</h4>
+<p>在 DNSPod 中，点击「我的域名」➡「kukmoon.tech」➡「添加记录」，新增一条 CNAME 记录，将主机记录 <code>blog</code> 指向 <code>kukmoon-blog-12345678.cos-website.ap-hongkong.myqcloud.com</code>，「线路」为「境内」。<br>
+<img src="https://img.kukmoon.com/2024-06-22-23-22-06.png" srcset="/img/loading.gif" lazyload alt="2024-06-22-23-22-06"></p>
+<p>首次部署这条记录后，需要等一段时间（最多 15 分钟）才能生效。如果尚未生效就通过境内线路访问 <a target="_blank" rel="noopener" href="http://blog.kukmoon.tech">http://blog.kukmoon.tech</a>，会看到如下错误提示。<br>
+<img src="https://img.kukmoon.com/2024-06-22-13-06-49.png" srcset="/img/loading.gif" lazyload alt="2024-06-22-13-06-49"></p>
+<p>部署生效后，从境内线路访问 <a target="_blank" rel="noopener" href="http://blog.kukmoon.tech">http://blog.kukmoon.tech</a> ，会顺利访问<a href="https://blog.kukmoon.com">本博</a>的首页，SSL 加密正常。<br>
+<img src="https://img.kukmoon.com/2024-06-23-13-35-49.png" srcset="/img/loading.gif" lazyload alt="2024-06-23-13-35-49"></p>
+<h2 id="3-讨论">3 讨论</h2>
+<p>在设置 DNS 解析的过程中，为了同时满足腾讯云 COS、DNSPod、Cloudflare 三方的规则，我特么走了太多弯路。</p>
+<h3 id="3-1-香港是国内又是境外">3.1 香港是国内又是境外</h3>
+<h4 id="3-1-1-为什么把境内线路解析到香港？">3.1.1 为什么把境内线路解析到香港？</h4>
+<p>原因有二：</p>
+<ol>
+<li>
+<p>在境内搭建网站需要备案，而且如果没有服务器就不能备案（相当于境内无法搭建无服务器网站），偏偏对象存储就是无服务器（Serverless）的；</p>
+</li>
+<li>
+<p>境内用户访问腾讯云香港区域的速率比较快，至少比访问 CFPages 快。这是为了改善用户体验。</p>
+</li>
+</ol>
+<h4 id="3-1-2-为什么不把香港-IP-的访问请求解析到香港？">3.1.2 为什么不把香港 IP 的访问请求解析到香港？</h4>
+<p>原因是：DNSPod 免费版的颗粒度太大，只有境内/境外可选，境外流量选不了具体来自哪个国家或地区。这样，只能把来自香港 IP 的访问请求连同其他境外请求一起解析到 CFPages。反正 CFPages 在香港的访问速度也很快。而且 Cloudflare 的安全措施比腾讯更有力，能更好地遏止境外势力（例如「恶俗维基」「MTF清蒸协会」）对<a href="https://blog.kukmoon.com">本博</a>的破坏。</p>
+<h3 id="3-2-用-GitHub-Action-把本博部署到腾讯云-COS">3.2 用 GitHub Action 把本博部署到腾讯云 COS</h3>
+<p>本文 2.2 节讲的内容，是借助 Hexo 插件，在运行 <code>hexo d</code> 命令时把<a href="https://blog.kukmoon.com">本博</a>部署到腾讯云 COS。</p>
+<p>如果需要用 GitHub Action 部署，请另行参见这篇文章<sup id="fnref:7" class="footnote-ref"><a href="#fn:7" rel="footnote"><span class="hint--top hint--rounded" aria-label="[谷月： 用 GitHub Actions 把博客部署到腾讯云 COS](https://blog.kukmoon.tech/7dc752917138/)">[7]</span></a></sup>。</p>
+<h3 id="3-3-Cloudflare-新规导致不能随便-CNAME">3.3 Cloudflare 新规导致不能随便 CNAME</h3>
+<p>由于 Cloudflare 禁用了 Partner 使用的 zone_setAPI 以避免滥用（因为该 API 接入不需要验证域名所有权）<sup id="fnref:5" class="footnote-ref"><a href="#fn:5" rel="footnote"><span class="hint--top hint--rounded" aria-label="[Luminous：【CloudFlare】官方免费CNAME接入教程](https://luotianyi.vc/6185.html)">[5]</span></a></sup>，换句话说，官方从此以后就不允许阿猫阿狗随便通过 CNAME 方式跳转到 Cloudflare 旗下的服务了。Cloudflare 用户必须给外部的主机开白名单——2.3.2 节提到的「自定义主机名」就是一张可以容纳 50 个外部主机的白名单。——这导致我走了 N 多弯路。</p>
+<h3 id="3-4-CFPages-的自定义域名被停用？">3.4 CFPages 的自定义域名被停用？</h3>
+<p>按照 2.3.3 节的操作结束后，在我的 CFPages ➡ <a href="https://blog.kukmoon.com">本博</a>项目 ➡ 「自定义域」中，会出现这个错误。它让我一直百思不得其解，但是完全不影响 <code>blog.kukmoon.tech</code> 跳转到 <code>kukmoon.pages.dev</code>。所以我就随便它去了。<br>
+<img src="https://img.kukmoon.com/2024-06-22-23-03-46.png" srcset="/img/loading.gif" lazyload alt="2024-06-22-23-03-46"></p>
+<h3 id="3-5-Cloudflare-的证书只能访问自家资源">3.5 Cloudflare 的证书只能访问自家资源</h3>
+<p>我前文说过，Cloudflare 给我的域名 <code>blog.kukmoon.tech</code> 配置了一个 SSL 证书。可惜只有用境外线路访问 <a target="_blank" rel="noopener" href="https://blog.kukmoon.tech">https://blog.kukmoon.tech</a> 时，SSL 才有效。然而，用境内线路访问 <a target="_blank" rel="noopener" href="https://blog.kukmoon.tech">https://blog.kukmoon.tech</a> 时，SSL 根本无效。这就说明 Cloudflare 的证书不是白发的，必须访问 Cloudflare 自家资源，证书才网开一面.</p>
+<h3 id="3-6-为存储桶配置静态网站和域名">3.6 为存储桶配置静态网站和域名</h3>
+<p>腾讯云 COS 可以把存储桶作为静态网站来使用。这样，我们就可以让存储桶摇身一变，化身成为一个无服务器的（Serverless）静态网站。与购买 VPS 或虚拟主机来搭建静态网站相比，使用对象存储（例如腾讯云 COS、阿里云 OSS、Amazon S3、Cloudflare R2……）建站，访问速度快，费用低，维护容易，还可以与大厂旗下的其他服务整合。</p>
+<p>理论上说，在浏览器中输入这个存储桶的域名， <code>http://kukmoon-blog-12345678.cos-website.ap-hongkong.myqcloud.com</code>，就可以访问<a href="https://blog.kukmoon.com">本博</a>首页了。</p>
+<p>但是，由于腾讯云 COS 采取新的安全政策，因此在浏览器中输入上述域名是无法直接访问<a href="https://blog.kukmoon.com">本博</a>的，必须为存储桶中的博客绑定一个<strong>静态源站域名</strong>，在浏览器中输入这一域名才能访问。</p>
+<h3 id="3-7-究竟能不能为腾讯云-COS-上的博客镜像配置-HTTPS？">3.7 究竟能不能为腾讯云 COS 上的博客镜像配置 HTTPS？</h3>
+<p>按照腾讯云 COS 的某个官方文档<sup id="fnref:8" class="footnote-ref"><a href="#fn:8" rel="footnote"><span class="hint--top hint--rounded" aria-label="[自定义源站域名](https://cloud.tencent.com/document/product/436/56559)">[8]</span></a></sup>说，存储桶的自定义域名支持 HTTPS 的区域不包括香港。我一开始相信了它，没有为<a href="https://blog.kukmoon.com">本博</a>配置 SSL 加密。<br>
+<img src="https://img.kukmoon.com/2024-06-23-00-24-15.png" srcset="/img/loading.gif" lazyload alt="2024-06-23-00-24-15"></p>
+<p>一开始，从境内线路访问<a href="https://blog.kukmoon.com">本博</a>，浏览器确实会因为 https 无效而告警。这是因为从没有配置 SSL 证书的自定义域名 <code>blog.kukmoon.tech</code> 跳转到已经配置了 SSL 证书的域名 <code>*.cos.ap-hongkong.myqcloud.com</code> ，证书与域名不匹配而导致告警。<br>
+<img src="https://img.kukmoon.com/2024-06-22-13-44-04.png" srcset="/img/loading.gif" lazyload alt="2024-06-22-13-44-04"></p>
+<p>忽略告警，就可以正常访问<a href="https://blog.kukmoon.com">本博</a>了。。由于没有配置 SSL 证书，因此，尽管 http 跳转到 https，但是<a href="https://blog.kukmoon.com">本博</a>依然处于未加密状态。<br>
+<img src="https://img.kukmoon.com/2024-06-22-13-45-39.png" srcset="/img/loading.gif" lazyload alt="2024-06-22-13-45-39"></p>
+<p>但是，腾讯云 COS 的另一个官方文档<sup id="fnref:9" class="footnote-ref"><a href="#fn:9" rel="footnote"><span class="hint--top hint--rounded" aria-label="[开启自定义源站域名](https://cloud.tencent.com/document/product/436/36638)">[9]</span></a></sup>说，腾讯云 COS 香港区域的存储桶支持为自定义域名绑定 SSL 证书了。<br>
+<img src="https://img.kukmoon.com/2024-06-23-13-41-53.png" srcset="/img/loading.gif" lazyload alt="2024-06-23-13-41-53"></p>
+<p>我经过反复摸索，终于找到了为自定义域名开启 https 的方法。写在了本文 2.3.4 和 2.3.5 节。只要按照上述两节来操作，并且<strong>在操作步骤中一定要等到证书的验证或签发生效后再执行下一步</strong>，就一定能给自定义域名绑定 SSL 证书，从境内线路访问也能开启 https。</p>
+<p>如果浏览器因为证书与域名不匹配而告警，只需要按照本文 2.3.4 和 2.3.5 节重新配置证书即可。注意：<strong>在操作步骤中一定要等到证书的验证或签发生效后再执行下一步</strong>。</p>
+<h2 id="4-图片来源">4 图片来源</h2>
+<p>题图：Image by <a target="_blank" rel="noopener" href="https://pixabay.com/users/fotofixautomat-6459159/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2755782">Steven Helmis</a> from <a target="_blank" rel="noopener" href="https://pixabay.com/cable-technology-red-yellow-plug-2755782/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2755782">Pixabay</a></p>
+<p>头图：Image by <a target="_blank" rel="noopener" href="https://pixabay.com/users/michasager-6459346/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2755858">Micha Sager</a> from <a target="_blank" rel="noopener" href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2755858">Pixabay</a></p>
+<h2 id="5-参考文献">5 参考文献</h2>
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://blog.kukmoon.tech/1abcd8ce26b4/">谷月：Cloudflare Pages 不支持 Hexo 怎么办？</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/436/13309">创建存储桶</a>
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://werty.cn/2019/06/hexo/%E8%85%BE%E8%AE%AF%E4%BA%91COS%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E9%83%A8%E7%BD%B2hexo%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2/">Wertycn: 一键部署hexo博客到腾讯云COS对象存储 </a>
+<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/436/14984">设置静态网站</a>
+<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:5" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://luotianyi.vc/6185.html">Luminous：【CloudFlare】官方免费CNAME接入教程</a>
+<a href="#fnref:5" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:6" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/436/36638">开启自定义源站域名</a>
+<a href="#fnref:6" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:7" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://blog.kukmoon.tech/7dc752917138/">谷月： 用 GitHub Actions 把博客部署到腾讯云 COS</a>
+<a href="#fnref:7" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:8" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/436/56559">自定义源站域名</a>
+<a href="#fnref:8" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:9" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/436/36638">开启自定义源站域名</a>
+<a href="#fnref:9" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+                
+              </div>
+            
+            <div>
+                <!-- 引入自己编写的“分享到”模块（新） -->
+                <div style="text-align:right;"> <!-- 自己添加的“分享到”模块：开始。用的是 social-share.js。让所有的分享按钮右对齐-->
+	
+	<div class="social-share-container" style="margin-top: 15px;"> <!-- 生成一组分享按钮 -->
+		 <!--如果博客语言是中文，就显示“点击分享到：”，非中文一律显示“Share it:”-->
+			点击分享到：&nbsp;&nbsp;
+		
+	</div>
+	<!-- 加载 jQuery 库 -->
+	
+<script src="/js/jquery.min.js"></script>
+
+	<!-- 导入 qrcode.min.js -->
+	
+<script src="/js/qrcode.min.js"></script>
+
+	<!-- 加载 social-share.js 的 js 库，另外还要加载 social-share.js 的 CSS，可以修改 `_config.fluid.yml` 的 `custom_css` 加载，也可以修改 `themes/fluid/layout/_partial/css.ejs` 加载。-->
+	
+<script src="/js/social-share.min.js"></script>
+
+	<script> 
+	/* 执行 js 代码，new 一个新对象，详见 social-share.js 在 GitHub 的文档 */
+		new SocialShare('.social-share-container', {
+			theme: 'circle',  // 使用圆形主题
+			// 单独定义wechat分享参数
+			wechat: {
+				sort: 1, // 排序参数，数字较小的展示在前面,默认999
+			}
+		});		
+	</script>
+</div> <!-- 自己添加的“分享到”模块：结束。-->            
+                <hr/>
+                <!-- 引入自己编写的打赏模块（新） -->
+                <div style="text-align: center; margin: auto auto 1.5em;"><!--自己添加的打赏模块：开始-->
+  <!--如果主题的  _config.yml 中开启打赏-->
+    <div style="border-style:solid none none none; border-color: #663399; border-width: 0.5em; color: #663399; font-weight:bold; font-size: 1.2em; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+	   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+	    求扫码打赏
+	  	
+	</div>
+    <div style="font-size: 14px;margin-bottom: 10px;">
+	  “我这么可爱，请给我钱 o(*^ω^*)o” <!--在主题的 _config.yml 中设置打赏提示语-->
+	</div>
+    <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+	  <img src="/img/zhi-fu-bao-shou-kuan-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/wei-xin-zan-shang-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+	</div>
+  
+</div> <!--自己添加的打赏模块：结束-->
+                <hr/>
+            </div>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/IT%E6%8A%80%E6%9C%AF/" class="category-chain-item">IT技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Hexo/" class="print-no-link">#Hexo</a>
+      
+        <a href="/tags/%E5%8D%9A%E5%AE%A2/" class="print-no-link">#博客</a>
+      
+        <a href="/tags/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/" class="print-no-link">#对象存储</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>双线 DNS 解析我的博客到腾讯云 COS 和 CFPages</div>
+      <div>https://blog.kukmoon.com/7dc752917138/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Kukmoon谷月</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/6e8a9ae32c24/" title="跨女不是顺女的下位替代品">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">跨女不是顺女的下位替代品</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/671ff28715e0/" title="用主机名代替 IP 地址连接 Hyper-V Ubuntu 虚拟机">
+                        <span class="hidden-mobile">用主机名代替 IP 地址连接 Hyper-V Ubuntu 虚拟机</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appKey":"lvOI6tnv4jNUP9tEnIYJNKtW","path":"window.location.pathname","placeholder":"您的评论","avatar":"wavatar","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://qk25tpv2.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appkey":"lvOI6tnv4jNUP9tEnIYJNKtW"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

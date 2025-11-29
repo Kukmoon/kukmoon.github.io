@@ -1,0 +1,945 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <link rel="icon" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kukmoon谷月">
+  <meta name="keywords" content="Windows,ZIP,文件名,乱码,代码页,Code page,Unicode,UTF-8">
+  
+    <meta name="description" content="很多海外 MOS 学员询问谷月老师，用英文版 Windows 打开 ZIP 压缩包，发现压缩包里的文件名是乱码。怎么办？谷月老师提供两种解决办法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="英文版 Windows 打开 ZIP 压缩包文件名乱码怎么办？">
+<meta property="og:url" content="https://blog.kukmoon.com/72b0ec064658/index.html">
+<meta property="og:site_name" content="谷中望月">
+<meta property="og:description" content="很多海外 MOS 学员询问谷月老师，用英文版 Windows 打开 ZIP 压缩包，发现压缩包里的文件名是乱码。怎么办？谷月老师提供两种解决办法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.kukmoon.com/2022-05-01-19-47-43.jpg">
+<meta property="article:published_time" content="2022-05-01T07:19:36.000Z">
+<meta property="article:modified_time" content="2022-05-01T07:19:37.000Z">
+<meta property="article:author" content="Kukmoon谷月">
+<meta property="article:tag" content="谷月老师讲MOS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.kukmoon.com/2022-05-01-19-47-43.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>英文版 Windows 打开 ZIP 压缩包文件名乱码怎么办？ - 谷中望月</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel-highlightjs.css">
+<link rel="stylesheet" href="/css/social-share.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":null},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="谷中望月" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>谷中望月</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-note"></i>
+                <span>镜像</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog.kukmoon.com" target="_self">
+                    
+                    <span>全球统一入口</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://kukmoon.github.io" target="_self">
+                    
+                    <span>镜像 0（GitHub Pages）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog1.kukmoon.com" target="_self">
+                    
+                    <span>镜像 1（日本）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog2.kukmoon.com" target="_self">
+                    
+                    <span>镜像 2（CF Pages）</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.kukmoon.com/banner_img/2023_05and06.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="英文版 Windows 打开 ZIP 压缩包文件名乱码怎么办？"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Kukmoon谷月
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-01 15:19" pubdate>
+          2022年5月1日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          851 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">英文版 Windows 打开 ZIP 压缩包文件名乱码怎么办？</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2022-05-01T15:19:37+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://img.kukmoon.com/2022-05-01-19-47-43.jpg" srcset="/img/loading.gif" lazyload alt="英文版 Windows 打开 ZIP 压缩包文件名乱码怎么办？"></p>
+<figcaption aria-hidden="true" class="image-caption">Zip format icons created by Freepik - Flaticon<br>White abstract vector created by freepik - <a href="www.freepik.com">www.freepik.com</a></figcaption>
+<h2 id="1-问题">1 问题</h2>
+<p>有很多海外 MOS 学员询问谷月老师，用英文版 Windows 打开 ZIP 压缩包，发现压缩包里的文件名是乱码。怎么办？</p>
+<p><img src="https://img.kukmoon.com/2022-05-01-16-06-21.png" srcset="/img/loading.gif" lazyload alt="正确的文件名"></p>
+<p><img src="https://img.kukmoon.com/2022-05-01-16-06-55.png" srcset="/img/loading.gif" lazyload alt="乱码的文件名"></p>
+<h2 id="2-分析">2 分析</h2>
+<p><strong>简而言之，这是因为英文版的 Windows 内置的“压缩文件夹”（Compressed folder）功能无法正确解码压缩包内文件名中的汉字。</strong></p>
+<h2 id="3-解决">3 解决</h2>
+<p>谷月老师有两种解决办法，一是修改 Windows 的当前区域设置（Current System Locale），让 Windows 能正确解码压缩包内文件名中的汉字；二是使用能正确解码的第三方压缩软件。</p>
+<h3 id="3-1-修改-Windows-设置">3.1 修改 Windows 设置</h3>
+<p>此修改是可逆的，如果在运行某些来自欧洲的软件出现乱码时，可以将此项改回来。</p>
+<p><strong>操作步骤</strong>：点击【Start】➡【Settings】（或者按下【Win + I】键）➡【Time and Language】➡【Language】➡【Administrative language setting】➡【Administrative】选项卡➡【Change System Locale】，把【Current System Locale】从【English (United Status)】改成【Chinese (Simplified, China)】，点击【OK】，重启系统。</p>
+<p>执行以上步骤以后，再双击打开 ZIP 压缩包，Windows 就可以正确显示压缩包内文件名中的简体中文了。而且，解压之后，文件名也是正确的，没有乱码。</p>
+<p><img src="https://img.kukmoon.com/2022-05-01-16-45-44.gif" srcset="/img/loading.gif" lazyload alt="Current System Locale.gif"></p>
+<div class="con" style="text-align:center">
+    <iframe  width="560" height="315" src="//player.bilibili.com/player.html?aid=726233874&bvid=BV1QS4y187Mu&cid=589621125&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+    <p class="image-caption" style="margin:0.25rem auto 2rem;">Bilibili 观看</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/e2yp3YrjZDA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <p class="image-caption" style="margin:0.25rem auto 2rem;">YouTube 观看</p>
+</div>
+<h3 id="3-2-使用第三方压缩软件">3.2 使用第三方压缩软件</h3>
+<p>谷月老师建议使用 Bandizip 6.x。Bandizip 有很强的编码识别功能，可以轻松搞定文件名中的乱码。注意，6.x 是最后的免费版本，从 7.0 开始收费，因此谷月老师建议用 6.x 版。</p>
+<p>用 Bandizip 6.26 Portable 打开压缩包，点击【Code Page】➡【Simplified Chinese】，就可以正确地显示文件名中的简体中文。而且，用 Bandizip 解压之后，文件名也是正确的，没有乱码。</p>
+<p><img src="https://img.kukmoon.com/2022-05-01-18-02-44.gif" srcset="/img/loading.gif" lazyload alt="Bandizip 6.26 Portable"></p>
+<div class="con" style="text-align:center">
+    <iframe  width="560" height="315" src="//player.bilibili.com/player.html?aid=213734900&bvid=BV15a411a7BV&cid=589720119&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+    <p class="image-caption" style="margin:0.25rem auto 2rem;">Bilibili 观看</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/NHnHjdsjieU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <p class="image-caption" style="margin:0.25rem auto 2rem;">YouTube 观看</p>
+</div>
+<p><strong>下载方式</strong>：关注谷月老师的公众号【谷月老师讲Office】（kukmoon-office），回复【Bandizip】（不需要加两边的括号），获取下载地址。</p>
+<h2 id="4-总结与讨论">4 总结与讨论</h2>
+<p>在 Windows 中，为了保持对旧版 Windows 的兼容，文件名的编码是 ANSI 编码，而不是当代全球通用的 UTF-8 编码。</p>
+<p>至于 ZIP 压缩包，由于 ZIP 在问世时，Unicode 及 UTF-8 尚未问世，因此 ZIP 原生不支持 UTF-8 编码。</p>
+<p>Windows 内置的“压缩文件夹”工具，在创建压缩包时，根据当前操作系统的代码页为文件名编码。简体中文版 Windows 的代码页是 936，具体的编码是 GBK，而英文版 Windows 的代码页是 437，具体的编码是 Windows-1252。后者无法解读前者，因此无法正确显示压缩包内文件名中的汉字。</p>
+<p>2007 年，ZIP 格式的拥有者 PKWARE 公司发布了一个补丁，让 ZIP 格式最终可以支持 UTF-8。用户既可以强行用 UTF-8 编码和存储压缩包中的文件名（以前，Mac、Linux、Unix 用户就是这样做的），又可以保持文件名的原始编码，而把 UTF-8 版本的文件名保存到 ZIP 压缩包的文件头。</p>
+<p>尽管 RAR 和 7Z 格式都是原生支持 UTF-8 的，可以彻底消除文件名乱码的问题，，但是，由于 ZIP 历史长而且授权是开放的，因此它的应用范围很广，RAR 和 7Z 始终难以取代 ZIP，更不要说 RAR 是闭源格式，还存在版权问题。至少目前谷月老师仍然坚持以 ZIP 格式分享资料和打包。</p>
+<h2 id="图片版权">图片版权</h2>
+<p>题图：自绘。Zip format icons created by Freepik - Flaticon. White abstract vector created by freepik - <a href="www.freepik.com"><a target="_blank" rel="noopener" href="http://www.freepik.com">www.freepik.com</a></p>
+<p>头图：</p>
+
+                
+              </div>
+            
+            <div>
+                <!-- 引入自己编写的“分享到”模块（新） -->
+                <div style="text-align:right;"> <!-- 自己添加的“分享到”模块：开始。用的是 social-share.js。让所有的分享按钮右对齐-->
+	
+	<div class="social-share-container" style="margin-top: 15px;"> <!-- 生成一组分享按钮 -->
+		 <!--如果博客语言是中文，就显示“点击分享到：”，非中文一律显示“Share it:”-->
+			点击分享到：&nbsp;&nbsp;
+		
+	</div>
+	<!-- 加载 jQuery 库 -->
+	
+<script src="/js/jquery.min.js"></script>
+
+	<!-- 导入 qrcode.min.js -->
+	
+<script src="/js/qrcode.min.js"></script>
+
+	<!-- 加载 social-share.js 的 js 库，另外还要加载 social-share.js 的 CSS，可以修改 `_config.fluid.yml` 的 `custom_css` 加载，也可以修改 `themes/fluid/layout/_partial/css.ejs` 加载。-->
+	
+<script src="/js/social-share.min.js"></script>
+
+	<script> 
+	/* 执行 js 代码，new 一个新对象，详见 social-share.js 在 GitHub 的文档 */
+		new SocialShare('.social-share-container', {
+			theme: 'circle',  // 使用圆形主题
+			// 单独定义wechat分享参数
+			wechat: {
+				sort: 1, // 排序参数，数字较小的展示在前面,默认999
+			}
+		});		
+	</script>
+</div> <!-- 自己添加的“分享到”模块：结束。-->            
+                <hr/>
+                <!-- 引入自己编写的打赏模块（新） -->
+                <div style="text-align: center; margin: auto auto 1.5em;"><!--自己添加的打赏模块：开始-->
+  <!--如果主题的  _config.yml 中开启打赏-->
+    <div style="border-style:solid none none none; border-color: #663399; border-width: 0.5em; color: #663399; font-weight:bold; font-size: 1.2em; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+	   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+	    求扫码打赏
+	  	
+	</div>
+    <div style="font-size: 14px;margin-bottom: 10px;">
+	  “我这么可爱，请给我钱 o(*^ω^*)o” <!--在主题的 _config.yml 中设置打赏提示语-->
+	</div>
+    <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+	  <img src="/img/zhi-fu-bao-shou-kuan-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/wei-xin-zan-shang-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+	</div>
+  
+</div> <!--自己添加的打赏模块：结束-->
+                <hr/>
+            </div>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/IT%E6%8A%80%E6%9C%AF/" class="category-chain-item">IT技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%B0%B7%E6%9C%88%E8%80%81%E5%B8%88%E8%AE%B2MOS/" class="print-no-link">#谷月老师讲MOS</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>英文版 Windows 打开 ZIP 压缩包文件名乱码怎么办？</div>
+      <div>https://blog.kukmoon.com/72b0ec064658/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Kukmoon谷月</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/e40749665cd8/" title="Mac 解压 ZIP 发生文件名乱码怎么办？">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Mac 解压 ZIP 发生文件名乱码怎么办？</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/49d130bb4c5d/" title="Hexo 博客自动部署到 cPanel 面板的 public_html 目录">
+                        <span class="hidden-mobile">Hexo 博客自动部署到 cPanel 面板的 public_html 目录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appKey":"lvOI6tnv4jNUP9tEnIYJNKtW","path":"window.location.pathname","placeholder":"您的评论","avatar":"wavatar","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://qk25tpv2.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appkey":"lvOI6tnv4jNUP9tEnIYJNKtW"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

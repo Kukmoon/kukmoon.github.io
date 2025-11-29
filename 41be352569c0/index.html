@@ -1,0 +1,941 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <link rel="icon" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kukmoon谷月">
+  <meta name="keywords" content="IT技术,前端,HTML,CSS,网页,排版,电子笔记">
+  
+    <meta name="description" content="我把纽约时报中文网的双栏排版的 HTML 和 CSS 扒了出来做成了模板，给自己的电子笔记用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="纽约时报中文网的双栏排版太牛逼了">
+<meta property="og:url" content="https://blog.kukmoon.com/41be352569c0/index.html">
+<meta property="og:site_name" content="谷中望月">
+<meta property="og:description" content="我把纽约时报中文网的双栏排版的 HTML 和 CSS 扒了出来做成了模板，给自己的电子笔记用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.kukmoon.com/2022-03-26-23-57-29.webp">
+<meta property="article:published_time" content="2022-03-26T15:42:55.000Z">
+<meta property="article:modified_time" content="2022-03-26T15:42:56.000Z">
+<meta property="article:author" content="Kukmoon谷月">
+<meta property="article:tag" content="IT技术">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.kukmoon.com/2022-03-26-23-57-29.webp">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>纽约时报中文网的双栏排版太牛逼了 - 谷中望月</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel-highlightjs.css">
+<link rel="stylesheet" href="/css/social-share.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":null},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="谷中望月" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>谷中望月</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-note"></i>
+                <span>镜像</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog.kukmoon.com" target="_self">
+                    
+                    <span>全球统一入口</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://kukmoon.github.io" target="_self">
+                    
+                    <span>镜像 0（GitHub Pages）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog1.kukmoon.com" target="_self">
+                    
+                    <span>镜像 1（日本）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog2.kukmoon.com" target="_self">
+                    
+                    <span>镜像 2（CF Pages）</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.kukmoon.com/banner_img/2022_03and04.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="纽约时报中文网的双栏排版太牛逼了"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Kukmoon谷月
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-26 23:42" pubdate>
+          2022年3月26日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">纽约时报中文网的双栏排版太牛逼了</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2022-03-26T23:42:56+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://img.kukmoon.com/2022-03-26-23-57-29.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="纽约时报中文网的双栏排版真的太棒了！">纽约时报中文网的双栏排版真的太棒了！</h2>
+<p><a target="_blank" rel="noopener" href="https://cn.nytimes.com">纽约时报中文网</a> 中英双语文章的双栏排版真的太棒了！</p>
+<p>左边一栏是英文，右边一栏是对应的中文，高度自适应（图1）。</p>
+<p><img src="https://img.kukmoon.com/2022-03-26-23-45-39.png" srcset="/img/loading.gif" lazyload alt="图1"></p>
+<p>最牛逼的是，如果减少浏览器窗口的宽度（例如在手机上看），中文段落会自动移动到英文段落的下方（图2）。显然，它使用了 CSS 中的 <code>flex</code> 属性并设置了 <code>wrap</code> 值。</p>
+<p><img src="https://img.kukmoon.com/2022-03-26-23-47-04.png" srcset="/img/loading.gif" lazyload alt="图2"></p>
+<h2 id="提取对应的-HTML-和-CSS">提取对应的 HTML 和 CSS</h2>
+<p>我用浅薄的前端知识，研究了半天，把对应的 HTML 和 CSS 扒了出来，用在了我自己的电子笔记里（图3、图4）。左边一栏是原文，右边一栏写笔记。</p>
+<p><img src="https://img.kukmoon.com/2022-03-26-23-47-40.png" srcset="/img/loading.gif" lazyload alt="图3"></p>
+<p><img src="https://img.kukmoon.com/2022-03-27-21-27-06.png" srcset="/img/loading.gif" lazyload alt="图4"></p>
+<h3 id="把-HTML-和-CSS-代码分享出来">把 HTML 和 CSS 代码分享出来</h3>
+<p>把 HTML 和 CSS 代码分享出来，如下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;zh&quot;</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;Content-Type&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;text/html; charset=utf-8&quot;</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>纽约时报中文网的双栏排版<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">			<span class="hljs-selector-tag">figure</span> &#123;<span class="hljs-attribute">display</span>:block;<span class="hljs-attribute">margin-block-start</span>:<span class="hljs-number">1em</span>;<span class="hljs-attribute">margin-block-end</span>:<span class="hljs-number">1em</span>;<span class="hljs-attribute">margin-inline-start</span>:<span class="hljs-number">40px</span>;<span class="hljs-attribute">margin-inline-end</span>:<span class="hljs-number">40px</span>;&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.container</span>,<span class="hljs-selector-class">.container-fluid</span>&#123;<span class="hljs-attribute">padding-right</span>:.<span class="hljs-number">9375rem</span>;<span class="hljs-attribute">padding-left</span>:.<span class="hljs-number">9375rem</span>;<span class="hljs-attribute">margin-right</span>:auto;<span class="hljs-attribute">margin-left</span>:auto;<span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>&#125;</span><br><span class="language-css">			<span class="hljs-keyword">@-ms-viewport</span>&#123;<span class="hljs-attribute">width</span>:device-width&#125;*,<span class="hljs-selector-pseudo">::after</span>,<span class="hljs-selector-pseudo">::before</span>&#123;<span class="hljs-attribute">box-sizing</span>:inherit&#125;</span><br><span class="language-css">			<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">34em</span>)&#123;<span class="hljs-selector-class">.container</span>&#123;<span class="hljs-attribute">max-width</span>:<span class="hljs-number">34rem</span>&#125;&#125;</span><br><span class="language-css">			<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">48em</span>)&#123;<span class="hljs-selector-class">.container</span>&#123;<span class="hljs-attribute">max-width</span>:<span class="hljs-number">45rem</span>&#125;&#125;</span><br><span class="language-css">			<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">62em</span>)&#123;<span class="hljs-selector-class">.container</span>&#123;<span class="hljs-attribute">max-width</span>:<span class="hljs-number">60rem</span>&#125;&#125;</span><br><span class="language-css">			<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">75em</span>)&#123;<span class="hljs-selector-class">.container</span>&#123;<span class="hljs-attribute">max-width</span>:<span class="hljs-number">72.25rem</span>&#125;&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.row</span>&#123;<span class="hljs-attribute">display</span>:-ms-flexbox;<span class="hljs-attribute">display</span>:flex;-ms-<span class="hljs-attribute">flex-wrap</span>:wrap;<span class="hljs-attribute">flex-wrap</span>:wrap;<span class="hljs-attribute">margin-right</span>:-.<span class="hljs-number">9375rem</span>;<span class="hljs-attribute">margin-left</span>:-.<span class="hljs-number">9375rem</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.col-lg-3</span>,<span class="hljs-selector-class">.col-lg-5</span>,<span class="hljs-selector-class">.col-lg-6</span>&#123;<span class="hljs-attribute">position</span>:relative;<span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>;<span class="hljs-attribute">min-height</span>:<span class="hljs-number">1px</span>;<span class="hljs-attribute">padding-right</span>:.<span class="hljs-number">9375rem</span>;<span class="hljs-attribute">padding-left</span>:.<span class="hljs-number">9375rem</span>&#125;</span><br><span class="language-css">			<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">34em</span>)&#123;</span><br><span class="language-css">			<span class="hljs-selector-class">.col-lg-3</span>&#123;-ms-<span class="hljs-attribute">flex</span>:<span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">25%</span>;<span class="hljs-attribute">flex</span>:<span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">25%</span>;<span class="hljs-attribute">max-width</span>:<span class="hljs-number">25%</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.col-lg-5</span>&#123;-ms-<span class="hljs-attribute">flex</span>:<span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">41.66667%</span>;<span class="hljs-attribute">flex</span>:<span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">41.66667%</span>;<span class="hljs-attribute">max-width</span>:<span class="hljs-number">41.66667%</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.col-lg-6</span>&#123;-ms-<span class="hljs-attribute">flex</span>:<span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">50%</span>;<span class="hljs-attribute">flex</span>:<span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">50%</span>;<span class="hljs-attribute">max-width</span>:<span class="hljs-number">50%</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.form-inline</span> <span class="hljs-selector-class">.has-feedback</span> <span class="hljs-selector-class">.form-control-feedback</span>&#123;<span class="hljs-attribute">top</span>:<span class="hljs-number">0</span>&#125;&#125;*&#123;<span class="hljs-attribute">box-sizing</span>:border-box&#125;</span><br><span class="language-css">			&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-pseudo">:after</span>,<span class="hljs-selector-class">.download</span><span class="hljs-selector-pseudo">:after</span>,<span class="hljs-selector-class">.related</span>,<span class="hljs-selector-class">.related-cont</span> <span class="hljs-selector-class">.refer-list</span> <span class="hljs-selector-tag">li</span><span class="hljs-selector-pseudo">:after</span>&#123;<span class="hljs-attribute">clear</span>:both&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-pseudo">:after</span>,<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-pseudo">:before</span>&#123;<span class="hljs-attribute">content</span>:<span class="hljs-string">&quot; &quot;</span>;<span class="hljs-attribute">display</span>:table&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span>&#123;<span class="hljs-attribute">margin</span>:<span class="hljs-number">0</span> auto&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-pseudo">:after</span>,<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-pseudo">:before</span>&#123;<span class="hljs-attribute">content</span>:<span class="hljs-string">&quot; &quot;</span>;<span class="hljs-attribute">display</span>:table&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span>&#123;<span class="hljs-attribute">padding-left</span>:<span class="hljs-number">17.8125rem</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span> <span class="hljs-selector-class">.img-box</span>&#123;<span class="hljs-attribute">width</span>:<span class="hljs-number">17.8125rem</span>;<span class="hljs-attribute">margin-left</span>:-<span class="hljs-number">17.8125rem</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span><span class="hljs-selector-class">.large</span>&#123;<span class="hljs-attribute">margin</span>:<span class="hljs-number">2rem</span> -<span class="hljs-number">1.25rem</span>;<span class="hljs-attribute">padding</span>:<span class="hljs-number">0</span>;<span class="hljs-attribute">width</span>:auto;<span class="hljs-attribute">border</span>:none&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span><span class="hljs-selector-class">.large</span> <span class="hljs-selector-class">.img-box</span>&#123;<span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>;<span class="hljs-attribute">float</span>:none;<span class="hljs-attribute">margin</span>:<span class="hljs-number">0</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span><span class="hljs-selector-class">.large</span> <span class="hljs-selector-tag">figcaption</span>&#123;<span class="hljs-attribute">font-family</span>:Helvetica,Arial,Georgia,<span class="hljs-string">&quot;PingFang SC&quot;</span>,<span class="hljs-string">&quot;Heiti SC&quot;</span>,<span class="hljs-string">&quot;Microsoft Yahei&quot;</span>,simsun,sans-serif;<span class="hljs-attribute">line-height</span>:<span class="hljs-number">1em</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span><span class="hljs-selector-class">.large</span> <span class="hljs-selector-tag">figcaption</span> <span class="hljs-selector-tag">cite</span>,<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span><span class="hljs-selector-class">.large</span> <span class="hljs-selector-tag">figcaption</span> <span class="hljs-selector-tag">span</span>&#123;<span class="hljs-attribute">display</span>:inline&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span><span class="hljs-selector-class">.large</span> <span class="hljs-selector-tag">figcaption</span> <span class="hljs-selector-tag">span</span>&#123;<span class="hljs-attribute">font-size</span>:.<span class="hljs-number">8125rem</span>;<span class="hljs-attribute">color</span>:<span class="hljs-number">#666</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span><span class="hljs-selector-class">.large</span> <span class="hljs-selector-tag">figcaption</span> <span class="hljs-selector-tag">cite</span>&#123;<span class="hljs-attribute">font-size</span>:.<span class="hljs-number">6875rem</span>;<span class="hljs-attribute">color</span>:<span class="hljs-number">#666</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-class">.article-dual</span> <span class="hljs-selector-class">.article-body</span>&#123;<span class="hljs-attribute">margin-left</span>:<span class="hljs-number">0</span>;<span class="hljs-attribute">border-bottom</span>:<span class="hljs-number">0</span>;<span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-class">.article-dual</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-partial</span>&#123;<span class="hljs-attribute">max-width</span>:<span class="hljs-number">75rem</span>;<span class="hljs-attribute">margin</span>:<span class="hljs-number">0</span> auto&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-class">.article-dual</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-body-item</span>&#123;<span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>;-ms-<span class="hljs-attribute">flex</span>:<span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">100%</span>;<span class="hljs-attribute">flex</span>:<span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">100%</span>;<span class="hljs-attribute">max-width</span>:<span class="hljs-number">100%</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-class">.article-dual</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-body-aside</span>&#123;<span class="hljs-attribute">display</span>:none&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-class">.article-dual</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span>&#123;<span class="hljs-attribute">max-width</span>:<span class="hljs-number">35.625rem</span>;<span class="hljs-attribute">padding</span>:<span class="hljs-number">0</span>;<span class="hljs-attribute">margin</span>:<span class="hljs-number">2rem</span> auto;<span class="hljs-attribute">border-top</span>:none&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-class">.article-dual</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span> <span class="hljs-selector-class">.img-box</span>&#123;<span class="hljs-attribute">width</span>:<span class="hljs-number">17.8125rem</span>;<span class="hljs-attribute">float</span>:none;<span class="hljs-attribute">margin</span>:<span class="hljs-number">0</span> auto&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-class">.article-dual</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span> <span class="hljs-selector-tag">figcaption</span>&#123;<span class="hljs-attribute">text-align</span>:center&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-class">.article-dual</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span><span class="hljs-selector-class">.large</span> <span class="hljs-selector-class">.img-box</span>&#123;<span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-class">.article-dual</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span><span class="hljs-selector-class">.large</span> <span class="hljs-selector-tag">figcaption</span>&#123;<span class="hljs-attribute">text-align</span><span class="hljs-selector-pseudo">:left</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-class">.article-dual</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-dual-body-item</span>&#123;<span class="hljs-attribute">border-bottom</span>:<span class="hljs-number">1px</span> solid <span class="hljs-number">#eee</span>;<span class="hljs-attribute">margin</span>:<span class="hljs-number">2rem</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>;<span class="hljs-attribute">font-family</span>:Georgia,<span class="hljs-string">&quot;PingFang SC&quot;</span>,<span class="hljs-string">&quot;Heiti SC&quot;</span>,<span class="hljs-string">&quot;Microsoft Yahei&quot;</span>,simsun,sans-serif&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-class">.article-dual</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-dual-body-item</span><span class="hljs-selector-pseudo">:last-child</span>&#123;<span class="hljs-attribute">border</span>:none&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span>&#123;<span class="hljs-attribute">border-bottom</span>:<span class="hljs-number">1px</span> solid <span class="hljs-number">#ddd</span>;<span class="hljs-attribute">padding-left</span>:<span class="hljs-number">0</span>;<span class="hljs-attribute">margin-left</span>:<span class="hljs-number">30px</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-paragraph</span>,<span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-tag">p</span>&#123;<span class="hljs-attribute">font-size</span>:<span class="hljs-number">1.125rem</span>;<span class="hljs-attribute">line-height</span>:<span class="hljs-number">1.875rem</span>;<span class="hljs-attribute">margin</span>:<span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1.25rem</span>;<span class="hljs-attribute">color</span>:<span class="hljs-number">#333</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span>&#123;<span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>;<span class="hljs-attribute">padding</span>:.<span class="hljs-number">625rem</span> <span class="hljs-number">0</span> .<span class="hljs-number">625rem</span> <span class="hljs-number">11.875rem</span>;<span class="hljs-attribute">border-top</span>:<span class="hljs-number">1px</span> solid <span class="hljs-number">#ddd</span>;<span class="hljs-attribute">margin</span>:.<span class="hljs-number">625rem</span> <span class="hljs-number">0</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span><span class="hljs-selector-pseudo">:after</span>,<span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span><span class="hljs-selector-pseudo">:before</span>&#123;<span class="hljs-attribute">content</span>:<span class="hljs-string">&quot; &quot;</span>;<span class="hljs-attribute">display</span>:table&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span><span class="hljs-selector-pseudo">:after</span>&#123;<span class="hljs-attribute">clear</span>:both&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span> <span class="hljs-selector-class">.img-box</span>&#123;<span class="hljs-attribute">width</span>:<span class="hljs-number">11.875rem</span>;<span class="hljs-attribute">float</span><span class="hljs-selector-pseudo">:left</span>;<span class="hljs-attribute">margin-left</span>:-<span class="hljs-number">11.875rem</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-content</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-inline-photo</span> <span class="hljs-selector-class">.img-box</span> <span class="hljs-selector-tag">img</span>&#123;<span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>;<span class="hljs-attribute">height</span>:auto&#125;</span><br><span class="language-css">			<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">62rem</span>)&#123;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span>&#123;<span class="hljs-attribute">padding</span>:<span class="hljs-number">0</span> .<span class="hljs-number">9375rem</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-class">.article-dual</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-dual-body-item</span>&#123;<span class="hljs-attribute">max-width</span>:<span class="hljs-number">35.625rem</span>;<span class="hljs-attribute">margin</span>:<span class="hljs-number">2rem</span> auto <span class="hljs-number">0</span>&#125;</span><br><span class="language-css">			<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-class">.article-dual</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-dual-body-item</span> <span class="hljs-selector-class">.col-lg-12</span>,<span class="hljs-selector-class">.article-area</span> <span class="hljs-selector-class">.article-content</span><span class="hljs-selector-class">.article-dual</span> <span class="hljs-selector-class">.article-body</span> <span class="hljs-selector-class">.article-dual-body-item</span> <span class="hljs-selector-class">.col-lg-6</span>&#123;<span class="hljs-attribute">padding</span>:<span class="hljs-number">0</span>&#125;</span><br><span class="language-css">			&#125;</span><br><span class="language-css">		</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;article-area&quot;</span>&gt;</span><br>			<span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;article-content article-dual font-normal&quot;</span>&gt;</span><br>				<span class="hljs-comment">&lt;!-- 整个正文 --&gt;</span><br>				<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span>&gt;</span><br>					<span class="hljs-comment">&lt;!-- 文章内容区 --&gt;</span><br>					<span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;article-body&quot;</span>&gt;</span><br>						<span class="hljs-comment">&lt;!-- partial 代表文章的一部分，每个 section 有多个 partial，NYTC 在每个 partial 之间插入广告 --&gt;</span><br>						<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;article-partial article-body-item col-lg-5&quot;</span>&gt;</span><br><br>							<span class="hljs-comment">&lt;!-- 分成两栏，每个 article-dual-body-item 代表文章的一段 --&gt;</span><br>							<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row article-dual-body-item&quot;</span>&gt;</span><br>								<span class="hljs-comment">&lt;!-- 第一栏，英文版的一段 --&gt;</span><br>								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-lg-6 article-paragraph&quot;</span>&gt;</span><br>									<span class="hljs-comment">&lt;!-- 插入文字 --&gt;</span><br>									Example text. Example text. Example text. Example text. Example text. Example text. Example<br>									text. Example text. Example text. Example text. Example text. Example text. Example text.<br>								<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>								<span class="hljs-comment">&lt;!-- 第二栏，中文版的一段--&gt;</span><br>								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-lg-6 article-paragraph&quot;</span>&gt;</span><br>									<span class="hljs-comment">&lt;!-- 插入文字 --&gt;</span><br>									示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。<br>								<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>							<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br>							<span class="hljs-comment">&lt;!-- 分成两栏，每个 article-dual-body-item 代表文章的一段 --&gt;</span><br>							<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row article-dual-body-item&quot;</span>&gt;</span><br>								<span class="hljs-comment">&lt;!-- 第一栏，英文版的一段 --&gt;</span><br>								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-lg-6 article-paragraph&quot;</span>&gt;</span><br>									<span class="hljs-comment">&lt;!-- 插入文字 --&gt;</span><br>									Example text. Example text. Example text. Example text. Example text. Example text. Example<br>									text. Example text. Example text. Example text. Example text. Example text. Example text.<br>								<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>								<span class="hljs-comment">&lt;!-- 第二栏，中文版的一段--&gt;</span><br>								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-lg-6 article-paragraph&quot;</span>&gt;</span><br>									<span class="hljs-comment">&lt;!-- 插入文字 --&gt;</span><br>									示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。<br>								<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>							<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br>							<span class="hljs-comment">&lt;!-- 分成两栏，每个 article-dual-body-item 代表文章的一段 --&gt;</span><br>							<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row article-dual-body-item&quot;</span>&gt;</span><br>								<span class="hljs-comment">&lt;!-- 第一栏，英文版的一段 --&gt;</span><br>								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-lg-6 article-paragraph&quot;</span>&gt;</span><br>									<span class="hljs-comment">&lt;!-- 插入文字 --&gt;</span><br>									Example text. Example text. Example text. Example text. Example text. Example text. Example<br>									text. Example text. Example text. Example text. Example text. Example text. Example text.<br>								<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>								<span class="hljs-comment">&lt;!-- 第二栏，中文版的一段--&gt;</span><br>								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-lg-6 article-paragraph&quot;</span>&gt;</span><br>									<span class="hljs-comment">&lt;!-- 插入文字 --&gt;</span><br>									示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。示例文字。<br>								<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>							<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br>							<span class="hljs-comment">&lt;!-- 图片 --&gt;</span><br>							<span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;article-inline-photo large&quot;</span>&gt;</span><br>								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;img-box&quot;</span>&gt;</span><br>									<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./picture.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>								<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>								<span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span><br>									<span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>图片的小标题<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">cite</span>&gt;</span>图片来源<span class="hljs-tag">&lt;/<span class="hljs-name">cite</span>&gt;</span><br>								<span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span><br>							<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span><br><br>							<span class="hljs-comment">&lt;!-- 分成两栏，每个 article-dual-body-item 代表文章的一段 --&gt;</span><br>							<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row article-dual-body-item&quot;</span>&gt;</span><br>								<span class="hljs-comment">&lt;!-- 第一栏，英文版的一段 --&gt;</span><br>								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-lg-6 article-paragraph&quot;</span>&gt;</span><br>									<span class="hljs-comment">&lt;!-- 插入文字 --&gt;</span><br>								<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>								<span class="hljs-comment">&lt;!-- 第二栏，中文版的一段--&gt;</span><br>								<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-lg-6 article-paragraph&quot;</span>&gt;</span><br>									<span class="hljs-comment">&lt;!-- 插入文字 --&gt;</span><br>								<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>							<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br>						<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>					<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span><br>				<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>			<span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span><br>		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+<h2 id="方法">方法</h2>
+<p>说穿了也没什么难的。</p>
+<ol>
+<li>把网页保存到本地，注意保存格式选择“网页，全部”。</li>
+<li>用文本编辑器和浏览器同时打开 HTML 文件。在网页中打开“开发者工具”（现在叫“检查”或“检查元素”），根据前端开发知识，结合网页的源码，分析网页的结构以及每个元素的 id、class 及其样式，把对应的样式从外部 CSS 文件中复制到 HTML 文件中变成内联样式。</li>
+<li>谷月姐使用的组合是 <a target="_blank" rel="noopener" href="https://notepad-plus-plus.org/">Notepad++</a> 和 <a target="_blank" rel="noopener" href="https://www.mozilla.org/zh-CN/firefox/all/#product-desktop-release">Firefox （国际版）</a>，Notepad++ 结合 <a target="_blank" rel="noopener" href="https://github.com/bruderstein/NppTidy2">Tidy2</a> 插件，梳理 HTML 文件的结构太方便了（图5）。<br>
+<img src="https://img.kukmoon.com/2022-03-27-21-37-01.png" srcset="/img/loading.gif" lazyload alt="图5"></li>
+</ol>
+<p>【完】</p>
+<h2 id="相关阅读">相关阅读</h2>
+<p>相关阅读：关于 CSS 的 <code>flex</code> 属性</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/css3_pr_flex.asp">https://www.w3schools.com/cssref/css3_pr_flex.asp</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex">https://developer.mozilla.org/en-US/docs/Web/CSS/flex</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/pr_flex.asp">https://www.w3school.com.cn/cssref/pr_flex.asp</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/cssref/css3-pr-flex.html">https://www.runoob.com/cssref/css3-pr-flex.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html</a></li>
+</ol>
+<h2 id="图片版权">图片版权</h2>
+<p>头图：Banner Image by <a target="_blank" rel="noopener" href="https://pixabay.com/users/milkusmaximus-2484704/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=5759458">milkusmaximus</a> from <a target="_blank" rel="noopener" href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=5759458">Pixabay</a></p>
+
+                
+              </div>
+            
+            <div>
+                <!-- 引入自己编写的“分享到”模块（新） -->
+                <div style="text-align:right;"> <!-- 自己添加的“分享到”模块：开始。用的是 social-share.js。让所有的分享按钮右对齐-->
+	
+	<div class="social-share-container" style="margin-top: 15px;"> <!-- 生成一组分享按钮 -->
+		 <!--如果博客语言是中文，就显示“点击分享到：”，非中文一律显示“Share it:”-->
+			点击分享到：&nbsp;&nbsp;
+		
+	</div>
+	<!-- 加载 jQuery 库 -->
+	
+<script src="/js/jquery.min.js"></script>
+
+	<!-- 导入 qrcode.min.js -->
+	
+<script src="/js/qrcode.min.js"></script>
+
+	<!-- 加载 social-share.js 的 js 库，另外还要加载 social-share.js 的 CSS，可以修改 `_config.fluid.yml` 的 `custom_css` 加载，也可以修改 `themes/fluid/layout/_partial/css.ejs` 加载。-->
+	
+<script src="/js/social-share.min.js"></script>
+
+	<script> 
+	/* 执行 js 代码，new 一个新对象，详见 social-share.js 在 GitHub 的文档 */
+		new SocialShare('.social-share-container', {
+			theme: 'circle',  // 使用圆形主题
+			// 单独定义wechat分享参数
+			wechat: {
+				sort: 1, // 排序参数，数字较小的展示在前面,默认999
+			}
+		});		
+	</script>
+</div> <!-- 自己添加的“分享到”模块：结束。-->            
+                <hr/>
+                <!-- 引入自己编写的打赏模块（新） -->
+                <div style="text-align: center; margin: auto auto 1.5em;"><!--自己添加的打赏模块：开始-->
+  <!--如果主题的  _config.yml 中开启打赏-->
+    <div style="border-style:solid none none none; border-color: #663399; border-width: 0.5em; color: #663399; font-weight:bold; font-size: 1.2em; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+	   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+	    求扫码打赏
+	  	
+	</div>
+    <div style="font-size: 14px;margin-bottom: 10px;">
+	  “我这么可爱，请给我钱 o(*^ω^*)o” <!--在主题的 _config.yml 中设置打赏提示语-->
+	</div>
+    <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+	  <img src="/img/zhi-fu-bao-shou-kuan-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/wei-xin-zan-shang-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+	</div>
+  
+</div> <!--自己添加的打赏模块：结束-->
+                <hr/>
+            </div>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/IT%E6%8A%80%E6%9C%AF/" class="category-chain-item">IT技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/IT%E6%8A%80%E6%9C%AF/" class="print-no-link">#IT技术</a>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF/" class="print-no-link">#前端</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>纽约时报中文网的双栏排版太牛逼了</div>
+      <div>https://blog.kukmoon.com/41be352569c0/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Kukmoon谷月</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年3月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/590e9584210f/" title="Notepad++ 与 Tidy2：前端必备神器">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Notepad++ 与 Tidy2：前端必备神器</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/b51292f74e95/" title="去中心化用 GitHub Actions 把 Hexo 博客源码备份到 Gitee 和 CODING">
+                        <span class="hidden-mobile">去中心化用 GitHub Actions 把 Hexo 博客源码备份到 Gitee 和 CODING</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appKey":"lvOI6tnv4jNUP9tEnIYJNKtW","path":"window.location.pathname","placeholder":"您的评论","avatar":"wavatar","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://qk25tpv2.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appkey":"lvOI6tnv4jNUP9tEnIYJNKtW"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

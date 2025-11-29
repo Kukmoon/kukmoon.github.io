@@ -1,0 +1,981 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <link rel="icon" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kukmoon谷月">
+  <meta name="keywords" content="Nginx,V2Ray,VMess,WebSocket,TLS,Cloudflare,网络技术,VPS,Windows Server">
+  
+    <meta name="description" content="在一台 Windows Server 服务器上搭建 V2Ray 服务端，还要启用 TLS + WebSocket + Web + CDN 四重伪装。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows Server 服务器搭建 v2ray">
+<meta property="og:url" content="https://blog.kukmoon.com/08413c56e3db/index.html">
+<meta property="og:site_name" content="谷中望月">
+<meta property="og:description" content="在一台 Windows Server 服务器上搭建 V2Ray 服务端，还要启用 TLS + WebSocket + Web + CDN 四重伪装。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.kukmoon.com/2023-08-07-12-42-30.jpg">
+<meta property="article:published_time" content="2023-08-07T02:00:21.000Z">
+<meta property="article:modified_time" content="2023-08-07T02:00:22.000Z">
+<meta property="article:author" content="Kukmoon谷月">
+<meta property="article:tag" content="网络技术">
+<meta property="article:tag" content="Nginx">
+<meta property="article:tag" content="V2Ray">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.kukmoon.com/2023-08-07-12-42-30.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Windows Server 服务器搭建 v2ray - 谷中望月</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel-highlightjs.css">
+<link rel="stylesheet" href="/css/social-share.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":null},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="谷中望月" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>谷中望月</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-note"></i>
+                <span>镜像</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog.kukmoon.com" target="_self">
+                    
+                    <span>全球统一入口</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://kukmoon.github.io" target="_self">
+                    
+                    <span>镜像 0（GitHub Pages）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog1.kukmoon.com" target="_self">
+                    
+                    <span>镜像 1（日本）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog2.kukmoon.com" target="_self">
+                    
+                    <span>镜像 2（CF Pages）</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.kukmoon.com/banner_img/2023_07and08.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Windows Server 服务器搭建 v2ray"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Kukmoon谷月
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-07 10:00" pubdate>
+          2023年8月7日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Windows Server 服务器搭建 v2ray</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2023-08-07T10:00:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://img.kukmoon.com/2023-08-07-12-42-30.jpg" srcset="/img/loading.gif" lazyload alt="Windows Server 服务器搭建 v2ray"></p>
+<h2 id="S-场景">S. 场景</h2>
+<p>需要在一台 Windows Server 服务器上搭建 V2Ray 服务端，还要启用 TLS + WebSocket + Web + CDN 四重伪装。</p>
+<h2 id="C-冲突">C. 冲突</h2>
+<p>网上绝大多数搭建 v2ray 服务端的教程是关于 Linux 系统的。尽管有少数教程是 Windows 系统的，但是已经过时了<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="[Windows2012搭建代理V2ray服务器端客户端32/64位系统](https://www.zhuguodong.com/?id=383)">[1]</span></a></sup> <sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="[windows搭建v2ray服务端](https://aqa.cc/archives/141.html)">[2]</span></a></sup>。只要一篇教程让你在远程服务器上运行 wv2ray.exe，它就是过时的教程，因为最新的 V2Ray for Windows 已经废除了只能在后台运行的 wv2ray.exe。</p>
+<h2 id="Q-问题">Q. 问题</h2>
+<p>怎样才能在 Windows Server 服务器搭建 v2ray，并且启用 TLS + WebSocket + Web + CDN 四重伪装呢？</p>
+<h2 id="A-答案">A. 答案</h2>
+<p>其实方法很简单，与 Linux 基本相同，不同之处在于需要在 Windows 中安装并配置 Windows 版的 Nginx 和 V2Ray。V2Ray 负责数据的传输，Nginx 负责数据的伪装和加密，此外还需要一个 CDN。</p>
+<p>数据包从本机的 V2Ray 通过 VMess 协议（外边包装一层 WebSocket 协议）经过 CDN 发送到服务器，在服务器上，经过 Nginx 的分流，将 WebSocket 数据包转发到服务器的 V2Ray，然后再由服务器的 V2Ray 发送到目标网站。目标网站返回的数据，逆着上述数据通道传输到本机。</p>
+<p>笔者参考了这两篇教程<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="[新 V2Ray 白话文指南](https://guide.v2fly.org/)">[3]</span></a></sup> <sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span class="hint--top hint--rounded" aria-label="[V2Ray+WebSocket+TLS+Web+Cloudflare教程](https://whuwangyong.github.io/2023-03-18-v2ray-websocket-tls-web-cloudflare-guide/)">[4]</span></a></sup>。</p>
+<h2 id="M-方法简述">M. 方法简述</h2>
+<h3 id="1-服务器安装-V2Ray、Nginx-和第三方文本编辑器">1. 服务器安装 V2Ray、Nginx 和第三方文本编辑器</h3>
+<h4 id="1-1-V2Ray-和-Nginx">1.1 V2Ray 和 Nginx</h4>
+<p>V2Ray 和 Nginx 都是绿色软件，直接从官网下载、解压然后运行就可以了。</p>
+<p>V2Ray 下载（GitHub）： <a target="_blank" rel="noopener" href="https://github.com/v2fly/v2ray-core/releases">https://github.com/v2fly/v2ray-core/releases</a></p>
+<p>Nginx 下载（官网）： <a target="_blank" rel="noopener" href="https://nginx.org/en/download.html">https://nginx.org/en/download.html</a></p>
+<p>此处笔者把 V2Ray 解压到 <code>C:\Users\Lily\Program Files\v2ray</code> 文件夹，把 Nginx 解压到 <code>C:\Users\Lily\Program Files\nginx</code> 文件夹。</p>
+<p>注意：</p>
+<ol>
+<li>运行 V2Ray 的方式：在命令提示符中执行 <code>v2ray run</code>。</li>
+<li>退出 V2Ray 的方式：在运行 V2Ray 的窗口中按 <code>Ctrl + C</code> 快捷键。</li>
+<li>运行 Nginx 的方式：在命令提示符中执行 <code>start nginx</code>。</li>
+<li>修改配置文件后重启 Nginx 的方式：在命令提示符中执行 <code>nginx -s reload</code>。</li>
+<li>退出 Nginx 的方式：在命令提示符中执行 <code>nginx -s quit</code>。</li>
+</ol>
+<p>Nginx for Windows 的其他操作方法，详见这两篇教程<sup id="fnref:5" class="footnote-ref"><a href="#fn:5" rel="footnote"><span class="hint--top hint--rounded" aria-label="[Nginx Windows详细安装部署教程](https://www.cnblogs.com/taiyonghai/p/9402734.html)">[5]</span></a></sup> <sup id="fnref:6" class="footnote-ref"><a href="#fn:6" rel="footnote"><span class="hint--top hint--rounded" aria-label="[Windows 系统安装使用 Nginx](https://juejin.cn/post/7024762773980577805)">[6]</span></a></sup>。</p>
+<h4 id="1-2-第三方文本编辑器">1.2 第三方文本编辑器</h4>
+<p>第三方文本编辑器支持语法高亮，以免在修改配置文件时出错。例如 Notepad3、VSCode、Notepad++。</p>
+<p>Notepad3 下载（官网）： <a target="_blank" rel="noopener" href="https://www.rizonesoft.com/downloads/notepad3/">https://www.rizonesoft.com/downloads/notepad3/</a></p>
+<h3 id="2-注册一个域名">2. 注册一个域名</h3>
+<p>这是开启 TLS 所必需。此处不赘述。假设此处的域名为 <code>lily.online</code> （此域名纯属虚构，如有雷同，是你抄我）</p>
+<h3 id="3-从-Cloudflare-申请有效期-15-年的证书">3. 从 Cloudflare 申请有效期 15 年的证书</h3>
+<p>参照这篇教程<sup id="fnref:7" class="footnote-ref"><a href="#fn:7" rel="footnote"><span class="hint--top hint--rounded" aria-label="[教你轻松申请CloudFlare免费15年的SSL证书](https://www.itblogcn.com/article/2171.html)">[7]</span></a></sup>。在 Cloudflare 中新建站点，添加域名 <code>lily.online</code>；然后将 SSL/TLS 设为“完全（严格）”（英文版为 Full (Strict)）模式；最后申请有效期为 15 年的证书，把私钥另存为 <code>lily.key</code> 文件，把证书文件另存为 <code>lily.pem</code> 文件。也可以用你自定义的文件名。</p>
+<p>在 Cloudflare 中为域名 <code>lily.online</code> 设置 DNS 解析。</p>
+<h3 id="4-服务器配置-Nginx">4. 服务器配置 Nginx</h3>
+<p>在服务器上，把 <code>C:\Users\Lily\Program Files\nginx</code> 文件夹中的 <code>html</code> 子文件夹复制一份，改名为 <code>mysite</code> （也可以用你自定义的名字），作为网站的根目录，这个网站是用来伪装 V2Ray 数据的，你也可以在 <code>mysite</code> 子文件夹里面放一些网页。</p>
+<p>将密钥文件 <code>lily.key</code> 和证书文件 <code>lily.pem</code> 上传到服务器的 <code>C:\Users\Lily\Program Files\nginx\mysite</code> 文件夹。</p>
+<p>将下列代码另存为 <code>nginx.conf</code> 文件，并覆盖服务器的 <code>C:\Users\Lily\Program Files\nginx\conf\nginx.conf</code> 文件。</p>
+<p>注意：要把里面的 <code>lily.online</code> 改成你的域名，<code>mysite</code> 改成你自定义的文件夹名字，<code>lily.key</code> 改成你自定义的私钥文件名字，<code>lily.pem</code> 改成你自定义的证书文件名字。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><br><span class="hljs-comment">#user  nobody;</span><br><span class="hljs-attribute">worker_processes</span>  <span class="hljs-number">1</span>;<br><br><span class="hljs-comment">#error_log  logs/error.log;</span><br><span class="hljs-comment">#error_log  logs/error.log  notice;</span><br><span class="hljs-comment">#error_log  logs/error.log  info;</span><br><br><span class="hljs-comment">#pid        logs/nginx.pid;</span><br><br><br><span class="hljs-section">events</span> &#123;<br>    <span class="hljs-attribute">worker_connections</span>  <span class="hljs-number">1024</span>;<br>&#125;<br><br><br><span class="hljs-section">http</span> &#123;<br>    <span class="hljs-attribute">include</span>       mime.types;<br>    <span class="hljs-attribute">default_type</span>  application/octet-stream;<br><br>    <span class="hljs-attribute">sendfile</span>        <span class="hljs-literal">on</span>;<br>    <span class="hljs-comment">#tcp_nopush     on;</span><br><br>    <span class="hljs-attribute">keepalive_timeout</span>  <span class="hljs-number">65</span>;<br><br>    <span class="hljs-section">server</span> &#123;<br>        <span class="hljs-comment"># 设置监听端口为80和443</span><br>        <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;<br>        <span class="hljs-attribute">listen</span> <span class="hljs-number">443</span> ssl http2;<br>        <span class="hljs-comment"># 设置用来伪装网站的域名</span><br>        <span class="hljs-attribute">server_name</span> lily.online;<br>        <span class="hljs-comment"># 设置首页文件</span><br>        <span class="hljs-attribute">index</span> index.html index.htm default.htm default.html;<br>        <span class="hljs-comment"># 设置网站的根目录</span><br>        <span class="hljs-attribute">root</span> mysite;    <br><br>        <span class="hljs-comment"># 重定向对网站根目录的访问</span><br>        <span class="hljs-section">location</span> / &#123;<br>            <span class="hljs-comment"># 与上面的root相同</span><br>            <span class="hljs-attribute">root</span>   mysite;<br>            <span class="hljs-attribute">index</span>  index.html index.htm default.htm default.html;<br>        &#125;<br>    <br>        <span class="hljs-comment"># SSL-START SSL开始</span><br><br>        <span class="hljs-comment"># HTTP_TO_HTTPS_START（http重定向到https，开始）</span><br>            <span class="hljs-attribute">if</span> (<span class="hljs-variable">$server_port</span> !<span class="hljs-regexp">~ 443)</span>&#123;<br>            <span class="hljs-attribute">rewrite</span><span class="hljs-regexp"> ^(/.*)$</span> https://<span class="hljs-variable">$host</span><span class="hljs-variable">$1</span> <span class="hljs-literal">permanent</span>;<br>        &#125;<br>        <span class="hljs-comment"># HTTP_TO_HTTPS_END（http重定向到https，结束）</span><br><br>        <span class="hljs-comment"># 设置SSL加密参数，开始</span><br><br>        <span class="hljs-comment"># 设置证书</span><br>		<span class="hljs-attribute">ssl_certificate</span>    ../mysite/lily.pem;<br>		<span class="hljs-comment"># 设置密钥</span><br><br>		<span class="hljs-attribute">ssl_certificate_key</span>    ../mysite/lily.key;<br><br>		<span class="hljs-comment"># 设置其他SSL参数</span><br>		<span class="hljs-attribute">ssl_protocols</span> TLSv1.<span class="hljs-number">1</span> TLSv1.<span class="hljs-number">2</span> TLSv1.<span class="hljs-number">3</span>;<br>		<span class="hljs-attribute">ssl_ciphers</span> EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;<br>		<span class="hljs-attribute">ssl_prefer_server_ciphers</span> <span class="hljs-literal">on</span>;<br>		<span class="hljs-attribute">ssl_session_cache</span> shared:SSL:<span class="hljs-number">10m</span>;<br>		<span class="hljs-attribute">ssl_session_timeout</span> <span class="hljs-number">10m</span>;<br>		<span class="hljs-attribute">add_header</span> Strict-Transport-Security <span class="hljs-string">&quot;max-age=31536000&quot;</span>;<br>		<span class="hljs-attribute">error_page</span> <span class="hljs-number">497</span>  https://<span class="hljs-variable">$host</span><span class="hljs-variable">$request_uri</span>;<br>	    <span class="hljs-comment"># 设置SSL加密参数，结束</span><br><br>		<span class="hljs-comment"># SSL结束</span><br><br>        <span class="hljs-comment"># redirect server error pages to the static page /50x.html</span><br>        <span class="hljs-comment">#</span><br>        <span class="hljs-attribute">error_page</span>   <span class="hljs-number">500</span> <span class="hljs-number">502</span> <span class="hljs-number">503</span> <span class="hljs-number">504</span>  /50x.html;<br>        <span class="hljs-section">location</span> = /50x.html &#123;<br>            <span class="hljs-attribute">root</span>   mysite;<br>        &#125;<br>        <br>        <span class="hljs-comment"># Forbidden files or directories</span><br>		<span class="hljs-section">location</span> <span class="hljs-regexp">~ ^/(\.user.ini|\.htaccess|\.git|\.svn|\.project|LICENSE|README.md)</span><br>		&#123;<br>			<span class="hljs-attribute">return</span> <span class="hljs-number">404</span>;<br>		&#125;<br>		<br>		<span class="hljs-comment"># v2ray伪装，要与 V2Ray 配置中的 path 保持一致</span><br>		<span class="hljs-section">location</span> /login &#123;<br>			<span class="hljs-comment"># WebSocket协商失败时返回404</span><br>			<span class="hljs-attribute">if</span> (<span class="hljs-variable">$http_upgrade</span> != <span class="hljs-string">&quot;websocket&quot;</span>) &#123;<br>				<span class="hljs-attribute">return</span> <span class="hljs-number">404</span>;<br>			&#125;<br>			<span class="hljs-attribute">proxy_redirect</span> <span class="hljs-literal">off</span>;<br>			<span class="hljs-comment"># 假设V2Ray的Inbound监听在环回地址的19890端口上</span><br>            <span class="hljs-comment"># 将WebSocket数据包分流并转发到19890端口</span><br>			<span class="hljs-attribute">proxy_pass</span> http://127.0.0.1:19890; <br>			<span class="hljs-attribute">proxy_http_version</span> <span class="hljs-number">1</span>.<span class="hljs-number">1</span>;<br>			<span class="hljs-attribute">proxy_set_header</span> Upgrade <span class="hljs-variable">$http_upgrade</span>;<br>			<span class="hljs-attribute">proxy_set_header</span> Connection <span class="hljs-string">&quot;upgrade&quot;</span>;<br>			<span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;<br>			<span class="hljs-comment"># Show real IP in v2ray access.log</span><br>			<span class="hljs-attribute">proxy_set_header</span> X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>			<span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;<br>		&#125;		<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="5-服务器配置-V2Ray">5. 服务器配置 V2Ray</h3>
+<p>将下列代码另存为 <code>config.json</code> 文件，并覆盖服务器的 <code>C:\Users\Lily\Program Files\v2ray\config.json</code> 文件。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;inbounds&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">19890</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 服务器监听端口</span><br>      <span class="hljs-attr">&quot;listen&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;127.0.0.1&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;protocol&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vmess&quot;</span><span class="hljs-punctuation">,</span>    <span class="hljs-comment">// 主传入协议</span><br>      <span class="hljs-attr">&quot;settings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;clients&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>          <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;f11d0f64-2441-2a16-5671-a5e0576f6004&quot;</span><span class="hljs-punctuation">,</span>  <span class="hljs-comment">// 用户 ID，客户端与服务器必须相同</span><br>            <span class="hljs-attr">&quot;alterId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><br>          <span class="hljs-punctuation">&#125;</span><br>        <span class="hljs-punctuation">]</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;streamSettings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;network&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;ws&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;wsSettings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>          <span class="hljs-attr">&quot;path&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/login&quot;</span><br>        <span class="hljs-punctuation">&#125;</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;outbounds&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;protocol&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;freedom&quot;</span><span class="hljs-punctuation">,</span>  <span class="hljs-comment">// 主传出协议</span><br>      <span class="hljs-attr">&quot;settings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;tag&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;direct&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;protocol&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;blackhole&quot;</span><span class="hljs-punctuation">,</span><br>	  <span class="hljs-attr">&quot;settings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>	  <span class="hljs-attr">&quot;tag&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;blocked&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;routing&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;domainStrategy&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;IPOnDemand&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;rules&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span><br>      <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-comment">// Blocks major ads.</span><br>        <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;field&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;domain&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;geosite:category-ads&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;outboundTag&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;blocked&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">]</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;dns&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>   <span class="hljs-attr">&quot;servers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>      <span class="hljs-string">&quot;https+local://1.1.1.1/dns-query&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-string">&quot;1.1.1.1&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-string">&quot;4.2.2.2&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-string">&quot;8.8.8.8&quot;</span><span class="hljs-punctuation">,</span><br>     <span class="hljs-string">&quot;localhost&quot;</span><br>  <span class="hljs-punctuation">]</span><br> <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<h3 id="6-本地配置-V2Ray">6. 本地配置 V2Ray</h3>
+<h4 id="6-1-V2RayN">6.1 V2RayN</h4>
+<p>V2RayN 下载地址： <a target="_blank" rel="noopener" href="https://github.com/2dust/v2rayN/releases">https://github.com/2dust/v2rayN/releases</a></p>
+<p>使用 V2RayN，添加一个新的 VMess 服务器，填写数据如图所示，最后点击确定。注意，用户 ID 必须与服务器 V2Ray 配置文件中的 id 相同。可以在命令行中执行 <code>v2ray uuid</code> 生成一个。</p>
+<p><img src="https://img.kukmoon.com/2023-08-07-11-51-44.png" srcset="/img/loading.gif" lazyload alt="本地配置 V2RayN"></p>
+<h4 id="6-2-Clash-for-Windows">6.2 Clash for Windows</h4>
+<p>Clash for Windows （以下简称 Clash）下载地址： <a target="_blank" rel="noopener" href="https://github.com/Fndroid/clash_for_windows_pkg/releases">https://github.com/Fndroid/clash_for_windows_pkg/releases</a></p>
+<p>Clash 更加普及，不过配置单个服务器节点比 V2RayN 要稍微麻烦一些。</p>
+<p>在 Clash 中，切换到 Profiles 界面，右击 config.yaml，点击菜单中的 Proxies，然后点击 Proxies 右侧的 Add，填写数据如图所示，最后点击 OK。注意，用户 ID 必须与服务器 V2Ray 配置文件中的 id 相同。可以在命令行中执行 <code>v2ray uuid</code> 生成一个。</p>
+<p><img src="https://img.kukmoon.com/2023-08-07-12-16-49.png" srcset="/img/loading.gif" lazyload alt="本地配置 Clash for Windows"></p>
+<h3 id="7-连接与调试">7. 连接与调试</h3>
+<p>在服务器上启动 Nginx。方法：打开一个命令提示符窗口，执行以下命令：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-built_in">cd</span> /d &quot;C:\Users\Lily\Program Files\nginx&quot;<br><span class="hljs-built_in">start</span> nginx<br></code></pre></td></tr></table></figure>
+<p>在服务器上启动 V2Ray。方法：打开一个命令提示符窗口，执行以下命令：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-built_in">cd</span> /d &quot;C:\Users\Lily\Program Files\v2ray&quot;<br>v2ray run<br></code></pre></td></tr></table></figure>
+<p>在本地启动 V2RayN 或 Clash for Windows，连接服务器。开全局代理，或者配置浏览器代理，用浏览器访问网页就可以啦。</p>
+<h2 id="图片版权">图片版权</h2>
+<p class="attribution">题图：<a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/37996646802@N01/33471651681">Server Room Fashion</a>" by <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/37996646802@N01">cogdogblog</a> is marked with <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/publicdomain/zero/1.0/?ref=openverse">CC0 1.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" srcset="/img/loading.gif" lazyload style="height: 1em; margin-right: 0.125em; display: inline;"></img><img src="https://mirrors.creativecommons.org/presskit/icons/zero.svg" srcset="/img/loading.gif" lazyload style="height: 1em; margin-right: 0.125em; display: inline;"></img></a>。</p>
+<p>头图：该图片由 <a target="_blank" rel="noopener" href="https://pixabay.com/users/12019-12019/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2080072">David Mark</a> 在 <a target="_blank" rel="noopener" href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2080072">Pixabay</a> 上发布。</p>
+<h2 id="参考文献">参考文献</h2>
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://www.zhuguodong.com/?id=383">Windows2012搭建代理V2ray服务器端客户端32/64位系统</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://aqa.cc/archives/141.html">windows搭建v2ray服务端</a>
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://guide.v2fly.org/">新 V2Ray 白话文指南</a>
+<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://whuwangyong.github.io/2023-03-18-v2ray-websocket-tls-web-cloudflare-guide/">V2Ray+WebSocket+TLS+Web+Cloudflare教程</a>
+<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:5" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://www.cnblogs.com/taiyonghai/p/9402734.html">Nginx Windows详细安装部署教程</a>
+<a href="#fnref:5" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:6" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://juejin.cn/post/7024762773980577805">Windows 系统安装使用 Nginx</a>
+<a href="#fnref:6" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:7" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://www.itblogcn.com/article/2171.html">教你轻松申请CloudFlare免费15年的SSL证书</a>
+<a href="#fnref:7" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+                
+              </div>
+            
+            <div>
+                <!-- 引入自己编写的“分享到”模块（新） -->
+                <div style="text-align:right;"> <!-- 自己添加的“分享到”模块：开始。用的是 social-share.js。让所有的分享按钮右对齐-->
+	
+	<div class="social-share-container" style="margin-top: 15px;"> <!-- 生成一组分享按钮 -->
+		 <!--如果博客语言是中文，就显示“点击分享到：”，非中文一律显示“Share it:”-->
+			点击分享到：&nbsp;&nbsp;
+		
+	</div>
+	<!-- 加载 jQuery 库 -->
+	
+<script src="/js/jquery.min.js"></script>
+
+	<!-- 导入 qrcode.min.js -->
+	
+<script src="/js/qrcode.min.js"></script>
+
+	<!-- 加载 social-share.js 的 js 库，另外还要加载 social-share.js 的 CSS，可以修改 `_config.fluid.yml` 的 `custom_css` 加载，也可以修改 `themes/fluid/layout/_partial/css.ejs` 加载。-->
+	
+<script src="/js/social-share.min.js"></script>
+
+	<script> 
+	/* 执行 js 代码，new 一个新对象，详见 social-share.js 在 GitHub 的文档 */
+		new SocialShare('.social-share-container', {
+			theme: 'circle',  // 使用圆形主题
+			// 单独定义wechat分享参数
+			wechat: {
+				sort: 1, // 排序参数，数字较小的展示在前面,默认999
+			}
+		});		
+	</script>
+</div> <!-- 自己添加的“分享到”模块：结束。-->            
+                <hr/>
+                <!-- 引入自己编写的打赏模块（新） -->
+                <div style="text-align: center; margin: auto auto 1.5em;"><!--自己添加的打赏模块：开始-->
+  <!--如果主题的  _config.yml 中开启打赏-->
+    <div style="border-style:solid none none none; border-color: #663399; border-width: 0.5em; color: #663399; font-weight:bold; font-size: 1.2em; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+	   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+	    求扫码打赏
+	  	
+	</div>
+    <div style="font-size: 14px;margin-bottom: 10px;">
+	  “我这么可爱，请给我钱 o(*^ω^*)o” <!--在主题的 _config.yml 中设置打赏提示语-->
+	</div>
+    <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+	  <img src="/img/zhi-fu-bao-shou-kuan-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/wei-xin-zan-shang-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+	</div>
+  
+</div> <!--自己添加的打赏模块：结束-->
+                <hr/>
+            </div>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/IT%E6%8A%80%E6%9C%AF/" class="category-chain-item">IT技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/" class="print-no-link">#网络技术</a>
+      
+        <a href="/tags/Nginx/" class="print-no-link">#Nginx</a>
+      
+        <a href="/tags/V2Ray/" class="print-no-link">#V2Ray</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Windows Server 服务器搭建 v2ray</div>
+      <div>https://blog.kukmoon.com/08413c56e3db/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Kukmoon谷月</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年8月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/4c741dc819bf/" title="用脚本批量下载漫画的每一页并改名打包">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">用脚本批量下载漫画的每一页并改名打包</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/0a9fce634652/" title="用 Python 从多个文件中提取信息并汇总">
+                        <span class="hidden-mobile">用 Python 从多个文件中提取信息并汇总</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appKey":"lvOI6tnv4jNUP9tEnIYJNKtW","path":"window.location.pathname","placeholder":"您的评论","avatar":"wavatar","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://qk25tpv2.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appkey":"lvOI6tnv4jNUP9tEnIYJNKtW"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

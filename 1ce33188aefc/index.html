@@ -1,0 +1,1089 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <link rel="icon" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kukmoon谷月">
+  <meta name="keywords" content="小米路由器 mini,R1C,惠普,HP,Deskjet 1112,无线打印机,Wireless printer,Breed,Padavan">
+  
+    <meta name="description" content="给小米路由器刷入Padavan固件，将其改造成无线打印服务器，让惠普Deskjet 1112打印机具备无线打印功能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用小米路由器mini把惠普1112改造成无线打印机">
+<meta property="og:url" content="https://blog.kukmoon.com/1ce33188aefc/index.html">
+<meta property="og:site_name" content="谷中望月">
+<meta property="og:description" content="给小米路由器刷入Padavan固件，将其改造成无线打印服务器，让惠普Deskjet 1112打印机具备无线打印功能。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.kukmoon.com/HP-1112-Wireless-Printer/index_img.png">
+<meta property="article:published_time" content="2022-01-16T15:40:04.000Z">
+<meta property="article:modified_time" content="2022-01-16T15:40:05.000Z">
+<meta property="article:author" content="Kukmoon谷月">
+<meta property="article:tag" content="打印机">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.kukmoon.com/HP-1112-Wireless-Printer/index_img.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>用小米路由器mini把惠普1112改造成无线打印机 - 谷中望月</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel-highlightjs.css">
+<link rel="stylesheet" href="/css/social-share.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":null},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="谷中望月" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>谷中望月</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-note"></i>
+                <span>镜像</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog.kukmoon.com" target="_self">
+                    
+                    <span>全球统一入口</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://kukmoon.github.io" target="_self">
+                    
+                    <span>镜像 0（GitHub Pages）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog1.kukmoon.com" target="_self">
+                    
+                    <span>镜像 1（日本）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog2.kukmoon.com" target="_self">
+                    
+                    <span>镜像 2（CF Pages）</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.kukmoon.com/HP-1112-Wireless-Printer/banner_img.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="用小米路由器mini把惠普1112改造成无线打印机"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Kukmoon谷月
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-01-16 23:40" pubdate>
+          2022年1月16日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          30 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">用小米路由器mini把惠普1112改造成无线打印机</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2022-01-16T23:40:05+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="1-引言">1 引言</h2>
+<p>我最近买了一台惠普Deskjet 1112。我需要一台低价打印机集中打一批学习资料，考完试就把打印机扔在一边吃灰，卖二手或者扔掉也不心疼。 1112作为市面上最便宜的喷墨打印机（没有之一），最适合我了。</p>
+<p>在某海鲜市场上找附近的同城卖家，有个卖家只卖65，面交。来回路费7元，自购兼容黑色墨盒51元，一共是123元。这款打印机从某东购买官方标配原价是299元。省了一大笔。</p>
+<p>我的电脑Surface Pro 5只有一个USB接口，USB打印是不可接受的。需要把打印机改造成无线打印机。要改造成无线打印机，成本最低的方法，是弄个带USB接口的旧无线路由器，改造成无线打印服务器。正好我手里有个多年前买的小米路由器mini（R1C），采用联发科MT7620芯片，可以刷老毛子Padavan固件改造成无线打印服务器。</p>
+<p>接下来，谷月姐记录完整的改造过程。</p>
+<h2 id="2-材料与方法">2 材料与方法</h2>
+<h3 id="2-1-材料">2.1 材料</h3>
+<ul>
+<li>
+<p>小米路由器mini（R1C）相关（下载地址： <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1wGMfOTywlBGpJOJb62ooCQ?pwd=g3zx">https://pan.baidu.com/s/1wGMfOTywlBGpJOJb62ooCQ?pwd=g3zx</a> 提取码: g3zx ）</p>
+<ul>
+<li>官网开发版固件</li>
+<li>小米wifi（手机app，可到应用商店下载）</li>
+<li>官网SSH固件</li>
+<li>WinSCP</li>
+<li>PuTTY</li>
+<li>不死Breed</li>
+<li>Padavan固件</li>
+</ul>
+</li>
+<li>
+<p>打印机驱动程序（我的打印机是HP DeskJet 1112，可到HP官网下载并解压。**注意：下载后是一个自解压的EXE文件，要用7z等解压软件再解压一次。**下载地址：<a target="_blank" rel="noopener" href="https://support.hp.com/zh-cn/drivers/selfservice/hp-deskjet-1110-printer-series/7174529/model/7529725%EF%BC%89">https://support.hp.com/zh-cn/drivers/selfservice/hp-deskjet-1110-printer-series/7174529/model/7529725）</a></p>
+</li>
+</ul>
+<h3 id="2-2-方法">2.2 方法</h3>
+<h4 id="2-2-1-小米路由器mini刷官网开发版固件">2.2.1 小米路由器mini刷官网开发版固件</h4>
+<p>2.2.1.1 准备系统格式为FAT或FAT32的U盘一个（可在U盘属性中查看）。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/35b9233c-ab05-47db-9446-99b2f7d36023.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.1.2 将下载的ROM包复制到U盘的根目录，并重命名为 <code>miwifi.bin</code> ，同时确保该目录下不存在其它“<code>.bin</code>”文件，若存在会导致刷机失败。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/0a8a70ec-ecfe-4cc9-ac9c-a34efcaa3c40.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.1.3 断开小米路由器的电源，将U盘插入路由器USB接口。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/1641041558240.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.1.4 按住reset键，接通电源，等待指示灯变为黄色闪烁状态后松开reset键，路由器开始刷机。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/VID_20220101_213430(0).gif" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.1.5 等待刷机完成，整个过程约为3-5分钟，完成后系统会自动重启。路由器指示灯变蓝刷机完成；如果出现异常、失败、U盘无法读取的状况，会进入红灯状态，建议重试或更换U盘再试。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/1641041584369.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="2-2-2-路由器绑定小米账号并且刷官网SSH固件">2.2.2 路由器绑定小米账号并且刷官网SSH固件</h4>
+<p>2.2.2.1 配置小米路由器mini连接外网。用网线将小米路由器mini的WAN口连接到光猫的LAN口，用电脑连接小米路由器mini（可以用网线，也可以通过无线）。在浏览器地址栏中输入  <code>192.168.31.1</code>，然后点击“暂不需要”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/95651d2e-98dd-4672-b498-7caceb227208.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.2.2 点击“同意，继续”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/5abad8f4-febe-4493-b610-e116216e166f.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.2.3 输入运营商提供的用户名与密码，然后点击“下一步”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/bb45f907-6f9e-42c5-a46a-2e208d61274e.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.2.4 设置无线网络的名称和密码。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/9eecee26-3965-422d-a86d-b4f6a1be9dc4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.2.5 此处设置管理密码，可以勾选“与Wi-Fi密码相同”。然后点击“配置完成”。因为我们后续还会刷机，所以在这一步设置的这些密码，迟早会作废的。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/9cec53a5-283e-4768-a2f7-7789686677be.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.2.6 点击“下一步”。等待小米路由器重启完毕。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/c0fd10b5-8e5d-493c-b4fd-71047a185973.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.2.7 手机安装小米wifi app，输入账号密码登录。用手机连接刚才设置名称和密码的Wi-Fi。打开小米wifi app，点击右上角的+号，授予权限，小米wifi会自动扫描到小米路由器mini，点击“立即绑定”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/8cf87ece-9e95-4724-ac18-8de21fa56838.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.2.8 输入管理员密码，点击“确认绑定”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/d0c9ebe3-330d-4c0a-a1bf-6837b11d4733.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.2.9 在此处（<a target="_blank" rel="noopener" href="https://d.miwifi.com/rom/ssh%EF%BC%89%E4%B8%8B%E8%BD%BD%E5%B0%8F%E7%B1%B3%E8%B7%AF%E7%94%B1%E5%99%A8mini%E7%9A%84SSH%E5%B7%A5%E5%85%B7%E5%8C%85%EF%BC%8C%E7%A1%AE%E4%BF%9D%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%BA">https://d.miwifi.com/rom/ssh）下载小米路由器mini的SSH工具包，确保文件名为</a> <code>miwifi_ssh.bin</code>，还要记下root密码和刷机步骤。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/bfc26542-76e9-4f4f-bd1c-37f589ff23c2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.2.10 按照刷机步骤，将SSH刷进小米路由器mini。首先，将 <code>miwifi_ssh.bin</code> 复制到U盘（FAT或FAT32格式）的根目录下，接下来的操作步骤与“2.2.1 小米路由器mini刷官网开发版固件”相同。刷完后记得拔下U盘。</p>
+<h4 id="2-2-3-备份官方固件">2.2.3 备份官方固件</h4>
+<p>如果不备份，以后刷回官方则无法使用APP。</p>
+<p>2.2.3.1 用WinSCP连接路由器。启动WinSCP，点击“新建站点”。设置IP：192.168.31.1。用户名：root。密码是上一步的root密码。其他保持默认，点击“登录”。（在点击“登录”之前，也可以先点击“保存”，以免下次登录时重复设置。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/d5bd4887-1123-4e07-906e-a5413bca34d4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.3.2 首次连接时会弹出警告对话框，点击“更新”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/bc05d818-d1cf-431c-87ce-97e2269625a4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.3.3 点击工具栏上的“根目录”按钮（或者按 Ctrl+\ 快捷键），来到根目录，然后找到 /extdisks 目录，双击打开，找到 sda4 目录（这是插在路由器上的U盘，不同的用户，sda后面跟的数字可能不一样），双击打开。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/5de37552-0ca4-485b-baa7-81b211f08fc6.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.3.4 右键点击空白处，选择“新建”→“目录”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/6e974ab9-1f0d-4c65-ad59-066945cf946d.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.3.5 把“新文件夹名”设为 <code>rom</code>，勾选“设置权限”，把“八进制表示”设为 <code>0777</code>，点击“确定”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/886c513c-fd59-4c74-8caf-8f14baab5a9a.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.3.6 运行PuTTY，IP地址同上，点击“Open”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/b000723d-7b2f-4176-9626-03ba28a7be43.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.3.7 首次连接时会弹出警告对话框，点击“是”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/392d98be-920c-4211-b982-f8dd935f2524.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.3.8 在黑窗口中输入账号，就是root，回车。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/aaadfb4e-978d-4813-a719-d9cfbf4b6a7a.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.3.9 再输入密码，回车。注意：密码是不显示的。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/16eec573-b375-4e15-9180-fc064e57322b.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.3.10 登录成功。Are U OK梗。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/2865dc37-e147-4a61-9b84-2a1306420372.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.3.11 查看MTD分区。输入以下命令按回车键（每输入一条命令，都要按回车，下同）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> /proc/mtd<br></code></pre></td></tr></table></figure>
+<p><img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/52a0ac8b-e631-42c2-8784-e1bb4230b10f.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.3.12 依次执行以下命令，将每个MTD分区导出为单独的文件。注意：sda4要与你自己的U盘对应！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">dd</span> <span class="hljs-keyword">if</span>=/dev/mtd0 of=/extdisks/sda4/rom/ALL.bin<br><span class="hljs-built_in">dd</span> <span class="hljs-keyword">if</span>=/dev/mtd1 of=/extdisks/sda4/rom/Bootloader.bin<br><span class="hljs-built_in">dd</span> <span class="hljs-keyword">if</span>=/dev/mtd2 of=/extdisks/sda4/rom/Config.bin<br><span class="hljs-built_in">dd</span> <span class="hljs-keyword">if</span>=/dev/mtd3 of=/extdisks/sda4/rom/Factory.bin<br><span class="hljs-built_in">dd</span> <span class="hljs-keyword">if</span>=/dev/mtd4 of=/extdisks/sda4/rom/OS1.bin<br><span class="hljs-built_in">dd</span> <span class="hljs-keyword">if</span>=/dev/mtd5 of=/extdisks/sda4/rom/rootfs.bin<br><span class="hljs-built_in">dd</span> <span class="hljs-keyword">if</span>=/dev/mtd6 of=/extdisks/sda4/rom/OS2.bin<br><span class="hljs-built_in">dd</span> <span class="hljs-keyword">if</span>=/dev/mtd7 of=/extdisks/sda4/rom/overlay.bin<br><span class="hljs-built_in">dd</span> <span class="hljs-keyword">if</span>=/dev/mtd8 of=/extdisks/sda4/rom/crash.bin<br><span class="hljs-built_in">dd</span> <span class="hljs-keyword">if</span>=/dev/mtd9 of=/extdisks/sda4/rom/reserved.bin<br><span class="hljs-built_in">dd</span> <span class="hljs-keyword">if</span>=/dev/mtd10 of=/extdisks/sda4/rom/Bdata.bin<br></code></pre></td></tr></table></figure>
+<p>2.2.3.13 注：备份恢复方法，是把导出的文件再导入路由器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">mtd -r write /extdisks/sda4/rom/Bootloader.bin Bootloader<br>mtd -r write /extdisks/sda4/rom/Config.bin Config<br>mtd -r write /extdisks/sda4/rom/Factory.bin Factory<br>mtd -r write /extdisks/sda4/rom/OS1.bin OS1<br>mtd -r write /extdisks/sda4/rom/rootfs.bin rootfs<br>mtd -r write /extdisks/sda4/rom/OS2.bin OS2<br>mtd -r write /extdisks/sda4/rom/overlay.bin overlay<br>mtd -r write /extdisks/sda4/rom/crash.bin crash<br>mtd -r write /extdisks/sda4/rom/reserved.bin reserved<br>mtd -r write /extdisks/sda4/rom/Bdata.bin Bdata<br></code></pre></td></tr></table></figure>
+<p>2.2.3.14 然后把 <code> /extdisks/sda4/rom</code> 中的文件复制出来备份。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/41d51a70-3e76-4f55-a949-7f233317e296.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="2-2-4-刷不死Breed">2.2.4 刷不死Breed</h4>
+<p>Breed相当于手机的第三方Bootloader，用Breed可以给路由器刷入第三方ROM，相当于在手机上卡刷第三方ROM。</p>
+<p>2.2.4.1 用WinSCP把不死Breed的固件文件 <code>breed-mt7620-xiaomi-mini.bin</code> 复制到小米路由器mini的 <code>/tmp</code> 目录下（直接拖动过去即可）。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/9d31b5b1-1381-423d-8b43-3073a946099b.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.4.2 将固件文件刷入。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /tmp<br>mtd -r write breed-mt7620-xiaomi-mini.bin Bootloader<br></code></pre></td></tr></table></figure>
+<p><img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/10ef9116-8184-4547-afb9-b9a42ed0ea8c.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.4.3 等待小米路由器mini重启成功再进行下一步操作。</p>
+<p>2.2.4.4 进入Breed Web 恢复控制台的方法：断开路由器电源，用网线连接电脑与小米路由器mini的LAN口，按住Reset键，接通电源，等指示灯闪烁时松开Reset键，在浏览器地址栏输入 <code>192.168.1.1</code>，进入 Breed 恢复控制台。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/478734cc-d759-4360-8d25-07e0b80f4f6e.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.4.5 在刷ROM之前，需要先备份当前ROM。在Breed恢复控制台中，点击“固件备份”，将EEPROM和编程器固件备份出来。（我的小米路由器mini在备份时会出错，导致无法备份，不知道是不是个案）<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/675ebb97-d0ab-466f-9427-e7116569e1fc.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="2-2-5-刷Padavan固件">2.2.5 刷Padavan固件</h4>
+<p>2.2.5.1 在 Breed Web 恢复控制台中，点击“固件更新”，勾选“固件”，点击“固件”右侧的“选择文件”，找到固件文件，此处是 <code>RT-AC54U-GPIO-30-xiaomimini-128M_3.4.3.9-099.trx</code>，点击“打开”，然后点击“上传”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/8f4798fa-32fb-4ad8-abbf-668e180c52a7.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.5.2 点击“更新”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/e4a72c87-03ec-4601-a2ef-cf5a34e78390.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.5.3 开始刷新。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/cb013848-5eec-4004-87dd-47044d9851d5.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.5.4 刷完以后，小米路由器mini会重启，但是页面不会自动刷新，需要手动检查设备状态。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/f22d06e0-b14b-4963-9dc2-275121621e6d.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.5.5 刷新以后，路由器的参数会发生变化。</p>
+<ul>
+<li>旧固件网关：192.168.31.1</li>
+<li>新固件网关：192.168.123.1</li>
+<li>管理页面：<a target="_blank" rel="noopener" href="http://my.router/">http://my.router/</a></li>
+<li>管理账号：admin</li>
+<li>管理密码：admin</li>
+<li>wifi 名称：PDCN、PDCN_5G</li>
+<li>WiFi 密码：1234567890</li>
+<li>注意：刷机不恢复默认值</li>
+</ul>
+<h4 id="2-2-6-打印机连接到路由器并设置">2.2.6 打印机连接到路由器并设置</h4>
+<p>2.2.6.1 将打印机的USB线连接到小米路由器的USB接口，用网线连接电脑和小米路由器mini（也可以让电脑通过无线连接小米路由器mini的无线网络PDCN_5G），在浏览器地址栏中输入 <code>192.168.123.1</code>。点击“网络地图”→打印机图标→“独占模式”后面的“启用”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/ce09b3da-a834-40c9-b214-73701402dd9e.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.6.2 点击“高级设置”→“USB应用程序”→“打印机”，启用全部三个端口，点击“启用本页面设置”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/a16ea0c5-2e9a-4615-b1a3-df1f829ed389.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.6.3 在“高级设置”→“无线 2.4GHz”→“通用设置”中，把2.4G无线网络关掉。2.4G无线网络容易受到干扰，也容易干扰其他的2.4G无线网络和蓝牙。然后点击“应用本页面设置”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/9d7b255c-3a4e-426d-9b21-acb19a7857a5.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.6.4 在“高级设置”→“无线 5GHz”→“无线桥接”中进行设置。“上级 SSID” 是主路由器（连接外网的路由器）的无线网络的名称。“无线AP工作模式”设为“AP-Client（禁用AP）是为了不让小米路由器mini发射无线信号，以免无线信号过多，而且避免他人蹭网。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/9e31613e-24bb-4ac6-a8f6-b33f8603e760.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.6.5 在“高级设置”→“外部网络（WAN）”→“DHCP服务器”中，把DHCP服务器关掉。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/19ac6e19-9d1c-4b0e-83d1-19e0109ea4c1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.6.6 在“高级设置”→“外部网络（WAN）”→“内网设置”中，修改“IP地址”，它是小米路由器内网的IP地址，输入这个地址可以进入Padavan的管理页面。因为我们之前关掉了小米路由器mini的DHCP，而且设置了桥接模式为LAN bridge（内网桥接），为了能进入Padavan的管理页面，需要在此处设置一个IP地址，与主路由器的网段一致。我家主路器的网段是192.168.31.0，所以在此将IP地址手动设置为192.168.31.249。<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/4e20ae56-c868-433f-9443-e7d69e84f0b7.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.6.7 点击“确定“”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/890a6762-2801-4773-994f-2b892463a137.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.6.8 断开电脑与小米路由器mini的连接，只让电脑连接主路由器，在浏览器地址栏中输入 <code>192.168.31.249</code>，再输入默认账户 <code>admin</code> 和默认密码 <code>admin</code>，看看能否进入小米路由器mini的Padavan管理页面。很明显，可以进入管理页面，而且每个设备的IP地址都属于 <code>192.168.31.0</code> 网段。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/53454370-f816-46eb-b9c7-f4a3663e683e.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="2-2-7-在-Windows-10-中设置网络打印机">2.2.7 在 Windows 10 中设置网络打印机</h4>
+<p>2.2.7.1 右击“开始”菜单→“设置”→“设备”→“打印机和扫描仪”→“添加打印机和扫描仪”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/8ee70d0d-08df-4949-ae41-84a52b586a42.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.7.2 点击“我需要的打印机不在列表中”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/89f550d2-e144-40c7-9c3f-4490dde7e619.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.7.3 选择“通过手动设置添加本地打印机或网络打印机”。然后点击“下一页”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/f901a63b-538d-4b05-aa66-d5a5234b2437.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.7.4 选择“创建新端口”，“端口类型”为“Standard TCP/IP Port”。然后点击“下一页”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/ddd7fb96-c07d-4288-8603-5cc3f7291b10.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.7.5 “主机名或IP地址”填写我们刚才为小米路由器mini设置的IP地址，<code>192.168.31.249</code>。其他保持默认。然后点击“下一页”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/ce23d94f-0732-40ae-b5bd-bc0b5cdb28fb.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.7.6 等一会儿。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/37c73873-f132-4b97-aef4-7098ba5ff1d4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.7.7 选择“自定义”，点击“设置”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/17b1ef06-0cdb-4968-bbb2-b07dbff0214a.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.7.8 选择“LPR”。“队列名称”填入“LPRServer”。勾选“启用了LPR字节计数”，否则打印机会重复输出同一份打印任务。点击“确定”，然后点击“下一页”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/c5339a12-fede-4a4d-909c-0e893992bdba.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.7.9 等一会儿。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/e8206a21-e5ee-4a56-8332-d05baa46fb90.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.7.10 这里没有列出我打印机的型号，因此点击“从磁盘安装”→“浏览”，找到解压后的打印机驱动程序所在文件夹，找到HPWinUSBstub.INF，点击“打开”→“确定”。然后点击“下一页”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/d8ad56cd-0b6e-487a-8f93-d40fb43a371c.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.7.11 我之前已经安装过一次驱动了，所以Windows问我是否替换，选择“使用当前已安装的驱动程序（推荐）”。然后点击“下一页”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/432bb48b-761c-4f61-9061-f065a9db8ea2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.7.12 为打印机指定一个名称。我为它起名 <code>HP DJ 1112 Wireless</code>，表示它是连接在无线路由器上的。然后点击“下一页”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/a437711a-c240-44ef-8b9e-aa9e4162403e.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.7.13因为已经用小米路由器mini共享过一次了，所以就没必要再共享了。选择“不共享这台打印机”，然后点击“下一页”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/5801bf0c-12bc-4fd7-8e66-5ea7356b909d.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.7.14 可以打印一份测试页试试。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/836a1b92-c727-48e0-b019-187a12cd4790.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.7.15 回到“打印机和扫描仪”，点击“HP Deskjet 1112 Wireless”，选择“管理”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/b0c5c50a-8e85-4ef8-b362-95fd5cfdf95d.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>2.2.7.16 点击“打印机属性”。<br>
+<img src="https://img.kukmoon.com/HP-1112-Wireless-Printer/cff68199-28e1-4599-8adf-0f2f21c13e9d.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="3-总结与讨论">3 总结与讨论</h2>
+<p>自带WiFi连接的打印机价格普遍比较贵，而且，也没有必要为了实现无线打印而替换到状况良好的老打印机。而自带USB接口、采用MT7620芯片的旧路由器可以改造成无线打印服务器，让它与老打印机一起协同合作、发挥余热，实现无线打印。</p>
+<p>根据谷月姐本人的实际体验，无线打印时，在电脑上点击“打印”按钮，要过很长一段时间，打印机才会输出，与有线打印相比，有更长的延时。</p>
+<h2 id="4-参考文献">4 参考文献</h2>
+<ol>
+<li><a href="%5Bhttps://zhuanlan.zhihu.com/p/114273482%5D(https://zhuanlan.zhihu.com/p/114273482)">我的WIFI打印机</a></li>
+<li><a href="%5Bhttps://web.vip.miui.com/page/info/mio/mio/detail?postId=19154125&amp;app_version=dev.20051%5D(https://web.vip.miui.com/page/info/mio/mio/detail?postId=19154125&amp;app_version=dev.20051)">【路由刷机教程】适用于带USB的小米路由</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.mi.com/service/miwifi/miwifilite/wifiapp">如何绑定小米路由器？</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/thread-161906-1-1.html">【2021-12-16】AR/QCA/MTK Breed，功能强大的多线程 Bootloader</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/thread-1247470-1-3.html">[MINI]小米MINI(R1C)刷入Padavan</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.uguu.com/article-30536.html">小米路由器mini刷潘多拉Padavan固件的方法</a></li>
+<li><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/8275fc866b451046a03cf633.html">玩转小米mini路由6：刷不死Breed</a></li>
+<li><a target="_blank" rel="noopener" href="https://post.smzdm.com/p/az3k3pg0/">冷门USB打印机改无线和实现手机打印</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/forum.php?mod=viewthread&amp;tid=2800106">[MINI]小米路由mini老毛子固件无线打印设置</a></li>
+<li><a target="_blank" rel="noopener" href="https://post.smzdm.com/p/a9929dv5/">WINDOWS 10系统下USB打印机改网络打印机-超低成本简单实用教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://post.smzdm.com/p/alpz8240/">老树发新芽：极低成本普通打印机改网络打印机</a></li>
+</ol>
+
+                
+              </div>
+            
+            <div>
+                <!-- 引入自己编写的“分享到”模块（新） -->
+                <div style="text-align:right;"> <!-- 自己添加的“分享到”模块：开始。用的是 social-share.js。让所有的分享按钮右对齐-->
+	
+	<div class="social-share-container" style="margin-top: 15px;"> <!-- 生成一组分享按钮 -->
+		 <!--如果博客语言是中文，就显示“点击分享到：”，非中文一律显示“Share it:”-->
+			点击分享到：&nbsp;&nbsp;
+		
+	</div>
+	<!-- 加载 jQuery 库 -->
+	
+<script src="/js/jquery.min.js"></script>
+
+	<!-- 导入 qrcode.min.js -->
+	
+<script src="/js/qrcode.min.js"></script>
+
+	<!-- 加载 social-share.js 的 js 库，另外还要加载 social-share.js 的 CSS，可以修改 `_config.fluid.yml` 的 `custom_css` 加载，也可以修改 `themes/fluid/layout/_partial/css.ejs` 加载。-->
+	
+<script src="/js/social-share.min.js"></script>
+
+	<script> 
+	/* 执行 js 代码，new 一个新对象，详见 social-share.js 在 GitHub 的文档 */
+		new SocialShare('.social-share-container', {
+			theme: 'circle',  // 使用圆形主题
+			// 单独定义wechat分享参数
+			wechat: {
+				sort: 1, // 排序参数，数字较小的展示在前面,默认999
+			}
+		});		
+	</script>
+</div> <!-- 自己添加的“分享到”模块：结束。-->            
+                <hr/>
+                <!-- 引入自己编写的打赏模块（新） -->
+                <div style="text-align: center; margin: auto auto 1.5em;"><!--自己添加的打赏模块：开始-->
+  <!--如果主题的  _config.yml 中开启打赏-->
+    <div style="border-style:solid none none none; border-color: #663399; border-width: 0.5em; color: #663399; font-weight:bold; font-size: 1.2em; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+	   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+	    求扫码打赏
+	  	
+	</div>
+    <div style="font-size: 14px;margin-bottom: 10px;">
+	  “我这么可爱，请给我钱 o(*^ω^*)o” <!--在主题的 _config.yml 中设置打赏提示语-->
+	</div>
+    <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+	  <img src="/img/zhi-fu-bao-shou-kuan-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/wei-xin-zan-shang-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+	</div>
+  
+</div> <!--自己添加的打赏模块：结束-->
+                <hr/>
+            </div>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/IT%E6%8A%80%E6%9C%AF/" class="category-chain-item">IT技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%89%93%E5%8D%B0%E6%9C%BA/" class="print-no-link">#打印机</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>用小米路由器mini把惠普1112改造成无线打印机</div>
+      <div>https://blog.kukmoon.com/1ce33188aefc/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Kukmoon谷月</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年1月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/77ee8f2ed363/" title="美少女受肉是又受又有肉的美少女吗？">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">美少女受肉是又受又有肉的美少女吗？</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/d9011bac7e0d/" title="给我的博客更换图床">
+                        <span class="hidden-mobile">给我的博客更换图床</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appKey":"lvOI6tnv4jNUP9tEnIYJNKtW","path":"window.location.pathname","placeholder":"您的评论","avatar":"wavatar","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://qk25tpv2.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appkey":"lvOI6tnv4jNUP9tEnIYJNKtW"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
