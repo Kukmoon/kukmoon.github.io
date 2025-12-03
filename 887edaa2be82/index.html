@@ -1,0 +1,933 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <link rel="icon" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kukmoon谷月">
+  <meta name="keywords" content="RustDesk,Windows,服务器,VPS,部署,服务端">
+  
+    <meta name="description" content="在一台运行 Windows Server 的 VPS 上部署 RustDesk Server，自建服务器。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 Windows VPS 上搭建 RustDesk 服务器">
+<meta property="og:url" content="https://blog.kukmoon.com/887edaa2be82/index.html">
+<meta property="og:site_name" content="谷中望月">
+<meta property="og:description" content="在一台运行 Windows Server 的 VPS 上部署 RustDesk Server，自建服务器。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.kukmoon.com/2025-06-05-21-29-14.png">
+<meta property="article:published_time" content="2025-06-06T13:39:11.000Z">
+<meta property="article:modified_time" content="2025-06-06T13:39:11.000Z">
+<meta property="article:author" content="Kukmoon谷月">
+<meta property="article:tag" content="远程桌面">
+<meta property="article:tag" content="网络技术">
+<meta property="article:tag" content="Windows">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.kukmoon.com/2025-06-05-21-29-14.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>在 Windows VPS 上搭建 RustDesk 服务器 - 谷中望月</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel-highlightjs.css">
+<link rel="stylesheet" href="/css/social-share.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":null},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="谷中望月" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>谷中望月</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-note"></i>
+                <span>镜像</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog.kukmoon.com" target="_self">
+                    
+                    <span>全球统一入口</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://kukmoon.github.io" target="_self">
+                    
+                    <span>镜像 0（GitHub Pages）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog1.kukmoon.com" target="_self">
+                    
+                    <span>镜像 1（日本）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog2.kukmoon.com" target="_self">
+                    
+                    <span>镜像 2（CF Pages）</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.kukmoon.com/banner_img/2025_05and06.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="在 Windows VPS 上搭建 RustDesk 服务器"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Kukmoon谷月
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-06 21:39" pubdate>
+          2025年6月6日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          860 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">在 Windows VPS 上搭建 RustDesk 服务器</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>RustDesk 是一款用 Rust 语言编写的优秀国产远程控制软件。它有速度快、无广告、免费使用、可以直连等优点。但是，由于最近电诈肆虐，RustDesk 官方关闭了位于中国大陆的服务器。难道我们从此只能望洋兴叹，不得不改用向日葵、ToDesk 等竞品吗？答案是否定的，我们可以自行创建服务器。</p>
+<h2 id="一、RustDesk-服务器的搭建">一、RustDesk 服务器的搭建</h2>
+<p>我们需要一台运行 Windows 或 Linux 的服务器或 VPS 来部署 RustDesk Server（RustDesk 服务端），让它成为 RustDesk 服务器。此处以一台 2C1G 的 VPS 为例，操作系统为 Windows Server 2022 DataCenter Core。它没有图形界面，所以需要命令行操作。</p>
+<ol>
+<li>下载 RustServer for Windows</li>
+</ol>
+<p>从 GitHub 下载，然后解压，此处假设解压到 <code>C:\Users\Kukmoon\Program Files\RustDeskServer</code> 文件夹。共有两个文件：hbbs.exe、hbbr.exe。</p>
+<ol start="2">
+<li>安装 PM2</li>
+</ol>
+<p>我打算使用 PM2 来启动 RustDesk Server。</p>
+<p>要使用 PM2，需要先下载安装 Node.js，然后重启服务器。重启后，进入命令提示符，也可以用 PowerShell。</p>
+<ol start="3">
+<li>安装 PM2</li>
+</ol>
+<p>进入 C:\Users\Kukmoon\Program Files\RustDeskServer 文件夹。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-built_in">cd</span> /d &quot;C:\Users\Kukmoon\Program Files\RustDeskServer&quot;<br></code></pre></td></tr></table></figure>
+<p>安装 PM2。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cmd">npm install pm2 -g<br>npm install pm2-windows-startup -g<br>pm2-startup install<br></code></pre></td></tr></table></figure>
+<ol start="4">
+<li>用 PM2 运行并管理 RustDeskServer 的两个服务 hbbs 和 hbbr</li>
+</ol>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmd">pm2 <span class="hljs-built_in">start</span> hbbs.exe<br>pm2 <span class="hljs-built_in">start</span> hbbr.exe<br></code></pre></td></tr></table></figure>
+<p>保存 PM2 设置。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">pm2 save<br></code></pre></td></tr></table></figure>
+<ol start="5">
+<li>查看 RustDesk 服务器的两个文件是否正常在后台运行</li>
+</ol>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">pm2 list<br></code></pre></td></tr></table></figure>
+<p>绿色的 online 代表正常运行。<br>
+<img src="https://img.kukmoon.com/2025-06-06-21-49-46.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="6">
+<li>打开端口</li>
+</ol>
+<p>在 Windows 防火墙里打开 RustDesk 的端口（ 21115、21116、21117、21118、21119 端口），注意 TCP 协议的 21116 端口和 UDP 协议的 21116 端口都要打开。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cmd">netsh advfirewall firewall add rule name=&quot;RustDesk&quot; <span class="hljs-built_in">dir</span>=<span class="hljs-keyword">in</span> protocol=tcp localport=<span class="hljs-number">21115</span> action=allow<br>netsh advfirewall firewall add rule name=&quot;RustDesk&quot; <span class="hljs-built_in">dir</span>=<span class="hljs-keyword">in</span> protocol=tcp localport=<span class="hljs-number">21116</span> action=allow<br>netsh advfirewall firewall add rule name=&quot;RustDesk&quot; <span class="hljs-built_in">dir</span>=<span class="hljs-keyword">in</span> protocol=tcp localport=<span class="hljs-number">21117</span> action=allow<br>netsh advfirewall firewall add rule name=&quot;RustDesk&quot; <span class="hljs-built_in">dir</span>=<span class="hljs-keyword">in</span> protocol=tcp localport=<span class="hljs-number">21118</span> action=allow<br>netsh advfirewall firewall add rule name=&quot;RustDesk&quot; <span class="hljs-built_in">dir</span>=<span class="hljs-keyword">in</span> protocol=tcp localport=<span class="hljs-number">21119</span> action=allow<br>netsh advfirewall firewall add rule name=&quot;RustDesk&quot; <span class="hljs-built_in">dir</span>=<span class="hljs-keyword">in</span> protocol=udp localport=<span class="hljs-number">21116</span> action=allow<br></code></pre></td></tr></table></figure>
+<ol start="7">
+<li>查看 RustDesk 的端口（21115、21116、21117、21118、21119）是否开放</li>
+</ol>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">netstat -anp tcp | <span class="hljs-built_in">findstr</span> &quot;<span class="hljs-number">2111</span>&quot;<br></code></pre></td></tr></table></figure>
+<p><img src="https://img.kukmoon.com/2025-06-06-21-51-24.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>还有，要在 VPS 的管理控制台创建上述五个端口的入站规则（注意 TCP 协议的 21116 端口和 UDP 协议的 21116 端口都要打开）。</p>
+<p>这样，RustDesk 的服务器搭建完成。</p>
+<h2 id="二、RustDesk-Server-的组成与使用">二、RustDesk Server 的组成与使用</h2>
+<p>RustDesk Server 由两个进程组成。一个是 hbbs.exe，它是 ID 服务器，负责为每一个客户端生成 ID。一个是 hbbr.exe，它是中继服务器，负责在两个客户端之间建立连接，能直连就直连，不能直连就通过服务器中转。</p>
+<p>RustDesk 客户端连接自建服务器时，每个客户端需要输入自建服务器的域名（或 IP 地址）和公钥（Key）。<br>
+<img src="https://img.kukmoon.com/2025-06-05-21-04-18.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>首次运行 RustDesk Server for Windows 成功后，它会在 hbbs.exe 和 hbbr.exe 所在的文件夹下生成一对公私钥文件，其中 <code>id_25519.pub</code> 是公钥文件。</p>
+<p>如果公钥或者私钥有一个缺失，那么在每次 RustDesk Server 运行时，就会生成一对新的公私钥。RustDesk 服务器管理员需要将公钥分发给客户端用户。</p>
+<p>RustDesk 服务器管理员可以临时停止 RustDesk Server，以免持有公钥的用户未经许可使用 RustDesk 服务，消耗服务器的流量。临时停止 RustDesk Server 的方法：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">pm2 stop hbbs hbbr<br></code></pre></td></tr></table></figure>
+<p>如果要重新启用 RustDesk Server，就执行以下命令：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">pm2 <span class="hljs-built_in">start</span> hbbs hbbr<br></code></pre></td></tr></table></figure>
+<h2 id="小结">小结</h2>
+<p>我们在一台运行 Windows Server 的 VPS 上部署了 RustDesk 服务端，而且了解了 RustDesk Server 的构成、公钥及其用途，学到了停止和开启 RustDesk Server 的方法。</p>
+<h2 id="相关阅读">相关阅读</h2>
+<p><a href="https://blog.kukmoon.com/486783c022b7/">《在 Linux VPS 上搭建 RustDesk 服务器》</a></p>
+<h2 id="图片版权">图片版权</h2>
+<p>题图：RustDesk LOGO 的各项权利均归其开发者所有。</p>
+<p>头图：<a target="_blank" rel="noopener" href="https://pixabay.com/zh/photos/milky-way-sky-stars-cosmos-night-4526277/">https://pixabay.com/zh/photos/milky-way-sky-stars-cosmos-night-4526277/</a></p>
+
+                
+              </div>
+            
+            <div>
+                <!-- 引入自己编写的“分享到”模块（新） -->
+                <div style="text-align:right;"> <!-- 自己添加的“分享到”模块：开始。用的是 social-share.js。让所有的分享按钮右对齐-->
+	
+	<div class="social-share-container" style="margin-top: 15px;"> <!-- 生成一组分享按钮 -->
+		 <!--如果博客语言是中文，就显示“点击分享到：”，非中文一律显示“Share it:”-->
+			点击分享到：&nbsp;&nbsp;
+		
+	</div>
+	<!-- 加载 jQuery 库 -->
+	
+<script src="/js/jquery.min.js"></script>
+
+	<!-- 导入 qrcode.min.js -->
+	
+<script src="/js/qrcode.min.js"></script>
+
+	<!-- 加载 social-share.js 的 js 库，另外还要加载 social-share.js 的 CSS，可以修改 `_config.fluid.yml` 的 `custom_css` 加载，也可以修改 `themes/fluid/layout/_partial/css.ejs` 加载。-->
+	
+<script src="/js/social-share.min.js"></script>
+
+	<script> 
+	/* 执行 js 代码，new 一个新对象，详见 social-share.js 在 GitHub 的文档 */
+		new SocialShare('.social-share-container', {
+			theme: 'circle',  // 使用圆形主题
+			// 单独定义wechat分享参数
+			wechat: {
+				sort: 1, // 排序参数，数字较小的展示在前面,默认999
+			}
+		});		
+	</script>
+</div> <!-- 自己添加的“分享到”模块：结束。-->            
+                <hr/>
+                <!-- 引入自己编写的打赏模块（新） -->
+                <div style="text-align: center; margin: auto auto 1.5em;"><!--自己添加的打赏模块：开始-->
+  <!--如果主题的  _config.yml 中开启打赏-->
+    <div style="border-style:solid none none none; border-color: #663399; border-width: 0.5em; color: #663399; font-weight:bold; font-size: 1.2em; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+	   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+	    求扫码打赏
+	  	
+	</div>
+    <div style="font-size: 14px;margin-bottom: 10px;">
+	  “我这么可爱，请给我钱 o(*^ω^*)o” <!--在主题的 _config.yml 中设置打赏提示语-->
+	</div>
+    <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+	  <img src="/img/zhi-fu-bao-shou-kuan-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/wei-xin-zan-shang-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+	</div>
+  
+</div> <!--自己添加的打赏模块：结束-->
+                <hr/>
+            </div>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/IT%E6%8A%80%E6%9C%AF/" class="category-chain-item">IT技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/" class="print-no-link">#远程桌面</a>
+      
+        <a href="/tags/%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/" class="print-no-link">#网络技术</a>
+      
+        <a href="/tags/Windows/" class="print-no-link">#Windows</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>在 Windows VPS 上搭建 RustDesk 服务器</div>
+      <div>https://blog.kukmoon.com/887edaa2be82/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Kukmoon谷月</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/0b45e2cba004/" title="Mac 最佳桌面搭档：24 寸 4K 显示器选购指南（618 更新）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Mac 最佳桌面搭档：24 寸 4K 显示器选购指南（618 更新）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/486783c022b7/" title="在 Linux VPS 上搭建 RustDesk 服务器">
+                        <span class="hidden-mobile">在 Linux VPS 上搭建 RustDesk 服务器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appKey":"lvOI6tnv4jNUP9tEnIYJNKtW","path":"window.location.pathname","placeholder":"您的评论","avatar":"wavatar","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://qk25tpv2.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appkey":"lvOI6tnv4jNUP9tEnIYJNKtW"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

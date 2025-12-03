@@ -1,0 +1,992 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <link rel="icon" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kukmoon谷月">
+  <meta name="keywords" content="WinRAR,RAR,相对路径,绝对路径,-ep1,base dir">
+  
+    <meta name="description" content="使用 RAR 的 -ep1 参数，在压缩包中使用相对路径。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RAR 在压缩包中使用相对路径 (Linux版)">
+<meta property="og:url" content="https://blog.kukmoon.com/a507efc407bf/index.html">
+<meta property="og:site_name" content="谷中望月">
+<meta property="og:description" content="使用 RAR 的 -ep1 参数，在压缩包中使用相对路径。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.kukmoon.com/2022-03-17-20-27-41.jpg">
+<meta property="article:published_time" content="2022-03-17T22:54:14.000Z">
+<meta property="article:modified_time" content="2022-03-17T22:54:15.000Z">
+<meta property="article:author" content="Kukmoon谷月">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="IT技术">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.kukmoon.com/2022-03-17-20-27-41.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>RAR 在压缩包中使用相对路径 (Linux版) - 谷中望月</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel-highlightjs.css">
+<link rel="stylesheet" href="/css/social-share.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":null},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="谷中望月" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>谷中望月</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-note"></i>
+                <span>镜像</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog.kukmoon.com" target="_self">
+                    
+                    <span>全球统一入口</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://kukmoon.github.io" target="_self">
+                    
+                    <span>镜像 0（GitHub Pages）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog1.kukmoon.com" target="_self">
+                    
+                    <span>镜像 1（日本）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog2.kukmoon.com" target="_self">
+                    
+                    <span>镜像 2（CF Pages）</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.kukmoon.com/banner_img/2022_03and04.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="RAR 在压缩包中使用相对路径 (Linux版)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Kukmoon谷月
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-18 06:54" pubdate>
+          2022年3月18日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">RAR 在压缩包中使用相对路径 (Linux版)</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2022-03-18T06:54:15+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://img.kukmoon.com/2022-03-17-20-27-41.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="缘起：我需要备份博客源文件">缘起：我需要备份博客源文件</h2>
+<p>我想把我的博客（以下简称 <a href="https://blog.kukmoon.com">本博</a> ）的源文件打包压缩备份到本地。</p>
+<p>所以，我在 Linux （此处以 Kali Linux 为例）下安装了 rar。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt-get install rar<br></code></pre></td></tr></table></figure>
+<p>用 <code>rar</code> 将博客源文件所在的目录 <code>~/kukmoon_blog</code> 打包<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="[去中心化备份 Hexo 博客源码到网盘和远程主机](https://blog.kukmoon.com/2d12f0f4.html)">[1]</span></a></sup>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">rar u -r /tmp/kukmoon_blog.rar ~/kukmoon_blog<br></code></pre></td></tr></table></figure>
+<p>但是，我发现，<code>rar</code> 把绝对路径也放进了压缩包。这个压缩包打开以后，上来第一层是 home 目录，第二层是 Kukmoon 目录，第三层是 kukmoon_blog 目录，到第四层才是所有的博客源文件。</p>
+<p><img src="https://img.kukmoon.com/2022-03-17-20-16-23.gif" srcset="/img/loading.gif" lazyload alt="我懒得录屏了，用 Windows 版的代替吧"></p>
+<p>**怎样才能让 <code>rar.exe</code> 在压缩包里使用相对路径呢？**我的要求是，打开压缩包，第一层就是 kukmoon_blog 目录。</p>
+<p><img src="https://img.kukmoon.com/2022-03-17-20-17-42.gif" srcset="/img/loading.gif" lazyload alt="我懒得录屏了，用 Windows 版的代替吧"></p>
+<h2 id="rar-的-ep1-开关">rar 的 <code>-ep1</code> 开关</h2>
+<p>经过摸索，我在 rar 控制台版本的用户手册<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="[User's Manual: rar 5.30 console version](https://github.com/Aerovin/winrar/blob/master/rar.txt)">[2]</span></a></sup>里找到了一个 <code>-ep1</code> 开关。这个开关可以在压缩包内去掉上一层目录，<strong>相当于使用相对路径</strong>，可搭配 rar 的 <code>a</code> 和 <code>u</code> 命令使用。</p>
+<p>官方对这个开关的解释是：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs vim">-ep1    Exclude base dir from names. Do not store the path entered<br>        in the <span class="hljs-keyword">command</span> <span class="hljs-built_in">line</span>.<br><br>        Example:<br><br>        <span class="hljs-keyword">all</span> <span class="hljs-keyword">files</span> <span class="hljs-built_in">and</span> directories from the directory tmp will <span class="hljs-keyword">be</span> added<br>        <span class="hljs-keyword">to</span> the archive <span class="hljs-string">&#x27;test&#x27;</span>, but the path in archived names will not<br>        include <span class="hljs-string">&#x27;tmp\&#x27;</span><br><br>        rar <span class="hljs-keyword">a</span> -ep1 -r test tmp\*<br><br>        This <span class="hljs-keyword">is</span> equivalent <span class="hljs-keyword">to</span> the commands:<br><br>        <span class="hljs-keyword">cd</span> tmp<br>        rar <span class="hljs-keyword">a</span> -r ..\test<br>        <span class="hljs-keyword">cd</span> ..<br></code></pre></td></tr></table></figure>
+<h2 id="例题精讲">例题精讲</h2>
+<p>下面我们用四道例题来解释 <code>-ep1</code> 参数的用法。</p>
+<p>假设：在 <code>~/abc/def</code> 目录下有个 <code>1.txt</code> 文件，有个 <code>ghi</code> 子目录，在这个子目录下有 <code>2.txt</code> 文件。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gradle">~/abc<br>~<span class="hljs-regexp">/abc/</span><span class="hljs-keyword">def</span><br>~<span class="hljs-regexp">/abc/</span><span class="hljs-keyword">def</span>/ghi<br>~<span class="hljs-regexp">/abc/</span><span class="hljs-keyword">def</span><span class="hljs-regexp">/ghi/</span><span class="hljs-number">2</span>.txt<br>~<span class="hljs-regexp">/abc/</span><span class="hljs-keyword">def</span>/<span class="hljs-number">1</span>.txt<br>               <br></code></pre></td></tr></table></figure>
+<h3 id="【例-1】">【例 1】</h3>
+<p>执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">rar a -r example1.rar ~/abc/def<br></code></pre></td></tr></table></figure>
+<p>生成的 <code>example1.rar</code> 的内部结构是：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs gradle">example1.rar<br>└─home<br>└─home/kukmoon<br>└─home<span class="hljs-regexp">/kukmoon/</span>abc<br>└─home<span class="hljs-regexp">/kukmoon/</span>abc/<span class="hljs-keyword">def</span><br>└─home<span class="hljs-regexp">/kukmoon/</span>abc<span class="hljs-regexp">/def/g</span>hi<br>└─home<span class="hljs-regexp">/kukmoon/</span>abc<span class="hljs-regexp">/def/g</span>hi/<span class="hljs-number">2</span>.txt<br>└─home<span class="hljs-regexp">/kukmoon/</span>abc<span class="hljs-regexp">/def/</span><span class="hljs-number">1</span>.txt<br>                <br></code></pre></td></tr></table></figure>
+<p>显然，如果不使用 <code>-ep1</code>参数，并且压缩文件里包含了每个文件和目录的全部路径，从根目录开始算。</p>
+<h3 id="【例-2】">【例 2】</h3>
+<p>执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">rar a -r example2.rar ~/abc/def/<br></code></pre></td></tr></table></figure>
+<p>生成的 <code>example2.rar</code> 的内部结构是：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs gradle">example2.rar<br>└─home<br>└─home/kukmoon<br>└─home<span class="hljs-regexp">/kukmoon/</span>abc<br>└─home<span class="hljs-regexp">/kukmoon/</span>abc/<span class="hljs-keyword">def</span><br>└─home<span class="hljs-regexp">/kukmoon/</span>abc<span class="hljs-regexp">/def/g</span>hi<br>└─home<span class="hljs-regexp">/kukmoon/</span>abc<span class="hljs-regexp">/def/g</span>hi/<span class="hljs-number">2</span>.txt<br>└─home<span class="hljs-regexp">/kukmoon/</span>abc<span class="hljs-regexp">/def/</span><span class="hljs-number">1</span>.txt<br>                <br></code></pre></td></tr></table></figure>
+<p>例 2 和例 1 的区别在于，例 2 在输入列表文件（即待压缩的文件）的路径时，在 <code>def</code> 后面多加了一个反斜杠。加这个反斜杠的目的的指明 <code>def</code> 不是文件，而是子目录。</p>
+<p>但是，生成的 <code>example1.rar</code> 和 <code>examle2.rar</code> 没有区别。</p>
+<p>这说明，<strong>如果不加 <code>-ep1</code> 开关，那么在子目录的名称后面加不加斜杠，没有区别。</strong></p>
+<h3 id="【例-3】">【例 3】</h3>
+<p>执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">rar a -r -ep1 example3.rar ~/abc/def<br></code></pre></td></tr></table></figure>
+<p>生成的 <code>example3.rar</code> 的内部结构是：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gradle">example3.rar<br>└─<span class="hljs-keyword">def</span><br>└─<span class="hljs-keyword">def</span>/ghi<br>└─<span class="hljs-keyword">def</span><span class="hljs-regexp">/ghi/</span><span class="hljs-number">2</span>.txt<br>└─<span class="hljs-keyword">def</span>/<span class="hljs-number">1</span>.txt<br>        <br></code></pre></td></tr></table></figure>
+<p>例 3 和例 1 的区别在于，例 3 加入了 <code>-ep1</code> 开关。结果就是，<code>abc</code> 目录从压缩包里消失了，压缩包第一层文件结构是原来的 <code>abc</code> 目录里的 <code>def</code> 子目录。</p>
+<p>为什么呢？</p>
+<p>官方对这个 <code>-ep1</code> 参数的解释有一句话：</p>
+<blockquote>
+<p>Exclude base dir from names.</p>
+</blockquote>
+<p>其中，base dir 是上一层目录，例如，<code>~/abc/def/1.txt</code> 的 base dir 是 ``~/abc/def/` 目录。</p>
+<p>所以，例 3 这条命令 <code>rar a -r -ep1 example3.rar ~/abc/def</code> 的作用是，从压缩包里排除 <code>~/abc</code> 这个路径，压缩包的第一层结构是 <code>def</code> 子目录。</p>
+<p>注意：如果在  <code>~/abc</code> 目录中还有其它文件或子目录，rar 也会一起把它们排除，只保留 <code>def</code> 子目录。</p>
+<h3 id="【例-4】">【例 4】</h3>
+<p>执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">rar a -r -ep1 example4.rar ~/abc/def/<br></code></pre></td></tr></table></figure>
+<p>生成的 <code>example4.rar</code> 的内部结构是：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus">example4<span class="hljs-selector-class">.rar</span><br>└─ghi<br>└─ghi/<span class="hljs-number">2</span><span class="hljs-selector-class">.txt</span><br>└─<span class="hljs-number">1</span><span class="hljs-selector-class">.txt</span><br><br></code></pre></td></tr></table></figure>
+<p>例 4 和 例 3 的区别是，例 4 在输入列表文件（即待压缩的文件）的路径时，在 <code>def</code> 后面多加了一个反斜杠。加这个反斜杠的目的的指明 <code>def</code> 不是文件，而是子目录。</p>
+<p>结果是，<code>exampl4.rar</code> 不但排除了 <code>abc</code> 目录，连 <code>def</code> 目录也排除了。上来第一层目录结构是原来 <code>def</code> 目录中的 <code>1.txt</code> 和 <code>ghi</code> 子目录。</p>
+<p>这是为什么呢？</p>
+<p>计算机基础知识告诉我们，<strong>目录也是个特殊的文件</strong>，需要在目录名后面加个斜杠（Unix-like 操作系统要求用正斜杠，DOS/Windows 要求用反斜杠）作为标记。</p>
+<p>如果不加斜杠，大多数情况下，系统会自动区分，但是个别情况下，区分无效，用户需要强行用斜杠表示区分。</p>
+<p>这就属于那种需要用户自己加斜杠来区分的类型：</p>
+<ul>
+<li>如果不加斜杠，比如 <code>~/abc/def</code>，系统把 <code>def</code> 当作文件名而不是目录名，所以，base dir 是 <code>~/abc/</code> 目录。</li>
+<li>如果加了斜杠，比如 <code>~/abc/def/</code>，系统把 <code>def/</code> 当作目录名，那么 base dir 就是 <code>~/abc/def/</code> 目录。</li>
+</ul>
+<p>我甚至怀疑，rar.exe 的源代码是这么写的：从右向左寻找第一个斜杠，把第一个斜杠左边的字符串作为 base dir，从而把它对应的目录路径从压缩包里排除出去。</p>
+<h3 id="【例-5】">【例 5】</h3>
+<p>执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">rar a -r -ep1 example5.rar ~/abc/def/*<br></code></pre></td></tr></table></figure>
+<p>生成的 <code>example5.rar</code> 的内部结构，与 <code>example4.rar</code> 一样：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus">example5<span class="hljs-selector-class">.rar</span><br>└─ghi<br>└─ghi/<span class="hljs-number">2</span><span class="hljs-selector-class">.txt</span><br>└─<span class="hljs-number">1</span><span class="hljs-selector-class">.txt</span><br><br></code></pre></td></tr></table></figure>
+<h2 id="注意事项">注意事项</h2>
+<ol>
+<li>
+<p>无论是不是加 <code>-ep1</code> 开关，<code>rar</code> 都会把 <code>~</code>、<code>~/abc</code> 目录中的其它内容（包括文件、子目录、子目录中的文件）排除掉，只保留 <code>~/abc/def/</code> 目录下的内容。</p>
+</li>
+<li>
+<p><code>7z</code> 默认排除 base dir，不用问 7z 用什么开关才能排除 base dir。</p>
+</li>
+</ol>
+<h2 id="图片版权">图片版权</h2>
+<p>头图：Banner Image by <a target="_blank" rel="noopener" href="https://pixabay.com/users/milkusmaximus-2484704/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=5759458">milkusmaximus</a> from <a target="_blank" rel="noopener" href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=5759458">Pixabay</a></p>
+<h2 id="参考文献">参考文献</h2>
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a href="https://blog.kukmoon.com/2d12f0f4.html">去中心化备份 Hexo 博客源码到网盘和远程主机</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://github.com/Aerovin/winrar/blob/master/rar.txt">User’s Manual: rar 5.30 console version</a>
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+                
+              </div>
+            
+            <div>
+                <!-- 引入自己编写的“分享到”模块（新） -->
+                <div style="text-align:right;"> <!-- 自己添加的“分享到”模块：开始。用的是 social-share.js。让所有的分享按钮右对齐-->
+	
+	<div class="social-share-container" style="margin-top: 15px;"> <!-- 生成一组分享按钮 -->
+		 <!--如果博客语言是中文，就显示“点击分享到：”，非中文一律显示“Share it:”-->
+			点击分享到：&nbsp;&nbsp;
+		
+	</div>
+	<!-- 加载 jQuery 库 -->
+	
+<script src="/js/jquery.min.js"></script>
+
+	<!-- 导入 qrcode.min.js -->
+	
+<script src="/js/qrcode.min.js"></script>
+
+	<!-- 加载 social-share.js 的 js 库，另外还要加载 social-share.js 的 CSS，可以修改 `_config.fluid.yml` 的 `custom_css` 加载，也可以修改 `themes/fluid/layout/_partial/css.ejs` 加载。-->
+	
+<script src="/js/social-share.min.js"></script>
+
+	<script> 
+	/* 执行 js 代码，new 一个新对象，详见 social-share.js 在 GitHub 的文档 */
+		new SocialShare('.social-share-container', {
+			theme: 'circle',  // 使用圆形主题
+			// 单独定义wechat分享参数
+			wechat: {
+				sort: 1, // 排序参数，数字较小的展示在前面,默认999
+			}
+		});		
+	</script>
+</div> <!-- 自己添加的“分享到”模块：结束。-->            
+                <hr/>
+                <!-- 引入自己编写的打赏模块（新） -->
+                <div style="text-align: center; margin: auto auto 1.5em;"><!--自己添加的打赏模块：开始-->
+  <!--如果主题的  _config.yml 中开启打赏-->
+    <div style="border-style:solid none none none; border-color: #663399; border-width: 0.5em; color: #663399; font-weight:bold; font-size: 1.2em; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+	   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+	    求扫码打赏
+	  	
+	</div>
+    <div style="font-size: 14px;margin-bottom: 10px;">
+	  “我这么可爱，请给我钱 o(*^ω^*)o” <!--在主题的 _config.yml 中设置打赏提示语-->
+	</div>
+    <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+	  <img src="/img/zhi-fu-bao-shou-kuan-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/wei-xin-zan-shang-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+	</div>
+  
+</div> <!--自己添加的打赏模块：结束-->
+                <hr/>
+            </div>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/IT%E6%8A%80%E6%9C%AF/" class="category-chain-item">IT技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Hexo/" class="print-no-link">#Hexo</a>
+      
+        <a href="/tags/%E5%8D%9A%E5%AE%A2/" class="print-no-link">#博客</a>
+      
+        <a href="/tags/IT%E6%8A%80%E6%9C%AF/" class="print-no-link">#IT技术</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>RAR 在压缩包中使用相对路径 (Linux版)</div>
+      <div>https://blog.kukmoon.com/a507efc407bf/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Kukmoon谷月</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年3月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/7359b5a82c2b/" title="既要又要还要…">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">既要又要还要…</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/e840ee852a37/" title="RAR 在压缩包中使用相对路径 （Windows 版）">
+                        <span class="hidden-mobile">RAR 在压缩包中使用相对路径 （Windows 版）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appKey":"lvOI6tnv4jNUP9tEnIYJNKtW","path":"window.location.pathname","placeholder":"您的评论","avatar":"wavatar","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://qk25tpv2.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appkey":"lvOI6tnv4jNUP9tEnIYJNKtW"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
