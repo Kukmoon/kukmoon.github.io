@@ -1,0 +1,1047 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <link rel="icon" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kukmoon谷月">
+  <meta name="keywords" content="Hexo,GitHub,cPanel,Cloudflare,博客,自动部署,持续集成,发布">
+  
+    <meta name="description" content="偶然发现虚拟主机的 cPanel 管理系统支持 Git 版本控制，因此谷月姐萌生了把自己的博客通过 Git 直接发布到虚拟主机的方法……">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo 博客发布到 cPanel">
+<meta property="og:url" content="https://blog.kukmoon.com/ea1d2dc7d478/index.html">
+<meta property="og:site_name" content="谷中望月">
+<meta property="og:description" content="偶然发现虚拟主机的 cPanel 管理系统支持 Git 版本控制，因此谷月姐萌生了把自己的博客通过 Git 直接发布到虚拟主机的方法……">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://media.bkns.vn/uploads/2019/11/cPanel-la-gi.png">
+<meta property="article:published_time" content="2021-10-29T10:42:18.000Z">
+<meta property="article:modified_time" content="2021-10-29T10:42:19.000Z">
+<meta property="article:author" content="Kukmoon谷月">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="cPanel">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://media.bkns.vn/uploads/2019/11/cPanel-la-gi.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Hexo 博客发布到 cPanel - 谷中望月</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel-highlightjs.css">
+<link rel="stylesheet" href="/css/social-share.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":null},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="谷中望月" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>谷中望月</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-note"></i>
+                <span>镜像</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog.kukmoon.com" target="_self">
+                    
+                    <span>全球统一入口</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://kukmoon.github.io" target="_self">
+                    
+                    <span>镜像 0（GitHub Pages）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog1.kukmoon.com" target="_self">
+                    
+                    <span>镜像 1（日本）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog2.kukmoon.com" target="_self">
+                    
+                    <span>镜像 2（CF Pages）</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.kukmoon.com/banner_img/2021_01to10.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Hexo 博客发布到 cPanel"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Kukmoon谷月
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-29 18:42" pubdate>
+          2021年10月29日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Hexo 博客发布到 cPanel</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2021-10-29T18:42:19+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="1-缘起">1. 缘起</h2>
+<p>谷月姐的 <a href="https://blog.kukmoon.com">个人博客</a> 是用 Hexo 搭建的，最早发布在 GitHub 上。但是，由于 GitHub 从墙内访问太慢，而且谷月姐又不想备案，因此又买了个墙内访问速度超快的香港虚拟主机「老薛主机」（<a target="_blank" rel="noopener" href="https://my.laoxuehost.com/aff.php?aff=11005">https://www.laoxuehost.com</a>），把个人博客同步发布到虚拟主机。</p>
+<p>Hexo 的 FTP 发布插件有很多 Bug，动不动就出错，同时「老薛主机」的 FTP 上传系统是单线程而且不支持 UTF-8 编码，因此每次更新博客就成了梦魇。</p>
+<p>一个偶然的机会，谷月姐发现「老薛主机」的管理系统是 cPanel，支持 Git 版本控制系统。</p>
+<p><img src="https://img.kukmoon.com/image-20211029192521258.png" srcset="/img/loading.gif" lazyload alt="cPanel 支持 Git"></p>
+<p>而 Hexo 天生支持 Git，可以把博客部署到 GitHub。既然如此，能不能把 Hexo 博客发布到 Git 呢？答案是肯定的。</p>
+<p>**注意： 谷月姐把博客源码放在本地，只把编译生成的 <code>public</code> 文件夹发布到云端。**至于另一种流行的博客部署方式——把博客源码也放在云端，只把更新过的博文推送到云端，然后通过持续部署之类的工具在云端编译发布，也是可以实现的，谷月姐将在未来的博文中讲解。</p>
+<h2 id="2-操作步骤">2. 操作步骤</h2>
+<h3 id="2-1-本地准备工作">2.1 本地准备工作</h3>
+<h4 id="1-搭建好你的博客">(1) 搭建好你的博客</h4>
+<p>安装 Node.js、Git 和 Hexo，并通过 Hexo 搭建站点，通过修改站点的 <code>_config.yml</code> 文件进行配置。详细操作参见 <a href="https://blog.kukmoon.com/6a1c5df8.html">谷月姐的这篇博文</a> 和  <a target="_blank" rel="noopener" href="https://easyhexo.com/1-Hexo-install-and-config/1-2-install-hexo.html">EasyHexo网站的这篇教程</a> 。</p>
+<h4 id="2-安装部署插件">(2) 安装部署插件</h4>
+<p>在 Git Bash 中，执行以下两条命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ npm install hexo-deployer-git --save<br>$ npm install hexo-server --save<br></code></pre></td></tr></table></figure>
+<p>Hexo-deployer-git 插件可以把 Hexo 博客（准确地说，是编译生成的 <code>public</code> 文件夹）部署并发布到 Git 版本控制系统的远程端，可以是 GitHub，也可以部署到其他安装了 Git 版本控制系统的主机。</p>
+<p>Hexo-server 插件则是可以在本地预览实际部署后的博客。</p>
+<h3 id="2-2-远程准备工作">2.2 远程准备工作</h3>
+<h4 id="1-确定虚拟主机的IP地址、用户名">(1) 确定虚拟主机的IP地址、用户名</h4>
+<p><strong>在此假设 IP 地址是 <code>999.999.999.999</code> ，用户名是 <code>kukmoon</code>。</strong></p>
+<h4 id="2-配置主域、子域">(2) 配置主域、子域</h4>
+<p>「老薛主机」把用户可以通过 Web 访问的文件统一放在<strong>用户主文件夹</strong>下的 <code>public_html</code> 文件夹（即 <code>~/public_html</code>）。谷月姐把博客的文件放在了 <code>~/public_html/blog</code> 文件夹，并建立了一个子域名 <a href="https://blog.kukmoon.com">blog.kukmoon.com</a> 指向这个文件夹。</p>
+<p>这个路径在后面还会用得到。</p>
+<h4 id="3-开通-Shell-访问权限">(3) 开通 Shell 访问权限</h4>
+<p>在远程主机上开通 Shell 访问（Shell Access）权限，是博客发布到远程主机所必须的。</p>
+<p>如果不开通，在进行 Git 操作时，系统会提示「fatal: protocol error: bad line length character: Shel」。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ git <span class="hljs-built_in">clone</span> ssh://kukmoon@999.999.999.999/home/kukmoon/repositories/kukmoon_blog<br>Cloning into <span class="hljs-string">&#x27;kukmoon_blog&#x27;</span><br>kukmoon@999.999.999.999<span class="hljs-string">&#x27;s password:</span><br><span class="hljs-string">fatal: protocol error: bad line length character: Shel</span><br></code></pre></td></tr></table></figure>
+<p>发工单给客服要求开启 Shell 访问权限即可，「老薛主机」一次性收费 10 元每主机。</p>
+<p><img src="https://img.kukmoon.com/image-20211030145054889.png" srcset="/img/loading.gif" lazyload alt="让客服开通 Shell 访问"></p>
+<h3 id="2-3-配置-SSH-免密登录">2.3 配置 SSH 免密登录</h3>
+<p>如果设置了 SSH 免密登录，下次更新博客时，只需要在本地命令行中键入发布命令 <code>hexo deploy</code> 就可以了；否则，每次键入发布命令时还要输入密码。所以，设置 SSH 免密登录是必要的。</p>
+<h4 id="1-本地生成-SSH-密钥">(1)  本地生成 SSH 密钥</h4>
+<p>生成 SSH 密钥是为了便于后期免密登录。不需要每次部署博客时都重复输入冗长的密码。</p>
+<p>在 Git Bash 中，执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ ssh-keygen<br></code></pre></td></tr></table></figure>
+<p>系统会提示，将密钥保存到某个文件中：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">Enter file in which to save the key (/c/Users/Kukmoon/.ssh/id_rsa)<br></code></pre></td></tr></table></figure>
+<p>此处按回车确认。</p>
+<p>如果本机已经有SSH密钥，系统会提示是否覆盖：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html">/c/Users/Kukmoon/.ssh/id_rsa already exists.<br>Overwrite (y/n)?<br></code></pre></td></tr></table></figure>
+<p>建议按 <code>y</code>，覆盖已有的密钥文件，然后按回车。</p>
+<p>接下来，系统又会提示为密钥设置密码（passphrase）：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">Enter passphrase (empty for no passphrase)<br></code></pre></td></tr></table></figure>
+<p>此处不需要设置密码，直接按回车跳过即可。<strong>如果在这里设置了密码，那么后续即使设置了 SSH 免密登录，也还是要在每次登录时输入在这里设置的密码。</strong></p>
+<p>随后，系统再次提示重复确认密钥的密码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">Enter same passphrase again:<br></code></pre></td></tr></table></figure>
+<p>仍然不需要设置，再次按回车。</p>
+<p>最后，系统在在 <code>C:\Users\&lt;用户名&gt;\.ssh</code> 文件夹下生成两个文件：<code>id_rsa</code> 是私钥，<code>id_rsa.pub</code> 是公钥。</p>
+<p>我们需要在后续的步骤中，将公钥上传到远程主机上。</p>
+<h4 id="2-设置-SSH-免密登录">(2) 设置 SSH 免密登录</h4>
+<p>我们需要把本地的 SSH 公钥上传到远程主机，才能实现免密登录。上传公钥有两种方法，一是通过图形界面来操作，二是通过命令行来操作。</p>
+<h5 id="（a）-通过-cPanel-的图形界面来操作">（a） 通过 cPanel 的图形界面来操作</h5>
+<p>Step 1. 登录虚拟主机的 cPanel 管理面板，找到 「SSH 访问」。</p>
+<p><img src="https://img.kukmoon.com/image-20211030150213757.png" srcset="/img/loading.gif" lazyload alt="管理面板中的 SSH 访问"></p>
+<p>Step 2. 点击「SSH 访问」，进入此页面，可以看到「管理 SSH 密钥」按钮。</p>
+<p><img src="https://img.kukmoon.com/image-20211030150328478.png" srcset="/img/loading.gif" lazyload alt="管理 SSH 密钥"></p>
+<p>Step 3. 点击上述按钮，进入「管理 SSH 密钥」页面，正常情况下，这儿有一个「生成新密钥」按钮，一个「导入密钥」按钮，还列出了一个公钥和一个私钥，它们远程主机上的公钥和私钥。</p>
+<p><img src="https://img.kukmoon.com/image-20211030150738639.png" srcset="/img/loading.gif" lazyload alt="管理 SSH 密钥"></p>
+<p>Step 4. 点击「导入密钥」按钮，进入「导入SSH密钥」页面。我们需要在「为此密钥选择一个名称」文本框中输入一个名称，最好不要用 <code>id_rsa</code> ，免得与远程主机自己的密钥混淆。</p>
+<p>用记事本之类的文本编辑器，打开本地的公钥文件，就是我们此前创建的 <code>C:\Users\&lt;用户名&gt;\.ssh\id_rsa.pub</code> 文件，把里面的内容复制粘贴到「将公钥粘贴到以下文本框」。点击此页面底部的「导入」，再点击「返回」。</p>
+<p><img src="https://img.kukmoon.com/image-20211030152052477.png" srcset="/img/loading.gif" lazyload alt="导入 SSH 密钥"></p>
+<p>Step 5. 这样我们就可以看到，上一页的「公钥」列表中，多了一个公钥。这就是我们刚才上传成功的本地公钥。它的状态是「not authorized」（未授权），接下来我们需要进行授权。</p>
+<p><img src="https://img.kukmoon.com/image-20211030152524483.png" srcset="/img/loading.gif" lazyload alt="多了一个公钥"></p>
+<p>Step 6. 点击这个公钥右侧的「管理」，进入授权页面，在这里点击「Authorize」（授权）按钮，再点击「返回」即可。</p>
+<p><img src="https://img.kukmoon.com/image-20211030152745051.png" srcset="/img/loading.gif" lazyload alt="授权"></p>
+<h5 id="（b）-通过命令行来操作">（b） 通过命令行来操作</h5>
+<p><strong>方法一</strong>：在 Windows PowerShell、Windows Terminal 或者 Git Bash 中执行以下命令。注意：不能用命令提示符，因为它们没有提供 <code>cat</code> 和 <code>scp</code> 命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> ~/.ssh/id_rsa.pub | ssh kukmoon@999.999.999.999 <span class="hljs-string">&#x27;cat &gt;&gt; ~/.ssh/authorized_keys;chmod 700 ~/.ssh;chmod 600 ~/.ssh/authorized_keys&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>【解析】在 Linux 中， | （管道符）表示把前一个命令的输出作为后一个命令的输入。管道符后面的命令，是 <code>ssh</code> 与 <code>cat</code> 和 <code>chmod</code> 的组合，<code>ssh user@host 'COMMAND1;COMMAND2;COMMAND3'</code> 代表在登录到远程主机以后执行单引号内的多条命令，命令之间可以用管道符或分号隔开。SSH 本身不能接受输入（从键盘输入密码不算），所以，第一个 <code>cat</code> 输出的内容，是本地公钥文件的内容，就变成了第二个 <code>cat</code> 命令的输入，第二个 <code>cat</code> 命令把这个本地公钥文件的内容，用重定向符 <code>&gt;&gt;</code> 添加到远程主机上授权公钥文件 <code>~/.ssh/authorized_keys</code> 的末尾。然后，用 <code>chmod</code> 修改远程主机 <code>~/.ssh</code> 目录与 <code>~/.ssh/authorized_keys</code> 的权限，保证免密登录正常进行。</p>
+<p><strong>方法二</strong>：在 Git Bash 中执行以下命令。注意：不能用 Windows PowerShell 或 Windows Terminal，因为它们没有提供 <code>ssh-copy-id</code> 命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh-copy-id kukmoon@999.999.999.999<br></code></pre></td></tr></table></figure>
+<p>【解析】 <code>ssh-copy-id</code> 将本机公钥添加到远程主机上授权公钥文件 <code>~/.ssh/authorized_keys</code> 的末尾，并修改此文件的权限为 rw-------，修改远程主机上 <code>~/.ssh</code> 目录的权限为 rwx------，以保证免密登录正常进行</p>
+<h4 id="3-如果仍然要在登录时输入密码">(3) 如果仍然要在登录时输入密码</h4>
+<p>如果设置过免密登录，但是登录时仍然需要输入密码，这说明还需要设置正确的权限。</p>
+<ul>
+<li>
+<p>用户主目录：所有者具有读、写、执行权限；组和其他用户有读、执行权限，但不得写入。即rwxr-xr-x。</p>
+</li>
+<li>
+<p><code>~/.ssh</code> 目录：所有者具有读、写、执行权限；组和其他用户不得有读、写、执行权限。即rwx------。</p>
+</li>
+<li>
+<p>私钥文件 <code>id_rsa</code> 和已授权的密钥文件 <code>authorized_keys</code> ：所有者具有读、写权限。即rw-------。</p>
+</li>
+<li>
+<p>公钥文件 <code>id_rsa.pub</code>：所有者具有读写权限，组和其他用户只有读取权限。即rw-r–r–。</p>
+</li>
+</ul>
+<p>假设远程主机的用户名是 kukmoon。</p>
+<p>用 SSH 连接到远程主机，执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ <span class="hljs-built_in">chmod</span> 755 /home/kukmoon<br>$ <span class="hljs-built_in">chmod</span> 700 /home/kukmoon/.ssh<br>$ <span class="hljs-built_in">cd</span> /home/kukmoon/.ssh<br>$ <span class="hljs-built_in">chmod</span> 600 rd_rsa<br>$ <span class="hljs-built_in">chmod</span> 600 authorized_keys<br>$ <span class="hljs-built_in">chmod</span> 644 id_rsa.pub<br></code></pre></td></tr></table></figure>
+<h4 id="4-如果仍然要在登录时输入密钥的密码">(4) 如果仍然要在登录时输入密钥的密码</h4>
+<p>如果在登录时不需要输入用户的密码（password），但是要输入密钥的密码（passphrase），如图所示，那么需要按照「2.3 配置 SSH 免密登录」之第 (1) 小节，重新生成 SSH 密钥，一定不要设置密钥的密码（passphrase）。</p>
+<p><img src="https://img.kukmoon.com/snipaste_20211105_125643.png" srcset="/img/loading.gif" lazyload alt="要求输入 passphrase"></p>
+<h3 id="2-4-在远程主机新建库">2.4  在远程主机新建库</h3>
+<p>在远程主机新建库，也是有两种方法，一是通过图形界面，二是通过命令行。此处以图形界面为例。</p>
+<p>Step 1. 登录虚拟主机的 cPanel 管理面板，找到 「Git™ Version Control」。</p>
+<p><img src="https://img.kukmoon.com/image-20211029192521258.png" srcset="/img/loading.gif" lazyload alt="在 cPanel 面板找 Git"></p>
+<p>Step 2. 点击上述的「Git™ Version Control」，进入「Git™ Version Control」页面，直接点击右侧的「创建」，创建一个新库。</p>
+<p><img src="https://img.kukmoon.com/image-20211030155148995.png" srcset="/img/loading.gif" lazyload alt="创建新库"></p>
+<p>Step 3.  在这里建立库。①关掉「Clone a Repository」开关，这个开关表示从远程克隆一个库。②在 「Repository Path」框中填上库的路径。因为谷月姐之前在「配置主域、子域」一节中把博客放在了 <code>~/public_html/blog</code> 文件夹，所以在这里填写 <code>public_html/blog</code> 。③为库取一个名字。④点击「创建」。</p>
+<p><img src="https://img.kukmoon.com/image-20211030165054981.png" srcset="/img/loading.gif" lazyload alt="创建库"></p>
+<p>Step 4. 这样，我们就创建了一个库，并且回到了「Git™ Version Control」页面，这里列出了新创建的库，在此处找到「管理」按钮。</p>
+<p><img src="https://img.kukmoon.com/image-20211030165706510.png" srcset="/img/loading.gif" lazyload alt="新创建了库"></p>
+<p>Step 5. 点击上图中的「管理」按钮，进入「Manage Repository」页面。需要再次确认「Repository Path」是否与博客文件所在的文件夹一致，然后，把 Clone URL 复制出来备用。</p>
+<p>假设 Clone URL 是 <code>ssh://kukmoon@999.999.999.999/home/kukmoon/public_html/blog</code></p>
+<p><img src="https://img.kukmoon.com/image-20211030170426188.png" srcset="/img/loading.gif" lazyload alt="管理库"></p>
+<h3 id="2-5-配置站点的-config-yml-文件">2.5 配置站点的 <code>_config.yml</code> 文件</h3>
+<p>假如我的博客源文件放在 <code>C:\Users\Kukmoon\Blog</code> 文件夹，那么就用文本编辑器打开 <code>C:\Users\Kukmoon\Blog\_config.yml</code>，找到 # Deployment 节，编写新的 deploy 分支如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">deploy:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>    <span class="hljs-attr">repo:</span> <span class="hljs-string">ssh://kukmoon@999.999.999.999/home/kukmoon/public_html/blog</span><br>    <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br></code></pre></td></tr></table></figure>
+<p><strong>注意</strong>：</p>
+<ol>
+<li>站点的 <code>_config.yml</code> 文件意思是，假如我的博客源文件放在 <code>C:\Users\Kukmoon\Blog</code> 文件夹，那么站点的 <code>_config.yml</code> 文件就是 <code>C:\Users\Kukmoon\Blog\_config.yml</code> 。不要搞错。</li>
+<li><code>repo</code> 后面是「在远程主机新建库」一节中复制出来的 「Clone URL」。此处需要把 @ 之前的 <code>kukmoon</code> 改成你的远程主机的用户名；999.999.999.999 改成你的远程主机的 IP 地址，当然，如果已经绑定了域名，改成域名也可以；把 <code>home/kukmoon/public_html/blog</code> 改成你的博客所在的实际文件夹。</li>
+<li>不必操心绝对路径与相对路径的转换问题，「Clone URL」就是可以直接套用的绝对路径。</li>
+</ol>
+<h3 id="2-6-发布">2.6 发布</h3>
+<p>经过以上一系列操作，我们终于完成了发布的准备。</p>
+<p>在 Git Bash 中，执行以下两条命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br>$ hexo deploy<br></code></pre></td></tr></table></figure>
+<p>之后，静等 Hexo 把编译好的 public 文件夹中的内容发布到虚拟主机上就可以了。</p>
+<p><img src="https://img.kukmoon.com/image-20211030172225642.png" srcset="/img/loading.gif" lazyload alt="发布成功"></p>
+<p>之后 ，可以在 cPanel 面板的文件管理器中，或者通过 SSH 远程连接到虚拟主机，看到发布到虚拟主机上的文件。</p>
+<p><img src="https://img.kukmoon.com/image-20211030171935284.png" srcset="/img/loading.gif" lazyload alt="发布成功的文件"></p>
+<h2 id="3-下次发布">3. 下次发布</h2>
+<p>下次发布时，只需要重复执行「2.6 发布」一节中的两条发布命令即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br>$ hexo deploy<br></code></pre></td></tr></table></figure>
+<p>无需重复执行 2.1 ~ 2.5 节中的操作。</p>
+<h2 id="4-图片版权">4. 图片版权</h2>
+<p>该图片由<a target="_blank" rel="noopener" href="https://pixabay.com/users/sakuraenergybox-13057402/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4435618">sakuraenergybox</a>在<a target="_blank" rel="noopener" href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4435618">Pixabay</a>上发布</p>
+<h2 id="5-参考资料">5. 参考资料</h2>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.jb51.net/article/121180.htm">https://www.jb51.net/article/121180.htm</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_31977125/article/details/102736460">https://blog.csdn.net/qq_31977125/article/details/102736460</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.cPanel.net/cPanel/files/git-version-control/">https://docs.cPanel.net/cPanel/files/git-version-control/</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.cPanel.net/knowledge-base/web-services/guide-to-git-how-to-set-up-deployment/#create-an-empty-repository-on-your-cPanel-account">https://docs.cPanel.net/knowledge-base/web-services/guide-to-git-how-to-set-up-deployment/#create-an-empty-repository-on-your-cPanel-account</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/134349361?utm_source=cn.wiz.note&amp;utm_medium=social&amp;utm_oi=1005183544871772160">https://zhuanlan.zhihu.com/p/134349361?utm_source=cn.wiz.note&amp;utm_medium=social&amp;utm_oi=1005183544871772160</a></li>
+</ol>
+
+                
+              </div>
+            
+            <div>
+                <!-- 引入自己编写的“分享到”模块（新） -->
+                <div style="text-align:right;"> <!-- 自己添加的“分享到”模块：开始。用的是 social-share.js。让所有的分享按钮右对齐-->
+	
+	<div class="social-share-container" style="margin-top: 15px;"> <!-- 生成一组分享按钮 -->
+		 <!--如果博客语言是中文，就显示“点击分享到：”，非中文一律显示“Share it:”-->
+			点击分享到：&nbsp;&nbsp;
+		
+	</div>
+	<!-- 加载 jQuery 库 -->
+	
+<script src="/js/jquery.min.js"></script>
+
+	<!-- 导入 qrcode.min.js -->
+	
+<script src="/js/qrcode.min.js"></script>
+
+	<!-- 加载 social-share.js 的 js 库，另外还要加载 social-share.js 的 CSS，可以修改 `_config.fluid.yml` 的 `custom_css` 加载，也可以修改 `themes/fluid/layout/_partial/css.ejs` 加载。-->
+	
+<script src="/js/social-share.min.js"></script>
+
+	<script> 
+	/* 执行 js 代码，new 一个新对象，详见 social-share.js 在 GitHub 的文档 */
+		new SocialShare('.social-share-container', {
+			theme: 'circle',  // 使用圆形主题
+			// 单独定义wechat分享参数
+			wechat: {
+				sort: 1, // 排序参数，数字较小的展示在前面,默认999
+			}
+		});		
+	</script>
+</div> <!-- 自己添加的“分享到”模块：结束。-->            
+                <hr/>
+                <!-- 引入自己编写的打赏模块（新） -->
+                <div style="text-align: center; margin: auto auto 1.5em;"><!--自己添加的打赏模块：开始-->
+  <!--如果主题的  _config.yml 中开启打赏-->
+    <div style="border-style:solid none none none; border-color: #663399; border-width: 0.5em; color: #663399; font-weight:bold; font-size: 1.2em; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+	   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+	    求扫码打赏
+	  	
+	</div>
+    <div style="font-size: 14px;margin-bottom: 10px;">
+	  “我这么可爱，请给我钱 o(*^ω^*)o” <!--在主题的 _config.yml 中设置打赏提示语-->
+	</div>
+    <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+	  <img src="/img/zhi-fu-bao-shou-kuan-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/wei-xin-zan-shang-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+	</div>
+  
+</div> <!--自己添加的打赏模块：结束-->
+                <hr/>
+            </div>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/IT%E6%8A%80%E6%9C%AF/" class="category-chain-item">IT技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Hexo/" class="print-no-link">#Hexo</a>
+      
+        <a href="/tags/%E5%8D%9A%E5%AE%A2/" class="print-no-link">#博客</a>
+      
+        <a href="/tags/cPanel/" class="print-no-link">#cPanel</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Hexo 博客发布到 cPanel</div>
+      <div>https://blog.kukmoon.com/ea1d2dc7d478/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Kukmoon谷月</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年10月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/a6cb9371b3fe/" title="【谷月老师讲WPS】用 Windows 11 的 WSL 安装 WPS for Linux.md">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【谷月老师讲WPS】用 Windows 11 的 WSL 安装 WPS for Linux.md</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/5a8b5a96fc5a/" title="【Liella！】《未来は風のように》中日双语LRC歌詞">
+                        <span class="hidden-mobile">【Liella！】《未来は風のように》中日双语LRC歌詞</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appKey":"lvOI6tnv4jNUP9tEnIYJNKtW","path":"window.location.pathname","placeholder":"您的评论","avatar":"wavatar","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://qk25tpv2.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appkey":"lvOI6tnv4jNUP9tEnIYJNKtW"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

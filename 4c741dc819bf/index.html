@@ -1,0 +1,928 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <link rel="icon" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kukmoon谷月">
+  <meta name="keywords" content="批处理,batfile,PowerShell,脚本,编程,漫画">
+  
+    <meta name="description" content="2023-09-05 更新。从某个在线看漫画的网站上，把喜欢的漫画逐页批量下载回来，打包成 zip 压缩包。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用脚本批量下载漫画的每一页并改名打包">
+<meta property="og:url" content="https://blog.kukmoon.com/4c741dc819bf/index.html">
+<meta property="og:site_name" content="谷中望月">
+<meta property="og:description" content="2023-09-05 更新。从某个在线看漫画的网站上，把喜欢的漫画逐页批量下载回来，打包成 zip 压缩包。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.kukmoon.com/2023-08-08-23-31-51.jpg">
+<meta property="article:published_time" content="2023-08-08T14:09:37.000Z">
+<meta property="article:modified_time" content="2023-08-08T14:09:38.000Z">
+<meta property="article:author" content="Kukmoon谷月">
+<meta property="article:tag" content="脚本">
+<meta property="article:tag" content="编程">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.kukmoon.com/2023-08-08-23-31-51.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>用脚本批量下载漫画的每一页并改名打包 - 谷中望月</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel-highlightjs.css">
+<link rel="stylesheet" href="/css/social-share.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":null},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="谷中望月" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>谷中望月</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-note"></i>
+                <span>镜像</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog.kukmoon.com" target="_self">
+                    
+                    <span>全球统一入口</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://kukmoon.github.io" target="_self">
+                    
+                    <span>镜像 0（GitHub Pages）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog1.kukmoon.com" target="_self">
+                    
+                    <span>镜像 1（日本）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog2.kukmoon.com" target="_self">
+                    
+                    <span>镜像 2（CF Pages）</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.kukmoon.com/banner_img/2023_07and08.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="用脚本批量下载漫画的每一页并改名打包"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Kukmoon谷月
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-08 22:09" pubdate>
+          2023年8月8日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">用脚本批量下载漫画的每一页并改名打包</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2023-08-08T22:09:38+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://img.kukmoon.com/2023-08-08-23-31-51.jpg" srcset="/img/loading.gif" lazyload alt="用脚本批量下载漫画的每一页并改名打包"></p>
+<h2 id="需求">需求</h2>
+<p>某个在线看漫画的网站，只能一页页翻，各种不方便。因此，谷月姐想把喜欢的漫画逐页批量下载回来，打包成 zip 压缩包，在本地看方便。</p>
+<p class="note note-info">以前 FlashGet 有批量下载功能，但是如今 FlashGet 早已不再更新，谷月姐想了想，还是自己写个脚本吧。</p>
+<p>具体的需求：</p>
+<ol>
+<li>从某个在线看漫画的网站把漫画的所有页面批量下载回来，这个网站是用正整数给漫画的每一页编码，例如，<code>1.jpg</code>、<code>2.jpg</code>、<code>3.jpg</code>、…</li>
+<li>把 <code>1.jpg</code>、<code>2.jpg</code>、…、<code>9.jpg</code> 重命名为 <code>01.jpg</code>、<code>02.jpg</code>、…、<code>09.jpg</code>，以免影响排序。</li>
+<li>把所有的 jpg 文件打包成一个内部不具有目录结构的 zip 文件。</li>
+</ol>
+<h2 id="解决方案-1：-批处理文件">解决方案 1： 批处理文件</h2>
+<p>批处理文件是 Windows 经典的脚本解决方案，而且谷月姐对批处理比较熟，所以优先考虑用批处理。</p>
+<p>这个批处理文件用到了两个第三方软件：Wget for Windows (<a target="_blank" rel="noopener" href="https://eternallybored.org/misc/wget/">下载页面</a>) 和 7-Zip Extra for Windows (<a target="_blank" rel="noopener" href="https://www.7-zip.org/download.html">下载页面</a>)。前者是经典的命令行下载工具，后者则是经典的压缩软件 7-Zip 的命令行版本。</p>
+<p>以下是批处理文件的内容：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bat">@<span class="hljs-built_in">ECHO</span> OFF<br><span class="hljs-comment"></span><br><span class="hljs-comment">REM 指定代理为 http://127.0.0.1:7890，如果不需要代理，需要去掉下面这行</span><br><span class="hljs-built_in">SET</span> http_proxy=http://<span class="hljs-number">127</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">1</span>:<span class="hljs-number">7890</span> &amp; <span class="hljs-built_in">SET</span> https_proxy=http://<span class="hljs-number">127</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">1</span>:<span class="hljs-number">7890</span><br><br><span class="hljs-built_in">MD</span> output<br><span class="hljs-comment"></span><br><span class="hljs-comment">REM 用For命令和wget（Windows版）下载漫画的每一页</span><br><span class="hljs-comment">REM IN后面的括号，第一个数字是页数下限（一般是1），第二个数字是步长，第三个数字是页数上限</span><br><span class="hljs-comment">REM 最后面的链接是漫画某一页的下载链接，注意变量%%i表示页码</span><br><span class="hljs-keyword">FOR</span> /l <span class="hljs-variable">%%i</span> <span class="hljs-keyword">IN</span> (<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">37</span>) <span class="hljs-keyword">DO</span> wget.exe -c -O .\output\<span class="hljs-variable">%%i</span>.jpg https://images.comic.xxx/<span class="hljs-number">000</span>/<span class="hljs-number">033</span>/<span class="hljs-number">33454</span>/<span class="hljs-variable">%%i</span>.jpg<br><span class="hljs-comment"></span><br><span class="hljs-comment">REM 用For命令把1.jpg、2.jpg……9.jpg命名为01.jpg、02.jpg……09.jpg</span><br><span class="hljs-keyword">FOR</span> /l <span class="hljs-variable">%%j</span> <span class="hljs-keyword">IN</span> (<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">9</span>) <span class="hljs-keyword">DO</span> <span class="hljs-built_in">ren</span> .\output\<span class="hljs-variable">%%j</span>.jpg <span class="hljs-number">0</span><span class="hljs-variable">%%j</span>.jpg<br><span class="hljs-comment"></span><br><span class="hljs-comment">REM 用7Zip-Extra将下载回来的漫画打包，打包后的文件名是comic.zip</span><br><span class="hljs-number">7</span>za.exe a comic.zip .\output\*.*<br><br><span class="hljs-built_in">RD</span> /s /q output<br></code></pre></td></tr></table></figure>
+<h2 id="解决方案-2：-PowerShell-脚本">解决方案 2： PowerShell 脚本</h2>
+<p>从 Vista 开始，微软引入了全新的面向对象的 PowerShell。PowerShell 脚本与批处理文件相比，可以说是天壤之别。用 PowerShell 编写一个脚本来批量下载漫画，无需任何第三方软件。</p>
+<p class="note note-info">2023-09-05 更新：用了传参，这样可以直接在命令行中执行「`下载漫画并打包.ps1 漫画最后一页的绝对 URI`」来打包下载，也可以双击「下载漫画并打包.ps1」，然后手工输入或复制粘贴漫画最后一页的绝对 URI 来打包下载。把下列代码复制粘贴另存为「`下载漫画并打包.ps1`」文件就可以了。 </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell"><span class="hljs-comment"># 想把最后一张图的 URI，例如，https://hnt.javmobile.mobi/000/022/22751/34.jpg，拆分成前面的路径和最后的文件</span><br><span class="hljs-comment"># $URI=&quot;https://hnt.javmobile.mobi/000/022/22751/34.jpg&quot;</span><br><span class="hljs-keyword">Param</span>([<span class="hljs-built_in">string</span>]<span class="hljs-variable">$URI</span>) <br><br><span class="hljs-comment"># 如果没有以命令行方式输入最后一张图的 URI，那么，就在 PowerShell 窗口中提示用户手工输入</span><br><span class="hljs-keyword">If</span>(<span class="hljs-variable">$URI</span>)<br>&#123;<br>    <span class="hljs-built_in">Write-Host</span> <span class="hljs-variable">$URI</span><br>&#125;<br><span class="hljs-keyword">else</span><br>&#123;<br>    <span class="hljs-variable">$URI</span> = <span class="hljs-built_in">Read-Host</span> <span class="hljs-string">&quot;请输入漫画最后一张图片的完整 URI，例如 https://hnt.javmobile.mobi/000/022/22751/34.jpg &quot;</span><br>&#125;<br><br><span class="hljs-comment"># 解析 URI，例如，把 https://hnt.javmobile.mobi/000/022/22751/34.jpg 转换成 https://hnt.javmobile.mobi/000/022/22751/$i.jpg 的形式</span><br><span class="hljs-comment"># 因为 PowerShell 5.1 的 Split 命令不支持从后往前寻找分隔符并分割字符串，因此只能写一个循环来解决，</span><br><span class="hljs-comment"># 如果是用 PowerShell 7.x，那么一句 $split = $URI -split &#x27;/&#x27; , -2，就完事了。</span><br><span class="hljs-variable">$split</span> = <span class="hljs-variable">$URI</span> <span class="hljs-operator">-split</span> <span class="hljs-string">&#x27;/&#x27;</span><br><span class="hljs-variable">$result</span> = <span class="hljs-operator">-Join</span> (<span class="hljs-variable">$split</span>[<span class="hljs-number">0</span>],<span class="hljs-string">&#x27;//&#x27;</span>,<span class="hljs-variable">$split</span>[<span class="hljs-number">2</span>],<span class="hljs-string">&#x27;/&#x27;</span>)<br><span class="hljs-keyword">For</span> (<span class="hljs-variable">$i</span>=<span class="hljs-number">3</span>; <span class="hljs-variable">$i</span> <span class="hljs-operator">-ile</span> <span class="hljs-variable">$split</span>.Count<span class="hljs-literal">-2</span>;<span class="hljs-variable">$i</span>++)<br>&#123;<br>    <span class="hljs-variable">$result</span> = <span class="hljs-operator">-Join</span> (<span class="hljs-variable">$result</span>,<span class="hljs-variable">$split</span>[<span class="hljs-variable">$i</span>],<span class="hljs-string">&#x27;/&#x27;</span>)<br>&#125;<br><span class="hljs-variable">$URIpath</span>=<span class="hljs-variable">$result</span><br><span class="hljs-variable">$Filename</span>=<span class="hljs-variable">$split</span>[<span class="hljs-variable">$split</span><span class="hljs-type">.Count</span>-<span class="hljs-number">1</span>]<br><span class="hljs-variable">$Pages</span>=<span class="hljs-variable">$filename</span>.split(<span class="hljs-string">&#x27;.&#x27;</span>)[<span class="hljs-number">0</span>]<br><span class="hljs-variable">$Ext</span>=<span class="hljs-variable">$filename</span>.split(<span class="hljs-string">&#x27;.&#x27;</span>)[-<span class="hljs-number">1</span>]<br><br><span class="hljs-built_in">New-Item</span> <span class="hljs-literal">-Path</span> . <span class="hljs-literal">-Name</span> <span class="hljs-string">&quot;output&quot;</span> <span class="hljs-literal">-ItemType</span> <span class="hljs-string">&quot;directory&quot;</span><br><br><span class="hljs-comment"># 用 For 循环结合 Invoke-WebRequest 命令（或 Start-BitsTransfer 命令）下载漫画的每一页</span><br><span class="hljs-keyword">For</span> (<span class="hljs-variable">$i</span>=<span class="hljs-number">1</span>; <span class="hljs-variable">$i</span> <span class="hljs-operator">-ile</span> <span class="hljs-variable">$Pages</span>; <span class="hljs-variable">$i</span>++)<br>&#123;<br>    <span class="hljs-variable">$FullURI</span> = <span class="hljs-operator">-Join</span> (<span class="hljs-variable">$URIPath</span>,<span class="hljs-variable">$i</span>,<span class="hljs-string">&#x27;.&#x27;</span>,<span class="hljs-variable">$Ext</span>)<br>    <span class="hljs-built_in">Start-BitsTransfer</span> <span class="hljs-literal">-Source</span> <span class="hljs-variable">$FullURI</span> <span class="hljs-literal">-Destination</span> .\output\<span class="hljs-variable">$i</span>.jpg <span class="hljs-literal">-ProxyUsage</span> Override <span class="hljs-literal">-ProxyList</span> <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">7890</span><br>    <span class="hljs-comment"># 也可以用这个：  Invoke-WebRequest -Uri $URI -OutFile .\output\$i.jpg -Proxy http://127.0.0.1:7890</span><br>    <br>    <span class="hljs-comment"># 注意：关于代理</span><br>    <span class="hljs-comment"># 1. 上述两条命令已经分别单独指定代理为 http://127.0.0.1:7890</span><br>    <span class="hljs-comment"># 2. Invoke-WebRequest 命令要用 -Proxy 开关指定代理，代理的地址要有 http:// 前缀</span><br>    <span class="hljs-comment"># 3. Start-BitsTransfer 命令要用 -ProxyUsage Override 开关强制启用代理，用 -ProxyList 开关指定代理，代理的地址不能有 http:// 前缀</span><br>    <span class="hljs-comment"># 4. 如果不需要代理，需要手工去掉上述开关</span><br>&#125;<br><br><span class="hljs-comment"># 用 For 循环结合 Rename-Item 命令把 1.jpg、2.jpg … 9.jpg 命名为01.jpg、02.jpg … 09.jpg</span><br><span class="hljs-keyword">For</span> (<span class="hljs-variable">$i</span>=<span class="hljs-number">1</span>; <span class="hljs-variable">$i</span> <span class="hljs-operator">-ile</span> <span class="hljs-number">9</span>; <span class="hljs-variable">$i</span>++)<br>&#123;<br>    <span class="hljs-built_in">Rename-Item</span> <span class="hljs-literal">-Path</span> <span class="hljs-string">&quot;.\Output\<span class="hljs-variable">$i</span>.jpg&quot;</span> <span class="hljs-literal">-NewName</span> <span class="hljs-string">&quot;0<span class="hljs-variable">$i</span>.jpg&quot;</span><br>&#125;<br><br><span class="hljs-comment"># 用 Compress-Archive 命令将所有 JPG 文件打包压缩</span><br><span class="hljs-built_in">Compress-Archive</span> <span class="hljs-literal">-Path</span> .\output\*.* <span class="hljs-literal">-DestinationPath</span> .\comic.zip <span class="hljs-literal">-Force</span><br><br><span class="hljs-built_in">Remove-Item</span> <span class="hljs-literal">-Path</span> .\output <span class="hljs-literal">-Recurse</span> <span class="hljs-literal">-Force</span><br></code></pre></td></tr></table></figure>
+<h2 id="图片版权">图片版权</h2>
+<p>题图：Photo by <a target="_blank" href="https://freerangestock.com/photographer/Pexels/4556">Pexels</a> from <a target="_blank" href="https://freerangestock.com">Freerange Stock</a>。</p>
+<p>头图：该图片由 <a target="_blank" rel="noopener" href="https://pixabay.com/users/12019-12019/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2080072">David Mark</a> 在 <a target="_blank" rel="noopener" href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2080072">Pixabay</a> 上发布。</p>
+                
+              </div>
+            
+            <div>
+                <!-- 引入自己编写的“分享到”模块（新） -->
+                <div style="text-align:right;"> <!-- 自己添加的“分享到”模块：开始。用的是 social-share.js。让所有的分享按钮右对齐-->
+	
+	<div class="social-share-container" style="margin-top: 15px;"> <!-- 生成一组分享按钮 -->
+		 <!--如果博客语言是中文，就显示“点击分享到：”，非中文一律显示“Share it:”-->
+			点击分享到：&nbsp;&nbsp;
+		
+	</div>
+	<!-- 加载 jQuery 库 -->
+	
+<script src="/js/jquery.min.js"></script>
+
+	<!-- 导入 qrcode.min.js -->
+	
+<script src="/js/qrcode.min.js"></script>
+
+	<!-- 加载 social-share.js 的 js 库，另外还要加载 social-share.js 的 CSS，可以修改 `_config.fluid.yml` 的 `custom_css` 加载，也可以修改 `themes/fluid/layout/_partial/css.ejs` 加载。-->
+	
+<script src="/js/social-share.min.js"></script>
+
+	<script> 
+	/* 执行 js 代码，new 一个新对象，详见 social-share.js 在 GitHub 的文档 */
+		new SocialShare('.social-share-container', {
+			theme: 'circle',  // 使用圆形主题
+			// 单独定义wechat分享参数
+			wechat: {
+				sort: 1, // 排序参数，数字较小的展示在前面,默认999
+			}
+		});		
+	</script>
+</div> <!-- 自己添加的“分享到”模块：结束。-->            
+                <hr/>
+                <!-- 引入自己编写的打赏模块（新） -->
+                <div style="text-align: center; margin: auto auto 1.5em;"><!--自己添加的打赏模块：开始-->
+  <!--如果主题的  _config.yml 中开启打赏-->
+    <div style="border-style:solid none none none; border-color: #663399; border-width: 0.5em; color: #663399; font-weight:bold; font-size: 1.2em; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+	   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+	    求扫码打赏
+	  	
+	</div>
+    <div style="font-size: 14px;margin-bottom: 10px;">
+	  “我这么可爱，请给我钱 o(*^ω^*)o” <!--在主题的 _config.yml 中设置打赏提示语-->
+	</div>
+    <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+	  <img src="/img/zhi-fu-bao-shou-kuan-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/wei-xin-zan-shang-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+	</div>
+  
+</div> <!--自己添加的打赏模块：结束-->
+                <hr/>
+            </div>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/IT%E6%8A%80%E6%9C%AF/" class="category-chain-item">IT技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%84%9A%E6%9C%AC/" class="print-no-link">#脚本</a>
+      
+        <a href="/tags/%E7%BC%96%E7%A8%8B/" class="print-no-link">#编程</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>用脚本批量下载漫画的每一页并改名打包</div>
+      <div>https://blog.kukmoon.com/4c741dc819bf/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Kukmoon谷月</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年8月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/050b7b69a156/" title="七夕夜 JJ 被猫咬了">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">七夕夜 JJ 被猫咬了</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/08413c56e3db/" title="Windows Server 服务器搭建 v2ray">
+                        <span class="hidden-mobile">Windows Server 服务器搭建 v2ray</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appKey":"lvOI6tnv4jNUP9tEnIYJNKtW","path":"window.location.pathname","placeholder":"您的评论","avatar":"wavatar","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://qk25tpv2.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appkey":"lvOI6tnv4jNUP9tEnIYJNKtW"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

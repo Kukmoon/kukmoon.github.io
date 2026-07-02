@@ -1,0 +1,953 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <link rel="icon" href="/img/kukmoon-avatar-by-D-shi-hui-she.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kukmoon谷月">
+  <meta name="keywords" content="去中心化,IT,Hexo,博客,备份,源码,GitHub,Gitee,CODING,Actions">
+  
+    <meta name="description" content="为了实现去中心化，我用 GitHub Actions 把博客源码一键备份到 Gitee 和 CODING。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="去中心化用 GitHub Actions 把 Hexo 博客源码备份到 Gitee 和 CODING">
+<meta property="og:url" content="https://blog.kukmoon.com/b51292f74e95/index.html">
+<meta property="og:site_name" content="谷中望月">
+<meta property="og:description" content="为了实现去中心化，我用 GitHub Actions 把博客源码一键备份到 Gitee 和 CODING。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.kukmoon.com/2022-03-21-03-40-31.png">
+<meta property="article:published_time" content="2022-03-20T18:28:57.000Z">
+<meta property="article:modified_time" content="2022-03-20T18:28:58.000Z">
+<meta property="article:author" content="Kukmoon谷月">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="IT技术">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.kukmoon.com/2022-03-21-03-40-31.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>去中心化用 GitHub Actions 把 Hexo 博客源码备份到 Gitee 和 CODING - 谷中望月</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/macpanel-highlightjs.css">
+<link rel="stylesheet" href="/css/social-share.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.kukmoon.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":null},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="谷中望月" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>谷中望月</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml" target="_self">
+                <i class="iconfont icon-rss"></i>
+                <span>RSS</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-note"></i>
+                <span>镜像</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog.kukmoon.com" target="_self">
+                    
+                    <span>全球统一入口</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://kukmoon.github.io" target="_self">
+                    
+                    <span>镜像 0（GitHub Pages）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog1.kukmoon.com" target="_self">
+                    
+                    <span>镜像 1（日本）</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://blog2.kukmoon.com" target="_self">
+                    
+                    <span>镜像 2（CF Pages）</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.kukmoon.com/banner_img/2022_03and04.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="去中心化用 GitHub Actions 把 Hexo 博客源码备份到 Gitee 和 CODING"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Kukmoon谷月
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-21 02:28" pubdate>
+          2022年3月21日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">去中心化用 GitHub Actions 把 Hexo 博客源码备份到 Gitee 和 CODING</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2022-03-21T02:28:58+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p class="note note-secondary">这是去中心化博客备份专题的第 3 篇。<a href="5162b2d.html">上一篇</a>在这里。</p>
+<p><img src="https://img.kukmoon.com/2022-03-21-03-40-31.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>互联网时代的“狡兔三窟”，叫作“去中心化”。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com">GitHub</a> 封禁伊朗和俄罗斯开发者的私有账户，不能说明大厂不靠谱或者开源不靠谱，相反，说明了<strong>中心化不靠谱</strong>。即使 <a target="_blank" rel="noopener" href="https://github.com">GitHub</a> 那样的大厂，也会因为合规要求而封禁账号。如果开发者仅仅依赖 <a target="_blank" rel="noopener" href="https://github.com">GitHub</a> 托管源码，那还是落入了中心化的窠臼。</p>
+<p>谷月姐不但给 <a href="https://blog.kukmoon.com">博客</a> 建立了好几个镜像，而且源码放在好几个不同的云盘和源码托管平台。就是要去中心化，免得一旦中美开战， <a target="_blank" rel="noopener" href="https://github.com">GitHub</a> 封禁中国开发者的账户，导致我的博客全军覆没。</p>
+<p>我的 <a href="https://blog.kukmoon.com">博客</a> 源码在本地有一份，在 <a target="_blank" rel="noopener" href="https://github.com">GitHub</a> 有一份。接下来，谷月姐要把它备份到不同的云端。如果本地或 <a target="_blank" rel="noopener" href="https://github.com">GitHub</a> 出错，可以及时恢复。如果我的 <a target="_blank" rel="noopener" href="https://github.com">GitHub</a> 被封禁，还可以转移到其他的源码托管网站，或者从本地发布我的博客。</p>
+<p><a href="5162b2d.html">上一期</a>，谷月姐介绍了把 Hexo 博客源码<strong>用 Git 从本地</strong>备份到  <a target="_blank" rel="noopener" href="https://gitee.com">Gitee</a> 和 <a target="_blank" rel="noopener" href="https://coding.net">CODING</a>。</p>
+<p>本期，谷月姐要把源码<strong>用 <a target="_blank" rel="noopener" href="https://github.com/features/actions">GitHub Actions</a> 从 <a target="_blank" rel="noopener" href="https://github.com">GitHub</a></strong> 备份到 <a target="_blank" rel="noopener" href="https://gitee.com">Gitee</a> 和 <a target="_blank" rel="noopener" href="https://coding.net">CODING</a>。</p>
+<p><strong>注意</strong>：</p>
+<ol>
+<li>其他基于 Git 的代码托管平台也适用本教程。</li>
+<li>它同步不了子模块。</li>
+</ol>
+<h2 id="1-建立仓库">1 建立仓库</h2>
+<p>在 <a target="_blank" rel="noopener" href="https://github.com">GitHub</a> 上已经有私有仓库了。</p>
+<p>在 <a target="_blank" rel="noopener" href="https://gitee.com">Gitee</a> 上建立一个私有仓库，HTTP 协议的 URL 是：<code>https://gitee.com/kukmoon/kukmoon_blog.git</code> 。注意：默认分支与 <a target="_blank" rel="noopener" href="https://github.com">GitHub</a> 上的博客源码仓库的默认分支一致，此处都是 <code>master</code>。</p>
+<p>在 <a target="_blank" rel="noopener" href="https://coding.net">CODING</a> 上建立一个私有仓库，HTTP 协议的 URL 是：<code>https://e.coding.net/kukmoon/blog/source_code.git</code> 。注意：默认分支与 <a target="_blank" rel="noopener" href="https://github.com">GitHub</a> 上的博客源码仓库的默认分支一致，此处都是 <code>master</code>。</p>
+<h2 id="2-准备令牌">2 准备令牌</h2>
+<p>在 <a target="_blank" rel="noopener" href="https://gitee.com">Gitee</a> 首页点击右上角头像→设置→左侧导航栏中的安全设置→私人令牌→右上角生成新令牌。权限可以全选。将令牌记录下来。</p>
+<p>在 <a target="_blank" rel="noopener" href="https://coding.net">CODING</a> 个人首页点击左侧导航栏中的项目→“谷月姐的博客”（谷月姐把博客源码仓库放到了这个项目里）→左下角项目设置→左侧导航栏中的开发者选项→项目令牌→新建项目令牌，令牌名称随意填，指定一个过期时间，将代码仓库权限设为统一配置所有代码仓库权限，并勾选“读写”（系统默认勾选了“读取”），点击“新建”。系统生成一个项目令牌。</p>
+<p>注意：<a target="_blank" rel="noopener" href="https://gitee.com">Gitee</a> 生成的令牌只有令牌；<a target="_blank" rel="noopener" href="https://coding.net">CODING</a> 生成的令牌包括一个用户名和一个密码。</p>
+<h2 id="3-设置仓库秘密（repo-secrets）">3 设置仓库秘密（repo secrets）</h2>
+<p>要把上一步生成的令牌保存到 <a target="_blank" rel="noopener" href="https://github.com">GitHub</a> 的博客源码仓库 <code>kukmoon_blog</code> 中，用于向 <a target="_blank" rel="noopener" href="https://gitee.com">Gitee</a> 和 <a target="_blank" rel="noopener" href="https://coding.net">CODING</a> 推送源码。</p>
+<p>令牌不能明文保存，所以要以仓库秘密（repo secrets）的形式保存。</p>
+<p>进入 <a target="_blank" rel="noopener" href="https://github.com">GitHub</a>，打开博客源码仓库 <code>kukmoon_blog</code>，点击仓库上方导航栏的 Settings，点击左侧导航栏 Security 下方的 Secrets → Actions，点击右上方的 New repository secret，添加四个 secrets：</p>
+<ol>
+<li><code>GITEE_USER</code>：在 <a target="_blank" rel="noopener" href="https://gitee.com">Gitee</a> 注册的用户名。就是你的 <a target="_blank" rel="noopener" href="https://gitee.com">Gitee</a> 个人主页大头像下方以 @ 开头的一串英文。<br>
+<img src="https://img.kukmoon.com/2022-03-21-02-57-17.png" srcset="/img/loading.gif" lazyload alt="Gitee 用户名"></li>
+<li><code>GITEE_TOKEN</code>：按照第 2 步在 <a target="_blank" rel="noopener" href="https://gitee.com">Gitee</a> 创建的令牌。<br>
+<img src="https://img.kukmoon.com/2022-03-21-03-18-19.png" srcset="/img/loading.gif" lazyload alt="Gitee 令牌"></li>
+<li><code>CODING_USER</code>：按照第 2 步在 <a target="_blank" rel="noopener" href="https://coding.net">CODING</a> 创建的项目令牌中的用户名。<br>
+<img src="https://img.kukmoon.com/2022-03-21-03-00-05.png" srcset="/img/loading.gif" lazyload alt="CODING_USER"></li>
+<li><code>CODING_TOKEN</code>：按照第 2 步在 <a target="_blank" rel="noopener" href="https://coding.net">CODING</a> 创建的项目令牌中的密码。<br>
+<img src="https://img.kukmoon.com/2022-03-21-03-01-03.png" srcset="/img/loading.gif" lazyload alt="CODING_TOKEN"></li>
+</ol>
+<h2 id="4-写-GitHub-Actions">4 写 GitHub Actions</h2>
+<p>新建 <code>kukmoon_blog/.github/workflow/deploy.yml</code>，内容如下<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="[https://github.com/index-py/index.py/blob/a9ef1e2dca0c975108b942657679ec47908c7bcc/.github/workflows/setup.yml#L55-L82](https://github.com/index-py/index.py/blob/a9ef1e2dca0c975108b942657679ec47908c7bcc/.github/workflows/setup.yml#L55-L82)">[1]</span></a></sup>：</p>
+<p>（如果已经存在此文件，那就把第 11 到 55 行的内容作为一个单独的 job，添加到已存在的 <code>deploy.yml</code>）</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">name:</span> <span class="hljs-string">CI</span><br><br><span class="hljs-comment"># 只监听 master 分支的改动</span><br><span class="hljs-attr">on:</span><br>  <span class="hljs-attr">push:</span><br>    <span class="hljs-attr">branches:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">master</span><br><br><span class="hljs-comment"># 每个 jobs 分别同时在独立的虚拟机中运行</span><br><span class="hljs-attr">jobs:</span>  <br>  <span class="hljs-string">backup_source_code_to_gitee_&amp;_coding:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">Backup</span> <span class="hljs-string">source</span> <span class="hljs-string">code</span> <span class="hljs-string">to</span> <span class="hljs-string">Gitee</span> <span class="hljs-string">&amp;</span> <span class="hljs-string">CODING</span><br>    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span><br>    <span class="hljs-attr">steps:</span><br>      <span class="hljs-comment"># 克隆</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Clone</span><br>        <span class="hljs-attr">env:</span><br>          <span class="hljs-attr">GITHUB_SOURCE_REPO:</span> <span class="hljs-string">Kukmoon/kukmoon_blog</span><br>          <span class="hljs-attr">GIT_USER:</span> <span class="hljs-string">Kukmoon</span><br>          <span class="hljs-attr">GIT_EMAIL:</span> <span class="hljs-string">kukmoon97@gmail.com</span><br>        <span class="hljs-attr">run:</span> <span class="hljs-string">|</span><br><span class="hljs-string">          git init</span><br><span class="hljs-string">          git remote add origin https://github.com/$&#123;GITHUB_SOURCE_REPO&#125;.git</span><br><span class="hljs-string">          git fetch --all</span><br><span class="hljs-string">          for branch in `git branch -a | grep remotes | grep -v HEAD`; do</span><br><span class="hljs-string">            git branch --track $&#123;branch##*/&#125; $branch</span><br><span class="hljs-string">          done</span><br><span class="hljs-string">          git config --global user.name $GIT_USER</span><br><span class="hljs-string">          git config --global user.email $GIT_EMAIL          </span><br><span class="hljs-string"></span>          <br>      <span class="hljs-comment"># 推送到码云      </span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Push</span> <span class="hljs-string">to</span> <span class="hljs-string">Gitee</span><br>        <span class="hljs-attr">env:</span><br>          <span class="hljs-attr">GITEE_USER:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.GITEE_USER</span> <span class="hljs-string">&#125;&#125;</span><br>          <span class="hljs-attr">GITEE_TOKEN:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.GITEE_TOKEN</span> <span class="hljs-string">&#125;&#125;</span>          <br>        <span class="hljs-attr">run:</span> <span class="hljs-string">|</span><br><span class="hljs-string">          gitee_repo=&quot;https://$&#123;GITEE_USER&#125;:$&#123;GITEE_TOKEN&#125;@gitee.com/kukmoon/kukmoon_blog.git&quot;</span><br><span class="hljs-string">          git remote add gitee1 &quot;$&#123;gitee_repo&#125;&quot;</span><br><span class="hljs-string">          git show-ref</span><br><span class="hljs-string">          git branch --verbose</span><br><span class="hljs-string">          git push --all --force gitee1          </span><br><span class="hljs-string">          git push --tags --force gitee1          </span><br><span class="hljs-string"></span>          <br>      <span class="hljs-comment"># 推送到 CODING</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Push</span> <span class="hljs-string">to</span> <span class="hljs-string">CODING</span><br>        <span class="hljs-attr">env:</span><br>          <span class="hljs-attr">CODING_USER:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.CODING_USER</span> <span class="hljs-string">&#125;&#125;</span><br>          <span class="hljs-attr">CODING_TOKEN:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.CODING_TOKEN</span> <span class="hljs-string">&#125;&#125;</span><br>        <span class="hljs-attr">run:</span> <span class="hljs-string">|</span><br><span class="hljs-string">          coding_repo=&quot;https://$&#123;CODING_USER&#125;:$&#123;CODING_TOKEN&#125;@e.coding.net/kukmoon/blog/source_code.git&quot;</span><br><span class="hljs-string">          git remote add coding1 &quot;$&#123;coding_repo&#125;&quot;</span><br><span class="hljs-string">          git show-ref</span><br><span class="hljs-string">          git branch --verbose</span><br><span class="hljs-string">          git push --all --force coding1          </span><br><span class="hljs-string">          git push --tags --force coding1</span><br></code></pre></td></tr></table></figure>
+<h2 id="5-图片版权">5 图片版权</h2>
+<p>头图：Banner Image by <a target="_blank" rel="noopener" href="https://pixabay.com/users/milkusmaximus-2484704/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=5759458">milkusmaximus</a> from <a target="_blank" rel="noopener" href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=5759458">Pixabay</a></p>
+<h2 id="6-参考文献">6 参考文献</h2>
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://github.com/index-py/index.py/blob/a9ef1e2dca0c975108b942657679ec47908c7bcc/.github/workflows/setup.yml#L55-L82">https://github.com/index-py/index.py/blob/a9ef1e2dca0c975108b942657679ec47908c7bcc/.github/workflows/setup.yml#L55-L82</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+                
+              </div>
+            
+            <div>
+                <!-- 引入自己编写的“分享到”模块（新） -->
+                <div style="text-align:right;"> <!-- 自己添加的“分享到”模块：开始。用的是 social-share.js。让所有的分享按钮右对齐-->
+	
+	<div class="social-share-container" style="margin-top: 15px;"> <!-- 生成一组分享按钮 -->
+		 <!--如果博客语言是中文，就显示“点击分享到：”，非中文一律显示“Share it:”-->
+			点击分享到：&nbsp;&nbsp;
+		
+	</div>
+	<!-- 加载 jQuery 库 -->
+	
+<script src="/js/jquery.min.js"></script>
+
+	<!-- 导入 qrcode.min.js -->
+	
+<script src="/js/qrcode.min.js"></script>
+
+	<!-- 加载 social-share.js 的 js 库，另外还要加载 social-share.js 的 CSS，可以修改 `_config.fluid.yml` 的 `custom_css` 加载，也可以修改 `themes/fluid/layout/_partial/css.ejs` 加载。-->
+	
+<script src="/js/social-share.min.js"></script>
+
+	<script> 
+	/* 执行 js 代码，new 一个新对象，详见 social-share.js 在 GitHub 的文档 */
+		new SocialShare('.social-share-container', {
+			theme: 'circle',  // 使用圆形主题
+			// 单独定义wechat分享参数
+			wechat: {
+				sort: 1, // 排序参数，数字较小的展示在前面,默认999
+			}
+		});		
+	</script>
+</div> <!-- 自己添加的“分享到”模块：结束。-->            
+                <hr/>
+                <!-- 引入自己编写的打赏模块（新） -->
+                <div style="text-align: center; margin: auto auto 1.5em;"><!--自己添加的打赏模块：开始-->
+  <!--如果主题的  _config.yml 中开启打赏-->
+    <div style="border-style:solid none none none; border-color: #663399; border-width: 0.5em; color: #663399; font-weight:bold; font-size: 1.2em; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; border-radius: 8px;margin-bottom: 10px;"><!-- 显示“打赏支持”的盒子-->
+	   <!--如果博客语言是中文，就显示“打赏支持”，非中文一律显示“Donate”-->
+	    求扫码打赏
+	  	
+	</div>
+    <div style="font-size: 14px;margin-bottom: 10px;">
+	  “我这么可爱，请给我钱 o(*^ω^*)o” <!--在主题的 _config.yml 中设置打赏提示语-->
+	</div>
+    <div style="width: auto; height: auto; max-width: 600px; max-height: 600px; text-align: center; margin: auto; "><!--两张二维码强制放在同一行，以免换行，强制设定图片的宽度随页面的变化而变化，图片最大宽度为300 px-->
+	  <img src="/img/zhi-fu-bao-shou-kuan-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height:auto; max-width: 50%;"><img src="/img/wei-xin-zan-shang-ma.png" srcset="/img/loading.gif" lazyload style="width: auto; height: auto; max-width: 50%;"><!--在主题的 _config.yaml 中设置打赏二维码图片-->
+	</div>
+  
+</div> <!--自己添加的打赏模块：结束-->
+                <hr/>
+            </div>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/IT%E6%8A%80%E6%9C%AF/" class="category-chain-item">IT技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Hexo/" class="print-no-link">#Hexo</a>
+      
+        <a href="/tags/%E5%8D%9A%E5%AE%A2/" class="print-no-link">#博客</a>
+      
+        <a href="/tags/IT%E6%8A%80%E6%9C%AF/" class="print-no-link">#IT技术</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>去中心化用 GitHub Actions 把 Hexo 博客源码备份到 Gitee 和 CODING</div>
+      <div>https://blog.kukmoon.com/b51292f74e95/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Kukmoon谷月</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年3月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/41be352569c0/" title="纽约时报中文网的双栏排版太牛逼了">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">纽约时报中文网的双栏排版太牛逼了</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/7fe8626e79cc/" title="统一墙内外的访问体验">
+                        <span class="hidden-mobile">统一墙内外的访问体验</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appKey":"lvOI6tnv4jNUP9tEnIYJNKtW","path":"window.location.pathname","placeholder":"您的评论","avatar":"wavatar","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://qk25tpv2.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"qK25tpv2mNPYDMGi01l7Qbjb-MdYXbMMI","appkey":"lvOI6tnv4jNUP9tEnIYJNKtW"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
